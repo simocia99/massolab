@@ -9,9 +9,9 @@ export default {
   theme: {
     extend: {
       fontFamily: { sans: ['"Instrument Sans"', 'system-ui', '-apple-system', 'sans-serif'] },
-      // Estetica v2 (docs/agent-notes/design.md): only 400/500/600 are loaded,
-      // so the old heavy weights map onto the calmer 500/600.
-      fontWeight: { bold: '600', extrabold: '600', black: '500' },
+      // Estetica v2, pesi "un po' più bold" (scelta utente): Instrument Sans 400-700 è caricato,
+      // ogni livello sale di un gradino (testo 500, titoli 600, grassetti 700).
+      fontWeight: { normal: '500', medium: '600', semibold: '700', bold: '700', extrabold: '700', black: '600' },
       transitionTimingFunction: { DEFAULT: 'cubic-bezier(0.28, 0.11, 0.32, 1)', apple: 'cubic-bezier(0.28, 0.11, 0.32, 1)' },
       transitionDuration: { DEFAULT: '400ms' },
       // shadcn/ui theme tokens used by the original Base44 build (see :root in index.css).

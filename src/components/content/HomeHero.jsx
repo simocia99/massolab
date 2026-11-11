@@ -9,7 +9,7 @@ import { createPageUrl } from '@/lib/utils';
 
 const EASE = [0.28, 0.11, 0.32, 1];
 const WORD = 'Benessere';
-const HERO_IMG = `${import.meta.env.BASE_URL}images/1fa261e10.jpg`;
+const HERO_IMG = `${import.meta.env.BASE_URL}images/hero.jpg`;
 
 const fade = (delay, reduce) => ({
   initial: reduce ? { opacity: 0 } : { opacity: 0, y: 24, filter: 'blur(8px)' },
@@ -35,7 +35,7 @@ export default function HomeHero() {
         <motion.div style={{ y: imgY }} className="absolute inset-0">
           <motion.img
             src={HERO_IMG}
-            alt="Massaggio professionale in un ambiente luminoso"
+            alt="Mani del massoterapista sulla schiena durante un massaggio"
             fetchpriority="high"
             decoding="async"
             initial={reduce ? false : { scale: 1.08 }}

@@ -11,7 +11,7 @@ export const TREATMENTS = {
     "durata": "60 min",
     "prezzo": "Consulta il listino",
     "gradient": "from-sage-600 to-sage-400",
-    "hero_img": img('1fa261e10'),
+    "hero_img": img('trattamento-rilassante'),
     "per_chi": [
       "Chi accumula tensione da lavoro sedentario o davanti al pc",
       "Chi ha difficoltà ad addormentarsi o dorme in modo agitato",
@@ -88,7 +88,7 @@ export const TREATMENTS = {
     "durata": "60 min",
     "prezzo": "Consulta il listino",
     "gradient": "from-ocra to-[#E2B98C]",
-    "hero_img": img('31b3c285a'),
+    "hero_img": img('trattamento-sportivo'),
     "per_chi": [
       "Sportivi amatoriali e agonisti che si allenano almeno 2-3 volte a settimana",
       "Chi sente dolori muscolari persistenti dopo l'allenamento (DOMS forti)",
@@ -165,7 +165,7 @@ export const TREATMENTS = {
     "durata": "60 min",
     "prezzo": "Consulta il listino",
     "gradient": "from-[#7A5C6E] to-[#B49AA8]",
-    "hero_img": img('df9d70f1d'),
+    "hero_img": img('trattamento-miofasciale'),
     "per_chi": [
       "Chi ha dolori muscolari cronici che si ripresentano sempre nello stesso punto",
       "Chi sente limitazioni nei movimenti quotidiani (alzarsi, girarsi, piegarsi)",
@@ -242,7 +242,7 @@ export const TREATMENTS = {
     "durata": "60 min",
     "prezzo": "Consulta il listino",
     "gradient": "from-[#4A6470] to-sage-300",
-    "hero_img": img('1bb1e47da'),
+    "hero_img": img('trattamento-linfodrenaggio'),
     "per_chi": [
       "Chi soffre di gambe gonfie e pesanti, soprattutto la sera",
       "Chi ha problemi di ritenzione idrica",
@@ -319,7 +319,7 @@ export const TREATMENTS = {
     "durata": "60 min",
     "prezzo": "Consulta il listino",
     "gradient": "from-sage-800 to-sage-500",
-    "hero_img": img('1ff2b3f9b'),
+    "hero_img": img('trattamento-connettivale'),
     "per_chi": [
       "Chi ha dolori alla colonna vertebrale cronici o ricorrenti",
       "Chi ha problemi posturali come ipercifosi, iperlordosi o scoliosi lieve",
@@ -396,7 +396,7 @@ export const TREATMENTS = {
     "durata": "30–45 min",
     "prezzo": "Consulta il listino",
     "gradient": "from-[#4F6B3A] to-[#9DB57E]",
-    "hero_img": img('f6109264f'),
+    "hero_img": img('trattamento-kinesiotaping'),
     "per_chi": [
       "Sportivi che hanno piccoli dolori ma vogliono continuare ad allenarsi",
       "Chi è in fase di recupero da un infortunio e vuole supporto attivo",
@@ -473,7 +473,7 @@ export const TREATMENTS = {
     "durata": "45–60 min",
     "prezzo": "Consulta il listino",
     "gradient": "from-[#9A5F2A] to-ocra",
-    "hero_img": img('5fa18b8bf'),
+    "hero_img": img('trattamento-coppettazione'),
     "per_chi": [
       "Chi ha contratture muscolari profonde che non si sciolgono con il massaggio normale",
       "Chi ha dolori muscolari cronici localizzati",
@@ -550,7 +550,7 @@ export const TREATMENTS = {
     "durata": "30–45 min",
     "prezzo": "Consulta il listino",
     "gradient": "from-sage-700 to-lime-400",
-    "hero_img": img('b341b2cc4'),
+    "hero_img": img('trattamento-bendaggio'),
     "per_chi": [
       "Chi ha avuto distorsioni ripetute alla stessa articolazione",
       "Chi pratica sport di contatto o ad alto rischio di infortuni",

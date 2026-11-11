@@ -51,8 +51,8 @@ export default function HomeAbout() {
             <motion.div style={{ y: leftY }} className="relative pt-10">
               <div className="rounded-[24px] overflow-hidden aspect-[4/5] bg-sand">
                 <img
-                  src={img('49cd576e2.jpg')}
-                  alt="Trattamento manuale sulla gamba"
+                  src={img('chi-sono-1.jpg')}
+                  alt="Mani del massoterapista su spalla e schiena"
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.04]"
@@ -91,7 +91,7 @@ export default function HomeAbout() {
             <motion.div style={{ y: rightY }} className="relative">
               <div className="rounded-[24px] overflow-hidden aspect-[4/5] bg-sand">
                 <img
-                  src={img('5e4fb85e2.jpg')}
+                  src={img('chi-sono-2.jpg')}
                   alt="Massaggio alla schiena in un ambiente luminoso"
                   loading="lazy"
                   decoding="async"
