@@ -23,12 +23,12 @@ export default function Blog() {
   const visible = activeTag ? posts.filter((p) => (p.tags || []).includes(activeTag)) : posts;
 
   const pill = (active) =>
-    `px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+    `px-4 min-h-[44px] inline-flex items-center rounded-full text-sm font-semibold transition-all ${
       active ? 'bg-red-600 text-white' : 'bg-white border border-gray-200 text-gray-600 hover:border-red-300'
     }`;
 
   return (
-    <div className="pt-20 min-h-screen bg-[#f5f5f7]">
+    <div className="pt-20 min-h-screen bg-[#F3F0EA]">
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
           <div className="flex items-center gap-3 mb-3">
@@ -71,14 +71,14 @@ export default function Blog() {
                 ))}
               </div>
             ) : isError ? (
-              <div className="text-center py-20 text-gray-400">
+              <div className="text-center py-20 text-gray-500">
                 <p className="font-medium mb-3">Impossibile caricare gli articoli.</p>
                 <button type="button" onClick={() => refetch()} className="text-red-600 font-semibold hover:underline">
                   Riprova
                 </button>
               </div>
             ) : visible.length === 0 ? (
-              <div className="text-center py-20 text-gray-400">
+              <div className="text-center py-20 text-gray-500">
                 <Rss className="w-12 h-12 mx-auto mb-4 opacity-30" />
                 <p className="font-medium">Nessun articolo trovato.</p>
               </div>
@@ -87,8 +87,8 @@ export default function Blog() {
                 {visible.map((post, i) => (
                   <motion.div
                     key={post.id}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     transition={{ delay: Math.min(i, 10) * 0.05 }}
                   >
                     <Link
@@ -126,7 +126,7 @@ export default function Blog() {
                             {post.excerpt && <p className="text-gray-500 text-sm line-clamp-2">{post.excerpt}</p>}
                           </div>
                           <div className="flex items-center justify-between mt-4">
-                            <div className="flex items-center gap-4 text-xs text-gray-400">
+                            <div className="flex items-center gap-4 text-xs text-gray-500">
                               <span className="flex items-center gap-1">
                                 <Calendar className="w-3.5 h-3.5" />
                                 {formatPostDate(post.created_date)}

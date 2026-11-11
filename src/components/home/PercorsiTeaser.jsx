@@ -31,20 +31,20 @@ const BENEFITS = [
 /** "Percorsi di trattamento" teaser (original `A3`). */
 export default function PercorsiTeaser() {
   return (
-    <section className="py-24 md:py-32 bg-gray-50">
+    <section className="py-24 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.6 }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
         >
           <div>
-            <span className="inline-block bg-red-50 text-red-600 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+            <span className="inline-flex items-center gap-2 border border-ink/10 bg-white text-gray-500 text-xs font-medium uppercase tracking-[0.08em] px-3 py-1.5 rounded-full mb-6">
               Percorsi di trattamento
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight leading-tight">
+            <h2 className="text-4xl md:text-[3.25rem] font-medium leading-[1.05] text-gray-900 mb-6 tracking-tight leading-tight">
               I risultati durano
               <br />
               con la continuità
@@ -76,8 +76,8 @@ export default function PercorsiTeaser() {
               return (
                 <motion.div
                   key={p.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+                  whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
                   className={`relative rounded-2xl p-4 sm:p-5 flex flex-col gap-2 sm:gap-3 overflow-hidden ${
@@ -85,7 +85,7 @@ export default function PercorsiTeaser() {
                   }`}
                 >
                   {p.featured && (
-                    <span className="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    <span className="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
                       Più scelto
                     </span>
                   )}

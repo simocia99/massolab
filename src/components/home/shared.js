@@ -1,12 +1,12 @@
-// Shared animation presets for the Home sections.
-export const EASE = [0.25, 0.46, 0.45, 0.94];
+// Shared animation presets (Estetica v2: Apple-style curve, fade + rise + blur).
+export const EASE = [0.28, 0.11, 0.32, 1];
 
-/** Fade-up on first scroll into view. */
-export const reveal = (y = 30, duration = 0.7, delay = 0, ease = EASE) => ({
-  initial: { opacity: 0, y },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
+/** Fade-up with a soft blur on first scroll into view. */
+export const reveal = (y = 32, duration = 1, delay = 0, ease = EASE) => ({
+  initial: { opacity: 0, y, filter: 'blur(8px)' },
+  whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
+  viewport: { once: true, amount: 0.25 },
   transition: { duration, delay, ...(ease ? { ease } : {}) },
 });
 
-export const HEADING_FONT = { fontFamily: 'Inter, -apple-system, sans-serif' };
+export const HEADING_FONT = { fontFamily: "'Instrument Sans', -apple-system, sans-serif" };

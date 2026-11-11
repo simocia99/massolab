@@ -91,7 +91,7 @@ function StatTile({ label, value, color }) {
 
 /** Send history of one automation. */
 export function AutomationLogList({ logs }) {
-  if (logs.length === 0) return <p className="text-xs text-gray-400 text-center py-3">Nessun invio registrato.</p>;
+  if (logs.length === 0) return <p className="text-xs text-gray-500 text-center py-3">Nessun invio registrato.</p>;
   return (
     <div className="space-y-1 max-h-48 overflow-y-auto">
       {logs.slice(0, 50).map((l) => (
@@ -100,15 +100,15 @@ export function AutomationLogList({ logs }) {
             {l.status === 'sent' ? (
               <Send className="w-3 h-3 text-green-500 flex-shrink-0" />
             ) : l.status === 'pending' ? (
-              <Clock className="w-3 h-3 text-gray-400 flex-shrink-0" />
+              <Clock className="w-3 h-3 text-gray-500 flex-shrink-0" />
             ) : (
-              <CircleAlert className="w-3 h-3 text-red-500 flex-shrink-0" />
+              <CircleAlert className="w-3 h-3 text-danger flex-shrink-0" />
             )}
             <span className="font-medium text-gray-700 truncate" title={l.error || undefined}>
               {l.client_name || l.client_email}
             </span>
           </div>
-          <span className="text-gray-400 flex-shrink-0">
+          <span className="text-gray-500 flex-shrink-0">
             {l.sent_at ? format(parseISO(l.sent_at), 'dd MMM HH:mm', { locale: it }) : '—'}
           </span>
         </div>
@@ -272,7 +272,7 @@ export default function AutomationsSettings({ appointments = [] }) {
                   <div>
                     <label className="text-xs font-semibold text-gray-500 uppercase mb-1 block" htmlFor={`body-${auto.id}`}>
                       Corpo messaggio
-                      <span className="ml-2 font-normal text-gray-400 normal-case break-words">
+                      <span className="ml-2 font-normal text-gray-500 normal-case break-words">
                         Variabili: {'{{nome}} {{trattamento}} {{data}} {{ora}} {{review_url}} {{booking_url}}'}
                       </span>
                     </label>

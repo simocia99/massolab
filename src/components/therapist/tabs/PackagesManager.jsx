@@ -63,7 +63,7 @@ export function PackageSessionCounter({ pkg, onUpdate }) {
       >
         <Plus className="w-3 h-3 text-red-600" />
       </button>
-      <span className="text-xs text-gray-400 ml-1">{remaining > 0 ? `${remaining} rimanenti` : 'Completato'}</span>
+      <span className="text-xs text-gray-500 ml-1">{remaining > 0 ? `${remaining} rimanenti` : 'Completato'}</span>
     </div>
   );
 }
@@ -330,7 +330,7 @@ export default function PackagesManager() {
 
       <div className="flex flex-wrap items-center gap-3">
         <div className="relative flex-1 min-w-48">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
           <input
             type="text"
             placeholder="Cerca per cliente o pacchetto..."
@@ -367,7 +367,7 @@ export default function PackagesManager() {
         ) : filtered.length === 0 ? (
           <div className="p-12 text-center">
             <Package className="w-12 h-12 text-gray-200 mx-auto mb-3" />
-            <p className="text-gray-400">Nessun pacchetto trovato.</p>
+            <p className="text-gray-500">Nessun pacchetto trovato.</p>
           </div>
         ) : (
           <div className="divide-y divide-gray-50">

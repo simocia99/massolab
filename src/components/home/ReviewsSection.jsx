@@ -5,6 +5,7 @@ import { MessageSquare, Star } from 'lucide-react';
 import { db } from '@/api/client';
 import { createPageUrl } from '@/lib/utils';
 import { reveal } from './shared';
+import SectionLabel from './SectionLabel';
 
 function Stars({ rating }) {
   return (
@@ -40,10 +41,11 @@ export default function ReviewsSection() {
     : null;
 
   return (
-    <section className="py-28 md:py-36 bg-white">
+    <section className="py-28 md:py-36 bg-sand">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div {...reveal(20, 0.6, 0, null)} className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-black text-[#1D1D1F] mb-4" style={{ letterSpacing: '-0.03em' }}>
+          <SectionLabel>Recensioni</SectionLabel>
+          <h2 className="text-4xl md:text-[3.25rem] font-medium leading-[1.05] text-[#191A17] mb-4" style={{ letterSpacing: '-0.03em' }}>
             Cosa dicono i clienti
           </h2>
           {avg && (
@@ -56,14 +58,14 @@ export default function ReviewsSection() {
                   />
                 ))}
               </div>
-              <span className="text-2xl font-bold text-[#1D1D1F]">{avg}</span>
-              <span className="text-[#86868B] text-sm">({reviews.length} recensioni)</span>
+              <span className="text-2xl font-bold text-[#191A17]">{avg}</span>
+              <span className="text-[#6A685F] text-sm">({reviews.length} recensioni)</span>
             </div>
           )}
         </motion.div>
 
         {reviews.length === 0 ? (
-          <div className="text-center text-gray-400 py-8">
+          <div className="text-center text-gray-500 py-8">
             <MessageSquare className="w-10 h-10 mx-auto mb-3 opacity-40" />
             <p>Ancora nessuna recensione. Sii il primo!</p>
           </div>
@@ -73,12 +75,12 @@ export default function ReviewsSection() {
               <motion.div
                 key={r.id}
                 {...reveal(30, 0.5, i * 0.08, null)}
-                className="bg-[#f5f5f7] rounded-[28px] p-7 hover:bg-white hover:shadow-xl transition-all duration-300"
+                className="bg-white rounded-[24px] p-7 hover:shadow-[0_10px_40px_-12px_rgba(25,26,23,0.18)] transition-all duration-300"
               >
                 <Stars rating={r.rating} />
                 {r.text && <p className="text-gray-600 text-sm leading-relaxed mt-3 mb-4">"{r.text}"</p>}
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-[#1D1D1F] text-sm">{r.client_name}</span>
+                  <span className="font-bold text-[#191A17] text-sm">{r.client_name}</span>
                   {r.treatment_type && (
                     <span className="text-xs bg-gray-100 text-gray-500 rounded-full px-3 py-1">{r.treatment_type}</span>
                   )}
@@ -91,7 +93,7 @@ export default function ReviewsSection() {
         <div className="text-center">
           <Link
             to={createPageUrl('LeaveReview')}
-            className="inline-flex items-center gap-2 bg-[#E50914] hover:bg-[#cc0812] text-white rounded-full px-8 py-4 font-bold transition-all duration-200 hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 bg-[#56695C] hover:bg-[#46574B] text-white rounded-full px-8 py-4 font-bold transition-all duration-200 hover:scale-[1.02]"
           >
             <Star className="w-5 h-5" />
             Lascia la tua recensione

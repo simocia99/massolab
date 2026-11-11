@@ -268,10 +268,10 @@ export default function ExercisePrograms({ appointments = [] }) {
         <div className="space-y-4">
           {loading ? (
             <div className="flex justify-center py-12">
-              <LoaderCircle className="w-6 h-6 animate-spin text-gray-400" />
+              <LoaderCircle className="w-6 h-6 animate-spin text-gray-500" />
             </div>
           ) : filteredPrograms.length === 0 ? (
-            <div className="bg-white rounded-2xl border border-gray-100 p-12 text-center text-gray-400">
+            <div className="bg-white rounded-2xl border border-gray-100 p-12 text-center text-gray-500">
               <BookOpen className="w-10 h-10 mx-auto mb-3 opacity-30" />
               <p>Nessuna scheda trovata. Crea la prima!</p>
             </div>
@@ -315,7 +315,7 @@ export default function ExercisePrograms({ appointments = [] }) {
                     </button>
                     <button
                       onClick={() => edit(p)}
-                      className="p-2 hover:bg-blue-50 rounded-xl text-gray-400 hover:text-blue-600 transition-colors"
+                      className="p-2 hover:bg-blue-50 rounded-xl text-gray-500 hover:text-blue-600 transition-colors"
                       title="Modifica"
                       aria-label="Modifica"
                     >
@@ -323,7 +323,7 @@ export default function ExercisePrograms({ appointments = [] }) {
                     </button>
                     <button
                       onClick={() => duplicate(p)}
-                      className="p-2 hover:bg-gray-100 rounded-xl text-gray-400 transition-colors"
+                      className="p-2 hover:bg-gray-100 rounded-xl text-gray-500 transition-colors"
                       title="Duplica"
                       aria-label="Duplica"
                     >
@@ -346,7 +346,7 @@ export default function ExercisePrograms({ appointments = [] }) {
                     )}
                     <button
                       onClick={() => remove(p.id)}
-                      className="p-2 hover:bg-red-50 rounded-xl text-gray-400 hover:text-red-600 transition-colors"
+                      className="p-2 hover:bg-red-50 rounded-xl text-gray-500 hover:text-red-600 transition-colors"
                       title="Elimina"
                       aria-label="Elimina"
                     >
@@ -402,7 +402,7 @@ export default function ExercisePrograms({ appointments = [] }) {
         <div className="space-y-4">
           <div className="flex gap-3">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
               <input
                 type="text"
                 placeholder="Cerca esercizio..."
@@ -415,10 +415,10 @@ export default function ExercisePrograms({ appointments = [] }) {
           </div>
           {loading ? (
             <div className="flex justify-center py-12">
-              <LoaderCircle className="w-6 h-6 animate-spin text-gray-400" />
+              <LoaderCircle className="w-6 h-6 animate-spin text-gray-500" />
             </div>
           ) : filteredLibrary.length === 0 ? (
-            <div className="bg-white rounded-2xl border border-gray-100 p-12 text-center text-gray-400">
+            <div className="bg-white rounded-2xl border border-gray-100 p-12 text-center text-gray-500">
               <p>Nessun esercizio in libreria per questa categoria.</p>
               <p className="text-sm mt-2">Gli esercizi aggiunti tramite le schede compariranno qui.</p>
             </div>
@@ -563,7 +563,7 @@ export default function ExercisePrograms({ appointments = [] }) {
               </button>
             </div>
             {exercises.length === 0 && (
-              <div className="bg-white rounded-2xl border border-dashed border-gray-200 p-8 text-center text-gray-400 text-sm">
+              <div className="bg-white rounded-2xl border border-dashed border-gray-200 p-8 text-center text-gray-500 text-sm">
                 Carica un template o aggiungi esercizi manualmente
               </div>
             )}

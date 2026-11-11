@@ -15,7 +15,7 @@ export function SummaryRow({ icon, label, value }) {
 export function IconInput({ icon, type = 'text', placeholder, value, onChange, autoComplete }) {
   return (
     <div className="relative">
-      {icon && <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400">{icon}</span>}
+      {icon && <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500">{icon}</span>}
       <input
         type={type}
         placeholder={placeholder}

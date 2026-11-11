@@ -7,7 +7,7 @@ import { createPageUrl } from '@/lib/utils';
 import { useHoneypot } from '@/lib/honeypot';
 
 const INPUT =
-  'w-full bg-[#f5f5f7] rounded-2xl px-4 py-3.5 text-sm text-[#1D1D1F] placeholder-[#C7C7CC] outline-none focus:ring-2 ring-[#E50914]/30 transition-all';
+  'w-full bg-[#F3F0EA] rounded-2xl px-4 py-3.5 text-sm text-[#191A17] placeholder-[#C7C7CC] outline-none focus:ring-2 ring-[#56695C]/30 transition-all';
 
 /** "Scrivi a Simone" form: sends an email to the therapist. */
 export default function ContactForm() {
@@ -52,15 +52,15 @@ export default function ContactForm() {
         <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-5">
           <CircleCheckBig className="w-8 h-8 text-green-500" />
         </div>
-        <h3 className="text-2xl font-black text-[#1D1D1F] mb-2" style={{ letterSpacing: '-0.02em' }}>
+        <h3 className="text-2xl font-black text-[#191A17] mb-2" style={{ letterSpacing: '-0.02em' }}>
           Messaggio inviato.
         </h3>
-        <p className="text-[#86868B] font-light mb-6 max-w-xs">
+        <p className="text-[#6A685F] font-light mb-6 max-w-xs">
           Simone ti risponderà entro poche ore. Nel frattempo puoi anche prenotare direttamente online.
         </p>
         <Link
           to={createPageUrl('GuestBooking')}
-          className="bg-[#E50914] hover:bg-[#cc0812] text-white rounded-full px-7 py-3 font-bold text-sm transition-all duration-300 hover:scale-[1.03]"
+          className="bg-[#56695C] hover:bg-[#46574B] text-white rounded-full px-7 py-3 font-bold text-sm transition-all duration-300 hover:scale-[1.03]"
         >
           Prenota ora
         </Link>
@@ -70,15 +70,15 @@ export default function ContactForm() {
 
   return (
     <>
-      <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#E50914] mb-2">Scrivi a Simone</p>
-      <h3 className="text-2xl font-black text-[#1D1D1F] mb-1" style={{ letterSpacing: '-0.03em' }}>
+      <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#56695C] mb-2">Scrivi a Simone</p>
+      <h3 className="text-2xl font-black text-[#191A17] mb-1" style={{ letterSpacing: '-0.03em' }}>
         Hai domande?
       </h3>
-      <p className="text-[#86868B] text-sm font-light mb-7">Lascia i tuoi dati e ti rispondo entro poche ore.</p>
+      <p className="text-[#6A685F] text-sm font-light mb-7">Lascia i tuoi dati e ti rispondo entro poche ore.</p>
       <form onSubmit={submit} className="space-y-4" noValidate>
         {hp.field}
         <div>
-          <label htmlFor="contact-name" className="text-xs font-semibold text-[#1D1D1F] block mb-1.5">
+          <label htmlFor="contact-name" className="text-xs font-semibold text-[#191A17] block mb-1.5">
             Nome e cognome *
           </label>
           <input
@@ -92,7 +92,7 @@ export default function ContactForm() {
           />
         </div>
         <div>
-          <label htmlFor="contact-phone" className="text-xs font-semibold text-[#1D1D1F] block mb-1.5">
+          <label htmlFor="contact-phone" className="text-xs font-semibold text-[#191A17] block mb-1.5">
             Telefono *
           </label>
           <input
@@ -106,8 +106,8 @@ export default function ContactForm() {
           />
         </div>
         <div>
-          <label htmlFor="contact-message" className="text-xs font-semibold text-[#1D1D1F] block mb-1.5">
-            Di cosa hai bisogno? <span className="font-normal text-[#86868B]">(opzionale)</span>
+          <label htmlFor="contact-message" className="text-xs font-semibold text-[#191A17] block mb-1.5">
+            Di cosa hai bisogno? <span className="font-normal text-[#6A685F]">(opzionale)</span>
           </label>
           <textarea
             id="contact-message"
@@ -119,14 +119,14 @@ export default function ContactForm() {
           />
         </div>
         {error && (
-          <p className="text-red-500 text-xs font-medium" role="alert">
+          <p className="text-danger text-xs font-medium" role="alert">
             {error}
           </p>
         )}
         <button
           type="submit"
           disabled={sending}
-          className="w-full inline-flex items-center justify-center gap-2 bg-[#E50914] hover:bg-[#cc0812] disabled:opacity-60 text-white rounded-2xl px-6 py-4 font-bold transition-all duration-300 hover:scale-[1.02]"
+          className="w-full inline-flex items-center justify-center gap-2 bg-[#56695C] hover:bg-[#46574B] disabled:opacity-60 text-white rounded-2xl px-6 py-4 font-bold transition-all duration-300 hover:scale-[1.02]"
         >
           {sending ? (
             <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
@@ -135,9 +135,9 @@ export default function ContactForm() {
           )}
           {sending ? 'Invio in corso...' : 'Invia messaggio'}
         </button>
-        <p className="text-center text-xs text-[#C7C7CC] font-light">
+        <p className="text-center text-xs text-[#6A685F] font-light">
           Oppure{' '}
-          <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="text-green-500 font-semibold hover:underline">
+          <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="text-green-700 font-semibold hover:underline">
             scrivimi su WhatsApp
           </a>{' '}
           per una risposta immediata.

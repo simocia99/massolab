@@ -5,7 +5,7 @@ import { db } from '@/api/client';
 function InfoTile({ label, value, highlight }) {
   return (
     <div className={`rounded-xl p-3 ${highlight ? 'bg-red-50 border border-red-100' : 'bg-gray-50'}`}>
-      <p className="text-xs text-gray-400 mb-0.5">{label}</p>
+      <p className="text-xs text-gray-500 mb-0.5">{label}</p>
       <p className={`font-semibold ${highlight ? 'text-red-700' : 'text-gray-700'} text-sm break-words`}>
         {value || '—'}
       </p>
@@ -31,7 +31,7 @@ export default function GuidedBookingsList() {
   }, []);
 
   if (loading) {
-    return <div className="flex items-center justify-center h-48 text-gray-400">Caricamento...</div>;
+    return <div className="flex items-center justify-center h-48 text-gray-500">Caricamento...</div>;
   }
 
   return (
@@ -48,7 +48,7 @@ export default function GuidedBookingsList() {
       {error ? (
         <p className="text-center py-16 text-red-500 text-sm">Impossibile caricare i percorsi guidati. Riprova.</p>
       ) : items.length === 0 ? (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-16 text-gray-500">
           <WandSparkles className="w-10 h-10 mx-auto mb-3 opacity-30" />
           <p>Nessun percorso guidato ancora</p>
         </div>
@@ -80,16 +80,16 @@ export default function GuidedBookingsList() {
                     </div>
                     <div className="text-right flex-shrink-0 mr-2 max-w-[40%]">
                       <p className="text-xs font-bold text-gray-700 truncate">{g.suggested_treatment}</p>
-                      <p className="text-xs text-gray-400 flex items-center gap-1 justify-end mt-0.5">
+                      <p className="text-xs text-gray-500 flex items-center gap-1 justify-end mt-0.5">
                         <Calendar className="w-3 h-3" />
                         {new Date(g.created_date).toLocaleDateString('it-IT')}
                       </p>
                     </div>
                   </div>
                   {open ? (
-                    <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                    <ChevronUp className="w-4 h-4 text-gray-500 flex-shrink-0" />
                   ) : (
-                    <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                    <ChevronDown className="w-4 h-4 text-gray-500 flex-shrink-0" />
                   )}
                 </button>
                 {open && (

@@ -25,7 +25,7 @@ function ScoreSlider({ id, when, suffix, value, onChange, valueClass, accentClas
   return (
     <div>
       <label htmlFor={id} className="block text-sm font-semibold text-gray-700 mb-1">
-        Dolore / disagio <span className="font-normal text-gray-400">{when}</span>
+        Dolore / disagio <span className="font-normal text-gray-500">{when}</span>
         {suffix}
         <span className={`ml-2 font-bold ${valueClass}`}>{value}/10</span>
       </label>
@@ -39,7 +39,7 @@ function ScoreSlider({ id, when, suffix, value, onChange, valueClass, accentClas
         onChange={(e) => onChange(Number(e.target.value))}
         className={`w-full ${accentClass}`}
       />
-      <div className="flex justify-between text-xs text-gray-400 mt-1">
+      <div className="flex justify-between text-xs text-gray-500 mt-1">
         <span>0 — Nessuno</span>
         <span>10 — Insopportabile</span>
       </div>
@@ -117,7 +117,7 @@ export default function PostSessionFeedback() {
 
   if (done) {
     return (
-      <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[#F3F0EA] flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -144,17 +144,17 @@ export default function PostSessionFeedback() {
   const diff = initial - final;
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] px-4 py-12">
+    <div className="min-h-screen bg-[#F3F0EA] px-4 py-12">
       <div className="max-w-md mx-auto">
         <Link
           to={createPageUrl('Home')}
-          className="inline-flex items-center text-gray-400 hover:text-gray-700 text-sm mb-6 transition-colors"
+          className="inline-flex items-center text-gray-500 hover:text-gray-700 text-sm mb-6 transition-colors"
         >
           <ChevronLeft className="w-4 h-4 mr-1" /> Home
         </Link>
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 space-y-6"
         >
           <div>
@@ -163,7 +163,7 @@ export default function PostSessionFeedback() {
               <h1 className="text-lg font-bold text-gray-900">Come ti senti dopo la seduta?</h1>
             </div>
             {treatment && (
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-500">
                 {treatment}
                 {date ? ` · ${date}` : ''}
               </p>
@@ -192,8 +192,8 @@ export default function PostSessionFeedback() {
           <AnimatePresence>
             {diff !== 0 && (
               <motion.div
-                initial={{ opacity: 0, y: -4 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: -4, filter: 'blur(8px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0 }}
                 className={`rounded-2xl p-3 text-sm font-semibold text-center ${
                   diff > 0 ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'
@@ -208,7 +208,7 @@ export default function PostSessionFeedback() {
 
           <div>
             <p className="block text-sm font-semibold text-gray-700 mb-2">
-              Zona trattata <span className="font-normal text-gray-400">(opzionale)</span>
+              Zona trattata <span className="font-normal text-gray-500">(opzionale)</span>
             </p>
             <div className="flex flex-wrap gap-2">
               {AREAS.map((a) => (
@@ -231,7 +231,7 @@ export default function PostSessionFeedback() {
 
           <div>
             <label htmlFor="feedback-notes" className="block text-sm font-semibold text-gray-700 mb-1">
-              Note aggiuntive <span className="font-normal text-gray-400">(opzionale)</span>
+              Note aggiuntive <span className="font-normal text-gray-500">(opzionale)</span>
             </label>
             <textarea
               id="feedback-notes"
@@ -244,7 +244,7 @@ export default function PostSessionFeedback() {
           </div>
 
           {error && (
-            <p className="text-sm text-red-600 font-medium" role="alert">
+            <p className="text-sm text-danger font-medium" role="alert">
               {error}
             </p>
           )}
@@ -263,7 +263,7 @@ export default function PostSessionFeedback() {
               </>
             )}
           </button>
-          <p className="text-xs text-gray-400 text-center">
+          <p className="text-xs text-gray-500 text-center">
             I tuoi dati aggiornano automaticamente i grafici nell'area clienti.
           </p>
         </motion.div>

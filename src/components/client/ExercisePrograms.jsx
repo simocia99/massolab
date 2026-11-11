@@ -31,7 +31,7 @@ export function ExerciseImage({ imageUrl, name }) {
   }
   return (
     <div className="w-full h-full flex flex-col items-center justify-center bg-gray-50">
-      <svg viewBox="0 0 80 80" className="w-14 h-14 text-gray-400" aria-hidden="true">
+      <svg viewBox="0 0 80 80" className="w-14 h-14 text-gray-500" aria-hidden="true">
         <circle cx="40" cy="14" r="7" fill="none" stroke="currentColor" strokeWidth="2.5" />
         <line x1="40" y1="21" x2="40" y2="48" stroke="currentColor" strokeWidth="2.5" />
         <line x1="40" y1="30" x2="24" y2="43" stroke="currentColor" strokeWidth="2.5" />
@@ -39,7 +39,7 @@ export function ExerciseImage({ imageUrl, name }) {
         <line x1="40" y1="48" x2="30" y2="66" stroke="currentColor" strokeWidth="2.5" />
         <line x1="40" y1="48" x2="50" y2="66" stroke="currentColor" strokeWidth="2.5" />
       </svg>
-      <p className="text-xs text-gray-400 mt-1 text-center px-2 leading-tight">{name}</p>
+      <p className="text-xs text-gray-500 mt-1 text-center px-2 leading-tight">{name}</p>
     </div>
   );
 }
@@ -79,7 +79,7 @@ function ExerciseCard({ exercise, index }) {
               type="button"
               aria-expanded={open}
               onClick={() => setOpen((o) => !o)}
-              className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition-colors mb-2"
+              className="flex items-center gap-1 text-xs text-gray-500 hover:text-gray-600 transition-colors mb-2"
             >
               {open ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
               {open ? 'Nascondi istruzioni' : 'Mostra istruzioni'}
@@ -128,7 +128,7 @@ export default function ExercisePrograms({ clientEmail }) {
   if (loading) {
     return (
       <div className="flex justify-center py-8">
-        <LoaderCircle className="w-5 h-5 animate-spin text-gray-400" />
+        <LoaderCircle className="w-5 h-5 animate-spin text-gray-500" />
       </div>
     );
   }
@@ -138,7 +138,7 @@ export default function ExercisePrograms({ clientEmail }) {
       <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 text-center">
         <Dumbbell className="w-10 h-10 text-gray-300 mx-auto mb-3" />
         <p className="font-semibold text-gray-600">{error || 'Nessuna scheda esercizi'}</p>
-        {!error && <p className="text-sm text-gray-400 mt-1">Il terapista non ha ancora inviato schede domiciliari.</p>}
+        {!error && <p className="text-sm text-gray-500 mt-1">Il terapista non ha ancora inviato schede domiciliari.</p>}
       </div>
     );
   }

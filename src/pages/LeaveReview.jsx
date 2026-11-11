@@ -77,7 +77,7 @@ export default function LeaveReview() {
 
   if (done) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-[#f5f5f7] to-white flex items-center justify-center px-6">
+      <div className="min-h-screen bg-gradient-to-b from-[#F3F0EA] to-white flex items-center justify-center px-6">
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center max-w-md">
           <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
             <CircleCheck className="w-10 h-10 text-green-600" />
@@ -106,11 +106,11 @@ export default function LeaveReview() {
   const shown = hover || rating;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f5f5f7] to-white px-4 sm:px-6 py-8 sm:py-12">
+    <div className="min-h-screen bg-gradient-to-b from-[#F3F0EA] to-white px-4 sm:px-6 py-8 sm:py-12">
       <div className="max-w-lg mx-auto">
         <Link
           to={createPageUrl('Home')}
-          className="inline-flex items-center text-gray-500 hover:text-gray-700 mb-6 sm:mb-8 transition-colors"
+          className="inline-flex items-center min-h-[44px] text-gray-500 hover:text-gray-700 mb-2 sm:mb-4 transition-colors"
         >
           <ChevronLeft className="w-4 h-4 mr-1" /> Home
         </Link>
@@ -128,7 +128,7 @@ export default function LeaveReview() {
         >
           {hp.field}
           <div>
-            <label htmlFor="review-name" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">
+            <label htmlFor="review-name" className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
               Il tuo nome *
             </label>
             <input
@@ -145,7 +145,7 @@ export default function LeaveReview() {
           </div>
 
           <div>
-            <span className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Valutazione *</span>
+            <span className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">Valutazione *</span>
             <div className="flex gap-1 sm:gap-2" role="radiogroup" aria-label="Valutazione">
               {[1, 2, 3, 4, 5].map((n) => (
                 <button
@@ -171,7 +171,7 @@ export default function LeaveReview() {
           </div>
 
           <div>
-            <label htmlFor="review-text" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">
+            <label htmlFor="review-text" className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
               La tua esperienza
             </label>
             <textarea
@@ -186,7 +186,7 @@ export default function LeaveReview() {
           </div>
 
           {error && (
-            <p role="alert" className="text-sm text-red-600">
+            <p role="alert" className="text-sm text-danger">
               {error}
             </p>
           )}

@@ -37,7 +37,7 @@ const slugify = (s) =>
 
 const isEmptyHtml = (html) => !html || !html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
 
-const labelCls = 'block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2';
+const labelCls = 'block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2';
 
 export default function BlogManager() {
   const [posts, setPosts] = useState([]);
@@ -165,7 +165,7 @@ export default function BlogManager() {
             <div className="w-8 h-8 border-4 border-red-600 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : posts.length === 0 ? (
-          <div className="text-center py-20 text-gray-400">
+          <div className="text-center py-20 text-gray-500">
             <Tag className="w-12 h-12 mx-auto mb-4 opacity-30" />
             <p className="font-medium">Nessun articolo ancora.</p>
             <p className="text-sm mt-1">Crea il tuo primo articolo sul benessere!</p>
@@ -235,7 +235,7 @@ export default function BlogManager() {
                     title="Elimina"
                     aria-label="Elimina"
                   >
-                    <Trash2 className="w-4 h-4 text-red-400" />
+                    <Trash2 className="w-4 h-4 text-danger" />
                   </button>
                 </div>
               </div>
@@ -275,7 +275,7 @@ export default function BlogManager() {
               ) : (
                 <>
                   <ImageIcon className="w-8 h-8 text-gray-300 mb-2" />
-                  <span className="text-sm text-gray-400">Carica immagine</span>
+                  <span className="text-sm text-gray-500">Carica immagine</span>
                 </>
               )}
               <input type="file" accept="image/*" className="hidden" onChange={uploadCover} disabled={uploading} />

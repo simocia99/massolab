@@ -7,7 +7,7 @@ import { Spinner } from './shared';
 const REVIEW_STATUS = {
   pending: { label: 'In attesa', color: 'bg-yellow-100 text-yellow-700' },
   approved: { label: 'Approvata', color: 'bg-green-100 text-green-700' },
-  rejected: { label: 'Rifiutata', color: 'bg-red-100 text-red-700' },
+  rejected: { label: 'Rifiutata', color: 'bg-danger-soft text-danger' },
 };
 
 const FILTERS = [
@@ -78,7 +78,7 @@ export default function ReviewsTab() {
         ))}
       </div>
       {visible.length === 0 ? (
-        <div className="text-center py-16 text-gray-400">Nessuna recensione trovata.</div>
+        <div className="text-center py-16 text-gray-500">Nessuna recensione trovata.</div>
       ) : (
         <div className="space-y-4">
           {visible.map((r) => {
@@ -96,7 +96,7 @@ export default function ReviewsTab() {
                       <span className={`text-xs rounded-full px-3 py-1 font-medium ${st.color}`}>{st.label}</span>
                     </div>
                     {r.text && <p className="text-gray-600 text-sm leading-relaxed">{r.text}</p>}
-                    <p className="text-xs text-gray-400 mt-3">
+                    <p className="text-xs text-gray-500 mt-3">
                       {new Date(r.created_date).toLocaleDateString('it-IT', { day: '2-digit', month: 'long', year: 'numeric' })}
                     </p>
                   </div>

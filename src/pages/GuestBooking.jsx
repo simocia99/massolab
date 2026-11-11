@@ -124,11 +124,11 @@ export default function GuestBooking() {
   }
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-[#f5f5f7] px-4 py-8 md:py-16 pb-28 md:pb-16">
+    <div className="min-h-screen overflow-x-clip bg-[#F3F0EA] px-4 py-8 md:py-16 pb-28 md:pb-16">
       {hp.field}
       <div className="max-w-2xl mx-auto">
         <div className="mb-8">
-          <Link to="/" className="inline-flex items-center text-gray-400 hover:text-gray-700 text-sm mb-5 transition-colors">
+          <Link to="/" className="inline-flex items-center min-h-[44px] text-gray-500 hover:text-gray-700 text-sm mb-2 transition-colors">
             <ChevronLeft className="w-4 h-4 mr-1" /> Indietro
           </Link>
           <h1 className="text-3xl font-bold text-gray-900">Prenota un Appuntamento</h1>
@@ -147,10 +147,10 @@ export default function GuestBooking() {
                   onClick={() => done && !submitting && setStep(n)}
                   aria-label={`Passo ${n}: ${label}`}
                   aria-current={active ? 'step' : undefined}
-                  className={`flex items-center gap-2 min-h-[44px] min-w-[32px] justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-red-500 text-sm font-semibold transition-all ${active ? 'text-gray-900' : done ? 'text-red-600 cursor-pointer' : 'text-gray-300'}`}
+                  className={`flex items-center gap-2 min-h-[44px] min-w-[44px] justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-red-500 text-sm font-semibold transition-all ${active ? 'text-gray-900' : done ? 'text-red-600 cursor-pointer' : 'text-gray-500'}`}
                 >
                   <span
-                    className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${active ? 'bg-gray-900 text-white' : done ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-400'}`}
+                    className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${active ? 'bg-gray-900 text-white' : done ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-500'}`}
                   >
                     {done ? '✓' : n}
                   </span>
@@ -169,7 +169,7 @@ export default function GuestBooking() {
             <motion.div key="step1" {...stepMotion}>
               <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
                 <h2 className="text-lg font-bold text-gray-900 mb-1">Scegli il trattamento</h2>
-                <p className="text-sm text-gray-400 mb-5">Seleziona il tipo di seduta che desideri</p>
+                <p className="text-sm text-gray-500 mb-5">Seleziona il tipo di seduta che desideri</p>
                 <div className="space-y-2">
                   {GUEST_TREATMENTS.map((t) => {
                     const selected = treatment?.name === t.name;
@@ -185,7 +185,7 @@ export default function GuestBooking() {
                       >
                         <div>
                           <p className={`font-semibold text-sm ${selected ? 'text-red-700' : 'text-gray-800'}`}>{t.name}</p>
-                          <p className="text-xs text-gray-400 mt-0.5">{t.description}</p>
+                          <p className="text-xs text-gray-500 mt-0.5">{t.description}</p>
                         </div>
                         <div className="flex-shrink-0 ml-4 text-right">
                           <div
@@ -194,7 +194,7 @@ export default function GuestBooking() {
                             <Euro className="w-3.5 h-3.5" />
                             {t.price}
                           </div>
-                          <div className="flex items-center gap-1 text-xs text-gray-400 mt-0.5">
+                          <div className="flex items-center gap-1 text-xs text-gray-500 mt-0.5">
                             <Clock className="w-3 h-3" />
                             {t.duration} min
                           </div>
@@ -215,16 +215,16 @@ export default function GuestBooking() {
               <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
                 <div className="flex items-center justify-between mb-5 pb-4 border-b border-gray-100">
                   <div>
-                    <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Trattamento selezionato</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Trattamento selezionato</p>
                     <p className="font-bold text-gray-900 mt-0.5">{treatment?.name}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs text-gray-400">{treatment?.duration} min</p>
+                    <p className="text-xs text-gray-500">{treatment?.duration} min</p>
                     <p className="font-bold text-red-600">€{treatment?.price}</p>
                   </div>
                 </div>
                 <h2 className="text-lg font-bold text-gray-900 mb-1">Scegli data e orario</h2>
-                <p className="text-sm text-gray-400 mb-5">Solo le disponibilità reali sono mostrate</p>
+                <p className="text-sm text-gray-500 mb-5">Solo le disponibilità reali sono mostrate</p>
                 <SlotPicker
                   selectedDate={date}
                   selectedTime={time}
@@ -250,10 +250,10 @@ export default function GuestBooking() {
                     label={treatment?.name}
                     value={`€${treatment?.price} · ${treatment?.duration} min`}
                   />
-                  <SummaryRow icon={<Clock className="w-4 h-4 text-gray-400" />} label={date} value={`ore ${time}`} />
+                  <SummaryRow icon={<Clock className="w-4 h-4 text-gray-500" />} label={date} value={`ore ${time}`} />
                 </div>
                 <h2 className="text-lg font-bold text-gray-900 mb-1">I tuoi dati</h2>
-                <p className="text-sm text-gray-400 mb-5">Per confermare la prenotazione</p>
+                <p className="text-sm text-gray-500 mb-5">Per confermare la prenotazione</p>
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <IconInput

@@ -14,7 +14,7 @@ const emptyForm = () => ({
   appointment_id: '',
 });
 
-const labelCls = 'block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1';
+const labelCls = 'block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1';
 const inputCls = 'w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-red-400';
 
 export default function ClientReportsTab({ appointments }) {
@@ -86,7 +86,7 @@ export default function ClientReportsTab({ appointments }) {
     <div className="space-y-6">
       <h2 className="text-xl font-bold text-gray-900">Report Clienti</h2>
       <div>
-        <label htmlFor="report-client" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">
+        <label htmlFor="report-client" className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
           Seleziona Cliente
         </label>
         <div className="relative w-full sm:max-w-xs">
@@ -106,7 +106,7 @@ export default function ClientReportsTab({ appointments }) {
               </option>
             ))}
           </select>
-          <ChevronDown className="absolute right-3 top-3 w-4 h-4 text-gray-400 pointer-events-none" />
+          <ChevronDown className="absolute right-3 top-3 w-4 h-4 text-gray-500 pointer-events-none" />
         </div>
       </div>
 
@@ -210,7 +210,7 @@ export default function ClientReportsTab({ appointments }) {
               <LoaderCircle className="w-6 h-6 animate-spin text-gray-300" />
             </div>
           ) : clientReports.length === 0 ? (
-            <p className="text-sm text-gray-400 py-8 text-center">Nessun report per questo cliente.</p>
+            <p className="text-sm text-gray-500 py-8 text-center">Nessun report per questo cliente.</p>
           ) : (
             <div className="space-y-4">
               {clientReports.map((r) => (
@@ -230,11 +230,11 @@ export default function ClientReportsTab({ appointments }) {
                           </span>
                         )}
                         {!r.visible_to_client && (
-                          <span className="text-xs bg-gray-100 text-gray-400 px-2 py-0.5 rounded-full">Nascosto</span>
+                          <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">Nascosto</span>
                         )}
                       </div>
                       {r.title && <h4 className="font-semibold text-gray-900">{r.title}</h4>}
-                      {r.session_date && <p className="text-xs text-gray-400">{r.session_date}</p>}
+                      {r.session_date && <p className="text-xs text-gray-500">{r.session_date}</p>}
                       <p className="text-sm text-gray-700 mt-2 whitespace-pre-line break-words">{r.content}</p>
                     </div>
                     <button

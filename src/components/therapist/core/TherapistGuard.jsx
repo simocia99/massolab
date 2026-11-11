@@ -16,10 +16,10 @@ function AccessDenied({ email, onLogout }) {
     <div className="min-h-screen bg-[#1a1816] flex items-center justify-center px-6">
       <div className="w-full max-w-md bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/10 text-center">
         <div className="w-14 h-14 rounded-full bg-red-500/15 flex items-center justify-center mb-4 mx-auto">
-          <TriangleAlert className="w-7 h-7 text-red-400" />
+          <TriangleAlert className="w-7 h-7 text-danger" />
         </div>
         <p className="text-white font-semibold">Accesso negato</p>
-        <p className="text-gray-400 text-sm mt-1">
+        <p className="text-gray-500 text-sm mt-1">
           L&apos;account {email ? <strong className="text-gray-300">{email}</strong> : ''} non è abilitato all&apos;area terapista.
         </p>
         <button

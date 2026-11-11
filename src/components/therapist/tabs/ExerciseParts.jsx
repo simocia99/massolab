@@ -72,14 +72,14 @@ export function ExerciseCard({ exercise, onEdit, onRemove, index }) {
               <button
                 onClick={() => onEdit(index)}
                 aria-label="Modifica esercizio"
-                className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                className="p-1.5 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
               >
                 <Pen className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => onRemove(index)}
                 aria-label="Rimuovi esercizio"
-                className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                className="p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -94,7 +94,7 @@ export function ExerciseCard({ exercise, onEdit, onRemove, index }) {
           <button
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
-            className="text-xs text-gray-400 hover:text-gray-600 mt-2 flex items-center gap-1"
+            className="text-xs text-gray-500 hover:text-gray-600 mt-2 flex items-center gap-1"
           >
             {open ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
             {open ? 'Nascondi' : 'Dettagli'}

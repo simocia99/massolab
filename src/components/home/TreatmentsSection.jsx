@@ -9,13 +9,14 @@ import {
   z4 as TreatmentDetailModal,
 } from '@/xref/content';
 import { EASE, HEADING_FONT, reveal } from './shared';
+import SectionLabel from './SectionLabel';
 
 function SmallCard({ item, index, onOpen }) {
   const Icon = item.icon;
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: EASE }}
       whileTap={{ scale: 0.97 }}
@@ -31,13 +32,13 @@ function SmallCard({ item, index, onOpen }) {
       <span className="text-xs font-bold tracking-widest uppercase mb-2 block" style={{ color: item.accent }}>
         {item.tag}
       </span>
-      <h3 className="text-lg font-black text-[#1D1D1F] mb-1 leading-tight" style={{ letterSpacing: '-0.02em' }}>
+      <h3 className="text-lg font-black text-[#191A17] mb-1 leading-tight" style={{ letterSpacing: '-0.02em' }}>
         {item.title}
       </h3>
       <p className="text-xs font-light italic mb-3" style={{ color: item.accent }}>
         {item.headline}
       </p>
-      <p className="text-[#86868B] text-xs leading-relaxed mb-4 font-light">{item.description}</p>
+      <p className="text-[#6A685F] text-xs leading-relaxed mb-4 font-light">{item.description}</p>
       <span
         className="inline-flex items-center gap-1 text-xs font-semibold group-hover:gap-2 transition-all duration-300"
         style={{ color: item.accent }}
@@ -75,19 +76,19 @@ export default function TreatmentsSection() {
   const open = (title) => setOpenKey(TREATMENT_KEY_BY_TITLE[title]);
 
   return (
-    <section id="trattamenti" className="py-28 md:py-36 bg-[#f5f5f7]">
+    <section id="trattamenti" className="py-28 md:py-36 bg-sand">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div {...reveal()} className="mb-16">
-          <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#E50914] mb-4">Trattamenti</p>
+          <SectionLabel>Trattamenti</SectionLabel>
           <h2
-            className="text-4xl md:text-6xl font-black text-[#1D1D1F] mb-5"
+            className="text-4xl md:text-[3.25rem] font-medium leading-[1.05] text-[#191A17] mb-5"
             style={{ letterSpacing: '-0.04em', ...HEADING_FONT }}
           >
             Ogni muscolo
             <br />
-            <span className="text-[#86868B] font-light">ha una storia.</span>
+            <span className="text-[#6A685F] font-light">ha una storia.</span>
           </h2>
-          <p className="text-lg text-[#86868B] max-w-xl font-light leading-relaxed">
+          <p className="text-lg text-[#6A685F] max-w-xl font-light leading-relaxed">
             Otto specializzazioni. Un unico obiettivo: farti stare meglio, seduta per seduta.
           </p>
         </motion.div>
@@ -101,8 +102,8 @@ export default function TreatmentsSection() {
               return (
                 <motion.div
                   key={t.title}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
+                  whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
                   whileTap={{ scale: 0.98 }}
@@ -129,7 +130,7 @@ export default function TreatmentsSection() {
                     </span>
                   </div>
                   <h3
-                    className="text-3xl md:text-4xl font-black text-[#1D1D1F] mb-1"
+                    className="text-3xl md:text-4xl font-black text-[#191A17] mb-1"
                     style={{ letterSpacing: '-0.035em' }}
                   >
                     {t.title}
@@ -137,18 +138,18 @@ export default function TreatmentsSection() {
                   <p className="text-base font-light italic mb-4" style={{ color: t.accent }}>
                     {t.headline}
                   </p>
-                  <p className="text-[#86868B] text-base leading-relaxed mb-6 max-w-sm font-light">{t.description}</p>
+                  <p className="text-[#6A685F] text-base leading-relaxed mb-6 max-w-sm font-light">{t.description}</p>
                   <div className="flex items-center justify-between">
                     {price && price.visible && (
                       <div className="flex items-center gap-3">
                         {price.price && (
-                          <span className="flex items-center gap-1 text-sm font-bold text-[#1D1D1F]">
+                          <span className="flex items-center gap-1 text-sm font-bold text-[#191A17]">
                             <Euro className="w-3.5 h-3.5" style={{ color: t.accent }} />
                             {price.price}
                           </span>
                         )}
                         {price.duration_minutes && (
-                          <span className="flex items-center gap-1 text-xs text-[#86868B]">
+                          <span className="flex items-center gap-1 text-xs text-[#6A685F]">
                             <Clock className="w-3 h-3" />
                             {price.duration_minutes} min
                           </span>

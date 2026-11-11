@@ -10,7 +10,7 @@ export const TREATMENTS = {
     "tag": "Benessere & Stress",
     "durata": "60 min",
     "prezzo": "Consulta il listino",
-    "gradient": "from-red-500 to-orange-400",
+    "gradient": "from-sage-600 to-sage-400",
     "hero_img": img('1fa261e10'),
     "per_chi": [
       "Chi accumula tensione da lavoro sedentario o davanti al pc",
@@ -87,7 +87,7 @@ export const TREATMENTS = {
     "tag": "Sport & Performance",
     "durata": "60 min",
     "prezzo": "Consulta il listino",
-    "gradient": "from-orange-500 to-yellow-400",
+    "gradient": "from-ocra to-[#E2B98C]",
     "hero_img": img('31b3c285a'),
     "per_chi": [
       "Sportivi amatoriali e agonisti che si allenano almeno 2-3 volte a settimana",
@@ -164,7 +164,7 @@ export const TREATMENTS = {
     "tag": "Dolori cronici & Postura",
     "durata": "60 min",
     "prezzo": "Consulta il listino",
-    "gradient": "from-purple-500 to-pink-400",
+    "gradient": "from-[#7A5C6E] to-[#B49AA8]",
     "hero_img": img('df9d70f1d'),
     "per_chi": [
       "Chi ha dolori muscolari cronici che si ripresentano sempre nello stesso punto",
@@ -241,7 +241,7 @@ export const TREATMENTS = {
     "tag": "Circolazione & Gambe",
     "durata": "60 min",
     "prezzo": "Consulta il listino",
-    "gradient": "from-blue-500 to-cyan-400",
+    "gradient": "from-[#4A6470] to-sage-300",
     "hero_img": img('1bb1e47da'),
     "per_chi": [
       "Chi soffre di gambe gonfie e pesanti, soprattutto la sera",
@@ -318,7 +318,7 @@ export const TREATMENTS = {
     "tag": "Postura & Colonna",
     "durata": "60 min",
     "prezzo": "Consulta il listino",
-    "gradient": "from-indigo-500 to-blue-400",
+    "gradient": "from-sage-800 to-sage-500",
     "hero_img": img('1ff2b3f9b'),
     "per_chi": [
       "Chi ha dolori alla colonna vertebrale cronici o ricorrenti",
@@ -395,7 +395,7 @@ export const TREATMENTS = {
     "tag": "Prevenzione & Recupero",
     "durata": "30–45 min",
     "prezzo": "Consulta il listino",
-    "gradient": "from-teal-500 to-green-400",
+    "gradient": "from-[#4F6B3A] to-[#9DB57E]",
     "hero_img": img('f6109264f'),
     "per_chi": [
       "Sportivi che hanno piccoli dolori ma vogliono continuare ad allenarsi",
@@ -472,7 +472,7 @@ export const TREATMENTS = {
     "tag": "Contratture & Recupero",
     "durata": "45–60 min",
     "prezzo": "Consulta il listino",
-    "gradient": "from-rose-500 to-red-400",
+    "gradient": "from-[#9A5F2A] to-ocra",
     "hero_img": img('5fa18b8bf'),
     "per_chi": [
       "Chi ha contratture muscolari profonde che non si sciolgono con il massaggio normale",
@@ -549,7 +549,7 @@ export const TREATMENTS = {
     "tag": "Infortuni & Prevenzione",
     "durata": "30–45 min",
     "prezzo": "Consulta il listino",
-    "gradient": "from-green-500 to-emerald-400",
+    "gradient": "from-sage-700 to-lime-400",
     "hero_img": img('b341b2cc4'),
     "per_chi": [
       "Chi ha avuto distorsioni ripetute alla stessa articolazione",

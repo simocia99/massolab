@@ -48,7 +48,7 @@ export default function BlogPost() {
 
   if (!post) {
     return (
-      <div className="pt-20 min-h-screen flex flex-col items-center justify-center text-gray-400 gap-4 px-6 text-center">
+      <div className="pt-20 min-h-screen flex flex-col items-center justify-center text-gray-500 gap-4 px-6 text-center">
         <p className="text-lg font-medium">Articolo non trovato.</p>
         <Link to={createPageUrl('Blog')} className="text-red-600 font-semibold hover:underline">
           ← Torna al Blog
@@ -64,12 +64,12 @@ export default function BlogPost() {
     .slice(0, 3);
 
   return (
-    <div className="pt-20 min-h-screen bg-[#f5f5f7]">
+    <div className="pt-20 min-h-screen bg-[#F3F0EA]">
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
           <Link
             to={createPageUrl('Blog')}
-            className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-red-600 mb-6 transition-colors font-medium"
+            className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-red-600 mb-6 transition-colors font-medium"
           >
             <ChevronLeft className="w-4 h-4" /> Blog
           </Link>
@@ -83,7 +83,7 @@ export default function BlogPost() {
           </div>
           <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 max-w-3xl break-words">{post.title}</h1>
           {post.excerpt && <p className="text-gray-500 text-lg max-w-2xl mb-6">{post.excerpt}</p>}
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-400">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-500">
             <span className="flex items-center gap-1.5">
               <Calendar className="w-4 h-4" />
               {formatPostDate(post.created_date)}
@@ -113,8 +113,8 @@ export default function BlogPost() {
         <div className="flex flex-col lg:flex-row gap-10">
           <motion.article
             key={post.id}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             className="flex-1 min-w-0 bg-white rounded-2xl border border-gray-100 p-5 sm:p-8 md:p-12"
           >
             <SafeContent content={post.content} className="max-w-none break-words [&>*:first-child]:mt-0" />

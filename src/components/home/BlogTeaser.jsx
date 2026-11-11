@@ -24,20 +24,20 @@ export default function BlogTeaser() {
   if (!loading && posts.length === 0) return null;
 
   return (
-    <section className="py-24 bg-[#f5f5f7]">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-end justify-between mb-12">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <Rss className="w-4 h-4 text-red-500" />
-              <span className="text-xs font-bold tracking-widest uppercase text-red-500">Dal Blog</span>
+              <span className="text-xs font-medium tracking-[0.08em] uppercase text-gray-500">Dal Blog</span>
             </div>
-            <h2 className="text-4xl font-extrabold text-gray-900">Notizie &amp; Consigli</h2>
+            <h2 className="text-4xl md:text-[3.25rem] font-medium leading-[1.05] text-gray-900">Notizie &amp; Consigli</h2>
             <p className="text-gray-500 mt-2 text-lg">Articoli sul benessere, massoterapia e stile di vita sano.</p>
           </div>
           <Link
             to={createPageUrl('Blog')}
-            className="hidden sm:flex items-center gap-2 text-red-600 font-semibold hover:gap-3 transition-all text-sm"
+            className="hidden sm:flex items-center gap-2 min-h-[44px] text-red-600 font-semibold hover:gap-3 transition-all text-sm"
           >
             Tutti gli articoli <ArrowRight className="w-4 h-4" />
           </Link>
@@ -54,8 +54,8 @@ export default function BlogTeaser() {
             {posts.map((post, i) => (
               <motion.div
                 key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
@@ -99,7 +99,7 @@ export default function BlogTeaser() {
                     </h3>
                     {post.excerpt && <p className="text-gray-500 text-sm line-clamp-2 mb-4">{post.excerpt}</p>}
                     <div className="flex items-center justify-between mt-auto pt-2 border-t border-gray-100">
-                      <div className="flex items-center gap-3 text-xs text-gray-400">
+                      <div className="flex items-center gap-3 text-xs text-gray-500">
                         <span>{formatDateIT(post.created_date)}</span>
                         {post.reading_time && (
                           <span className="flex items-center gap-1">
@@ -120,7 +120,7 @@ export default function BlogTeaser() {
         )}
 
         <div className="sm:hidden mt-8 text-center">
-          <Link to={createPageUrl('Blog')} className="inline-flex items-center gap-2 text-red-600 font-semibold text-sm">
+          <Link to={createPageUrl('Blog')} className="inline-flex items-center gap-2 min-h-[44px] text-red-600 font-semibold text-sm">
             Tutti gli articoli <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

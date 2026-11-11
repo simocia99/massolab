@@ -16,7 +16,7 @@ export const STATUS_COLORS = {
   pending: 'bg-yellow-100 text-yellow-700',
   confirmed: 'bg-green-100 text-green-700',
   completed: 'bg-blue-100 text-blue-700',
-  cancelled: 'bg-red-100 text-red-700',
+  cancelled: 'bg-danger-soft text-danger',
 };
 
 export function StatusBadge({ status }) {

@@ -10,6 +10,9 @@ export default defineConfig({
   plugins: [react()],
   resolve: { alias: { '@': path.resolve(__dirname, 'src') } },
   build: {
+    // Older iPhones/iPads (iOS 13+) and Firefox ESR included, see browserslist.
+    target: ['es2019', 'safari13', 'chrome80', 'firefox78', 'edge88'],
+    cssTarget: ['safari13', 'chrome80', 'firefox78', 'edge88'],
     chunkSizeWarningLimit: 900,
     rollupOptions: {
       output: {

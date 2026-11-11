@@ -105,7 +105,7 @@ export default function SlotPicker({ onSelectSlot, selectedDate, selectedTime, t
 
       <div className="grid grid-cols-7 gap-1">
         {WEEKDAYS.map((w) => (
-          <div key={w} className="text-center text-xs font-bold text-gray-400 py-1">
+          <div key={w} className="text-center text-xs font-bold text-gray-500 py-1">
             {w}
           </div>
         ))}
@@ -149,12 +149,12 @@ export default function SlotPicker({ onSelectSlot, selectedDate, selectedTime, t
         </div>
       )}
 
-      {!busy && error && <p className="text-sm text-red-600 text-center py-3 bg-red-50 rounded-xl">{error}</p>}
+      {!busy && error && <p className="text-sm text-danger text-center py-3 bg-danger-soft rounded-xl">{error}</p>}
 
       {!busy && !error && day && (
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <Clock className="w-4 h-4 text-gray-400" />
+            <Clock className="w-4 h-4 text-gray-500" />
             <span className="text-sm font-semibold text-gray-700">
               Orari disponibili — {format(day, 'd MMMM', { locale: it })}
             </span>
@@ -165,7 +165,7 @@ export default function SlotPicker({ onSelectSlot, selectedDate, selectedTime, t
             )}
           </div>
           {times.length === 0 ? (
-            <p className="text-sm text-gray-400 text-center py-3 bg-gray-50 rounded-xl">
+            <p className="text-sm text-gray-500 text-center py-3 bg-gray-50 rounded-xl">
               Nessun orario disponibile per questo giorno
             </p>
           ) : (
@@ -187,7 +187,7 @@ export default function SlotPicker({ onSelectSlot, selectedDate, selectedTime, t
       )}
 
       {!busy && !error && !day && (
-        <p className="text-sm text-gray-400 text-center py-3">Seleziona un giorno per vedere gli orari disponibili</p>
+        <p className="text-sm text-gray-500 text-center py-3">Seleziona un giorno per vedere gli orari disponibili</p>
       )}
     </div>
   );

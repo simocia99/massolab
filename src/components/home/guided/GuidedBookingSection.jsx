@@ -25,15 +25,15 @@ export default function GuidedBookingSection() {
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-bold uppercase tracking-wider mb-5">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lime text-ink text-xs font-medium uppercase tracking-[0.08em] mb-5">
               <WandSparkles className="w-4 h-4" /> Nuovo
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-[2.6rem] font-medium text-gray-900 leading-[1.05] mb-4 tracking-tight">
               Non sai quale trattamento scegliere?
             </h2>
             <p className="text-lg text-gray-500 mb-8 max-w-xl mx-auto">
@@ -48,7 +48,7 @@ export default function GuidedBookingSection() {
               <WandSparkles className="w-5 h-5" />
               Aiutami a scegliere
             </button>
-            <p className="text-xs text-gray-400 mt-4">Nessuna diagnosi medica — solo un orientamento pratico.</p>
+            <p className="text-xs text-gray-500 mt-4">Nessuna diagnosi medica — solo un orientamento pratico.</p>
           </motion.div>
         </div>
       </section>
@@ -69,12 +69,11 @@ export default function GuidedBookingSection() {
               role="dialog"
               aria-modal="true"
               aria-label="Aiutami a scegliere il trattamento"
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 60, filter: 'blur(8px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               exit={{ opacity: 0, y: 60 }}
               transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-              className="fixed bottom-0 left-0 right-0 md:inset-4 md:max-w-lg md:w-full md:m-auto bg-white rounded-t-3xl md:rounded-2xl z-50 shadow-2xl flex flex-col"
-              style={{ height: '88dvh', maxHeight: '600px' }}
+              className="fixed bottom-0 left-0 right-0 md:inset-4 md:max-w-lg md:w-full md:m-auto bg-white rounded-t-3xl md:rounded-2xl z-50 shadow-2xl flex flex-col h-[88dvh] max-h-[600px]"
             >
               <GuidedBookingWizard onClose={() => setOpen(false)} />
             </motion.div>

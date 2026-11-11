@@ -76,7 +76,7 @@ export default function GuestIntakeStep({ intake, setField, submitting, onSubmit
           onChange={(ev) => setField('pain_intensity', Number(ev.target.value))}
           className="w-full accent-red-600"
         />
-        <div className="flex justify-between text-xs text-gray-400 mt-1">
+        <div className="flex justify-between text-xs text-gray-500 mt-1">
           <span>1 — Lieve</span>
           <span>10 — Molto intenso</span>
         </div>
@@ -90,7 +90,7 @@ export default function GuestIntakeStep({ intake, setField, submitting, onSubmit
       <div>
         <label htmlFor="gb-contra" className="block text-sm font-semibold text-gray-700 mb-1">
           Situazioni da segnalare{' '}
-          <span className="text-xs font-normal text-gray-400">(gravidanza, patologie, operazioni...)</span>
+          <span className="text-xs font-normal text-gray-500">(gravidanza, patologie, operazioni...)</span>
         </label>
         <textarea
           id="gb-contra"
@@ -103,8 +103,8 @@ export default function GuestIntakeStep({ intake, setField, submitting, onSubmit
         <AnimatePresence>
           {intake.has_contraindications && (
             <motion.div
-              initial={{ opacity: 0, y: -4 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: -4, filter: 'blur(8px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               exit={{ opacity: 0 }}
               className="mt-3 bg-amber-50 border border-amber-200 rounded-2xl p-4 flex gap-3"
             >
@@ -155,7 +155,7 @@ export default function GuestIntakeStep({ intake, setField, submitting, onSubmit
           )}
         </button>
       </div>
-      <p className="text-xs text-gray-400 text-center">Puoi anche saltare e compilare la scheda in un secondo momento</p>
+      <p className="text-xs text-gray-500 text-center">Puoi anche saltare e compilare la scheda in un secondo momento</p>
     </div>
   );
 }

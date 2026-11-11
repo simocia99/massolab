@@ -127,10 +127,10 @@ export default function MessagesTab({ appointments }) {
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex h-[calc(100dvh-220px)] min-h-[420px] lg:h-[560px]">
         <div className={`w-full md:w-64 border-r border-gray-100 flex-col flex-shrink-0 ${selected ? 'hidden md:flex' : 'flex'}`}>
           <div className="p-4 border-b border-gray-100">
-            <p className="text-xs font-bold uppercase tracking-wider text-gray-400">Clienti</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-gray-500">Clienti</p>
           </div>
           <div className="flex-1 overflow-y-auto divide-y divide-gray-50">
-            {contacts.length === 0 && <p className="p-4 text-sm text-gray-400">Nessun cliente registrato.</p>}
+            {contacts.length === 0 && <p className="p-4 text-sm text-gray-500">Nessun cliente registrato.</p>}
             {contacts.map((c) => {
               const unread = unreadFor(c.email);
               return (
@@ -172,7 +172,7 @@ export default function MessagesTab({ appointments }) {
               </div>
               <div className="flex-1 overflow-y-auto p-4 space-y-3">
                 {thread.length === 0 && (
-                  <p className="text-center text-gray-400 text-sm">Nessun messaggio ancora. Inizia la conversazione!</p>
+                  <p className="text-center text-gray-500 text-sm">Nessun messaggio ancora. Inizia la conversazione!</p>
                 )}
                 {thread.map((m) => (
                   <div key={m.id} className={`flex ${m.sender === 'therapist' ? 'justify-end' : 'justify-start'}`}>
@@ -180,7 +180,7 @@ export default function MessagesTab({ appointments }) {
                       className={`max-w-[80%] lg:max-w-md rounded-2xl px-4 py-2.5 ${m.sender === 'therapist' ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-900'}`}
                     >
                       <p className="text-sm whitespace-pre-line break-words">{m.content}</p>
-                      <p className={`text-xs mt-1 ${m.sender === 'therapist' ? 'text-red-200' : 'text-gray-400'}`}>
+                      <p className={`text-xs mt-1 ${m.sender === 'therapist' ? 'text-red-200' : 'text-gray-500'}`}>
                         {m.created_date ? format(new Date(m.created_date), 'HH:mm') : ''}
                       </p>
                     </div>
@@ -211,7 +211,7 @@ export default function MessagesTab({ appointments }) {
               </div>
             </>
           ) : (
-            <div className="flex-1 flex items-center justify-center text-gray-400">
+            <div className="flex-1 flex items-center justify-center text-gray-500">
               <div className="text-center">
                 <User className="w-12 h-12 mx-auto mb-3 opacity-30" />
                 <p>Seleziona un cliente per chattare</p>

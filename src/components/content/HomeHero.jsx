@@ -1,175 +1,136 @@
-// Home hero with animated wave lines on a canvas (bundle `O4`).
-import { useEffect, useRef } from 'react';
+// Home hero (Estetica v2, docs/agent-notes/design.md): photo in a rounded frame,
+// giant word revealed letter by letter, frame that settles back on scroll.
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Calendar, MessageCircle } from 'lucide-react';
-import { whatsappUrl } from '@/api/config';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { ChevronRight, MessageCircle } from 'lucide-react';
+import { BUSINESS, whatsappUrl } from '@/api/config';
 import { createPageUrl } from '@/lib/utils';
 
-const EASE = [0.25, 0.46, 0.45, 0.94];
-const WAVES = [
-  { color: '#E50914', width: 3, speed: 0.3, amplitude: 40, yBase: 0.15 },
-  { color: 'rgba(255,255,255,0.2)', width: 1.5, speed: 0.25, amplitude: 30, yBase: 0.28 },
-  { color: 'rgba(229,9,20,0.4)', width: 5, speed: 0.35, amplitude: 50, yBase: 0.42 },
-  { color: 'rgba(255,149,0,0.5)', width: 6, speed: 0.3, amplitude: 60, yBase: 0.55 },
-  { color: '#E50914', width: 2, speed: 0.28, amplitude: 45, yBase: 0.68 },
-  { color: 'rgba(255,255,255,0.15)', width: 4, speed: 0.32, amplitude: 55, yBase: 0.78 },
-  { color: 'rgba(229,9,20,0.25)', width: 3, speed: 0.22, amplitude: 35, yBase: 0.88 },
-];
+const EASE = [0.28, 0.11, 0.32, 1];
+const WORD = 'Benessere';
+const HERO_IMG = `${import.meta.env.BASE_URL}images/1fa261e10.jpg`;
 
-function useWaveCanvas(canvasRef) {
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return undefined;
-    const ctx = canvas.getContext('2d');
-    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    let frame = null;
-    let t = 0;
-    let inView = true;
-    let visible = true; // in view AND tab visible
-
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = canvas.offsetWidth * dpr;
-      canvas.height = canvas.offsetHeight * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-
-    const draw = () => {
-      const w = canvas.offsetWidth;
-      const h = canvas.offsetHeight;
-      ctx.clearRect(0, 0, w, h);
-      for (const wave of WAVES) {
-        ctx.beginPath();
-        ctx.strokeStyle = wave.color;
-        ctx.lineWidth = wave.width;
-        ctx.lineCap = 'round';
-        for (let x = -50; x <= w + 50; x += 4) {
-          const y =
-            h * wave.yBase +
-            Math.sin(x * 0.005 + t * wave.speed) * wave.amplitude +
-            Math.sin(x * 0.002 + t * wave.speed * 0.7) * wave.amplitude * 0.5;
-          if (x === -50) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-        ctx.stroke();
-      }
-    };
-
-    const loop = () => {
-      draw();
-      t += 0.018;
-      frame = visible && !reduceMotion ? requestAnimationFrame(loop) : null;
-    };
-
-    const onResize = () => {
-      resize();
-      if (!frame) draw();
-    };
-
-    // Animate only while the hero is in view and the tab is visible (saves CPU/battery).
-    const update = () => {
-      visible = inView && document.visibilityState !== 'hidden';
-      if (visible && !frame && !reduceMotion) frame = requestAnimationFrame(loop);
-      if (!visible && frame) {
-        cancelAnimationFrame(frame);
-        frame = null;
-      }
-    };
-    const io = new IntersectionObserver(([entry]) => {
-      inView = entry.isIntersecting;
-      update();
-    });
-
-    resize();
-    loop(); // with reduced motion this draws a single static frame
-    io.observe(canvas);
-    window.addEventListener('resize', onResize);
-    document.addEventListener('visibilitychange', update);
-    return () => {
-      if (frame) cancelAnimationFrame(frame);
-      io.disconnect();
-      window.removeEventListener('resize', onResize);
-      document.removeEventListener('visibilitychange', update);
-    };
-  }, [canvasRef]);
-}
+const fade = (delay, reduce) => ({
+  initial: reduce ? { opacity: 0 } : { opacity: 0, y: 24, filter: 'blur(8px)' },
+  animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+  transition: { duration: reduce ? 0.2 : 1, delay: reduce ? 0 : delay, ease: EASE },
+});
 
 export default function HomeHero() {
-  const canvasRef = useRef(null);
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 600], [0, 80]);
-  useWaveCanvas(canvasRef);
+  const ref = useRef(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+  const frameScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 0.92]);
+  const imgY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '12%']);
+  const wordY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '-40%']);
+  const wordOpacity = useTransform(scrollYProgress, [0, 0.6], [1, reduce ? 1 : 0]);
 
   return (
-    <section className="relative h-screen min-h-[700px] flex items-center justify-center bg-black overflow-hidden">
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ opacity: 0.6 }} aria-hidden="true" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/10 to-black/80 pointer-events-none" />
-      <motion.div style={{ y }} className="relative z-10 max-w-5xl mx-auto px-5 sm:px-6 text-center text-white">
-        <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE }}>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-xs sm:text-sm font-semibold tracking-[0.3em] uppercase text-[#E50914] mb-6"
-          >
-            Masso Lab · Simone Ciacchi
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: EASE }}
-            className="text-5xl sm:text-7xl md:text-[6rem] lg:text-[7.5rem] font-black leading-[0.9] mb-6"
-            style={{ letterSpacing: '-0.045em', fontFamily: 'Inter, -apple-system, sans-serif' }}
-          >
-            Il massaggio
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E50914] via-orange-400 to-[#E50914]">
-              che cambia tutto.
-            </span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-lg sm:text-xl md:text-2xl text-white/60 mb-10 max-w-2xl mx-auto font-light"
-            style={{ letterSpacing: '-0.01em' }}
-          >
-            Precisione tecnica. Risultati reali. Direttamente a casa tua.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
-          >
-            <Link
-              to={createPageUrl('GuestBooking')}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#E50914] hover:bg-[#cc0812] text-white rounded-full px-9 py-4 text-base font-bold shadow-2xl shadow-red-900/60 transition-all duration-300 hover:scale-[1.04] active:scale-95"
-            >
-              <Calendar className="w-4 h-4" />
-              Prenota ora
-            </Link>
-            <a
-              href={whatsappUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/[0.08] hover:bg-white/15 border border-white/20 text-white rounded-full px-9 py-4 text-base font-medium backdrop-blur-md transition-all duration-300 hover:scale-[1.04]"
-            >
-              <MessageCircle className="w-4 h-4 text-green-400" />
-              Scrivimi
-            </a>
-          </motion.div>
-        </motion.div>
-      </motion.div>
+    <section ref={ref} className="relative bg-white px-2 sm:px-4 pt-2 sm:pt-4">
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-20 pointer-events-none"
+        style={{ scale: frameScale }}
+        className="relative h-[calc(100svh-1rem)] sm:h-[calc(100svh-2rem)] min-h-[620px] max-h-[980px] rounded-[24px] sm:rounded-[32px] overflow-hidden bg-[#A9B8B0] origin-top will-change-transform"
       >
-        <div className="w-[1px] h-12 bg-gradient-to-b from-white/40 to-transparent" />
-        <div className="w-1 h-1 rounded-full bg-white/30" />
+        <motion.div style={{ y: imgY }} className="absolute inset-0">
+          <motion.img
+            src={HERO_IMG}
+            alt="Massaggio professionale in un ambiente luminoso"
+            fetchpriority="high"
+            decoding="async"
+            initial={reduce ? false : { scale: 1.08 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.6, ease: EASE }}
+            className="w-full h-full object-cover object-[60%_40%]"
+          />
+        </motion.div>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(25,26,23,.35) 0%, rgba(25,26,23,.15) 35%, rgba(25,26,23,.72) 100%)',
+          }}
+        />
+
+        {/* Giant word (decorative: the real heading is the h1 below). */}
+        <motion.div
+          aria-hidden="true"
+          style={{ y: wordY, opacity: wordOpacity }}
+          className="absolute inset-x-0 top-24 sm:top-28 flex justify-center select-none pointer-events-none"
+        >
+          <span
+            className="flex text-white font-medium leading-[0.9] whitespace-nowrap"
+            style={{ fontSize: 'clamp(3.6rem, 16.5vw, 15rem)', letterSpacing: '-0.05em' }}
+          >
+            {WORD.split('').map((ch, i) => (
+              <span key={i} className="inline-block overflow-hidden pb-[0.08em]">
+                <motion.span
+                  className="inline-block"
+                  initial={reduce ? { opacity: 0 } : { y: '105%' }}
+                  animate={reduce ? { opacity: 1 } : { y: '0%' }}
+                  transition={{ duration: reduce ? 0.2 : 0.9, delay: reduce ? 0 : 0.15 + i * 0.045, ease: EASE }}
+                >
+                  {ch}
+                </motion.span>
+              </span>
+            ))}
+          </span>
+        </motion.div>
+
+        <div className="absolute inset-x-0 bottom-16 sm:bottom-20 px-5 sm:px-10 lg:px-14">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-end">
+            <div>
+              <motion.p
+                {...fade(0.55, reduce)}
+                className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/10 backdrop-blur-md px-3 py-1 text-xs text-white/90 mb-4"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-lime" />
+                Massaggio a domicilio · {BUSINESS.city}
+              </motion.p>
+              <motion.h1
+                {...fade(0.65, reduce)}
+                className="text-white font-medium leading-[1.02]"
+                style={{ fontSize: 'clamp(2.4rem, 5.2vw, 4.25rem)', letterSpacing: '-0.035em' }}
+              >
+                Il massaggio
+                <br />
+                che viene da te
+              </motion.h1>
+            </div>
+            <motion.div {...fade(0.8, reduce)} className="md:justify-self-end md:text-right max-w-sm">
+              <p className="text-white/90 text-[15px] leading-relaxed mb-6">
+                Massoterapia professionale a casa tua, entro {BUSINESS.radiusKm} km da {BUSINESS.city}. Prima ascolto, poi
+                valuto, poi lavoriamo: ogni seduta è costruita su di te.
+              </p>
+              <div className="flex flex-wrap items-center gap-3 md:justify-end">
+                <Link
+                  to={createPageUrl('GuestBooking')}
+                  className="group inline-flex items-center gap-1.5 bg-white text-ink rounded-full pl-6 pr-4 min-h-[44px] text-sm font-medium transition-all duration-300 hover:scale-[1.02] hover:bg-lime"
+                >
+                  Prenota ora
+                  <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </Link>
+                <a
+                  href={whatsappUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 backdrop-blur-md text-white px-5 min-h-[44px] text-sm font-medium transition-all duration-300 hover:bg-white/20"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Scrivimi
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        <motion.div
+          {...fade(1, reduce)}
+          className="absolute inset-x-0 bottom-0 border-t border-white/30 px-5 sm:px-10 lg:px-14 h-12 flex items-center justify-between text-xs font-medium uppercase tracking-[0.08em] text-white/90"
+        >
+          <span>A domicilio · entro {BUSINESS.radiusKm} km</span>
+          <span>6 giorni su 7</span>
+        </motion.div>
       </motion.div>
     </section>
   );

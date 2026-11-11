@@ -29,7 +29,7 @@ export default function OverviewTab({ appointments }) {
       <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100">
         <h3 className="font-bold text-gray-900 mb-4">Appuntamenti di Oggi ({todays.length})</h3>
         {todays.length === 0 ? (
-          <p className="text-gray-400 text-sm">Nessun appuntamento oggi.</p>
+          <p className="text-gray-500 text-sm">Nessun appuntamento oggi.</p>
         ) : (
           <div className="space-y-3">
             {todays.map((a) => (

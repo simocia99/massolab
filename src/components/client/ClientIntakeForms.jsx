@@ -14,7 +14,7 @@ function Field({ label, value }) {
   if (!value) return null;
   return (
     <div>
-      <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">{label}</p>
+      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{label}</p>
       <p className="text-sm text-gray-700 mt-0.5">{value}</p>
     </div>
   );
@@ -49,9 +49,9 @@ export default function ClientIntakeForms({ clientEmail }) {
 
   if (!forms.length) {
     return (
-      <div className="text-center py-16 text-gray-400">
+      <div className="text-center py-16 text-gray-500">
         <FileText className="w-10 h-10 mx-auto mb-3 opacity-30" />
-        {error ? <p className="mb-4 text-red-600">{error}</p> : <p className="mb-4">Nessun modulo compilato.</p>}
+        {error ? <p className="mb-4 text-danger">{error}</p> : <p className="mb-4">Nessun modulo compilato.</p>}
         <Link
           to={createPageUrl('IntakeForm')}
           className="inline-block bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
@@ -90,13 +90,13 @@ export default function ClientIntakeForms({ clientEmail }) {
                     Scheda del {new Date(f.created_date).toLocaleDateString('it-IT')}
                   </p>
                   {f.visit_reason && (
-                    <p className="text-xs text-gray-400 mt-0.5 truncate max-w-[200px]">{f.visit_reason}</p>
+                    <p className="text-xs text-gray-500 mt-0.5 truncate max-w-[200px]">{f.visit_reason}</p>
                   )}
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${status.color}`}>{status.label}</span>
-                {open ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
+                {open ? <ChevronUp className="w-4 h-4 text-gray-500" /> : <ChevronDown className="w-4 h-4 text-gray-500" />}
               </div>
             </button>
             {open && (

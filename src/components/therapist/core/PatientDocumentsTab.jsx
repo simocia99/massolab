@@ -13,13 +13,13 @@ const DOCUMENT_TYPES = [
 ];
 
 const emptyPatient = { first_name: '', last_name: '', email: '', phone: '', notes: '' };
-const labelCls = 'block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1';
+const labelCls = 'block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1';
 const inputCls = 'w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-red-400';
 
 function FileIcon({ type }) {
   if (type?.startsWith('image/')) return <Image className="w-5 h-5 text-blue-400 flex-shrink-0" />;
   if (type === 'application/pdf') return <FileText className="w-5 h-5 text-red-400 flex-shrink-0" />;
-  return <File className="w-5 h-5 text-gray-400 flex-shrink-0" />;
+  return <File className="w-5 h-5 text-gray-500 flex-shrink-0" />;
 }
 
 export default function PatientDocumentsTab({ appointments }) {
@@ -210,7 +210,7 @@ export default function PatientDocumentsTab({ appointments }) {
       )}
 
       <div>
-        <label htmlFor="docs-patient" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">
+        <label htmlFor="docs-patient" className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
           Seleziona Paziente
         </label>
         <div className="relative w-full sm:max-w-xs">
@@ -227,14 +227,14 @@ export default function PatientDocumentsTab({ appointments }) {
               </option>
             ))}
           </select>
-          <ChevronDown className="absolute right-3 top-3 w-4 h-4 text-gray-400 pointer-events-none" />
+          <ChevronDown className="absolute right-3 top-3 w-4 h-4 text-gray-500 pointer-events-none" />
         </div>
       </div>
 
       {email && (
         <>
           <div className="bg-gray-50 rounded-2xl border border-dashed border-gray-300 p-4 sm:p-5 space-y-3">
-            <p className="text-xs font-bold uppercase tracking-wider text-gray-400">Carica Documento</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-gray-500">Carica Documento</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="doc-type" className="block text-xs text-gray-500 mb-1">
@@ -253,7 +253,7 @@ export default function PatientDocumentsTab({ appointments }) {
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="absolute right-3 top-3 w-4 h-4 text-gray-400 pointer-events-none" />
+                  <ChevronDown className="absolute right-3 top-3 w-4 h-4 text-gray-500 pointer-events-none" />
                 </div>
               </div>
               <div>
@@ -278,12 +278,12 @@ export default function PatientDocumentsTab({ appointments }) {
                 {uploading ? <LoaderCircle className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
                 {uploading ? 'Caricamento...' : 'Scegli File'}
               </label>
-              <span className="text-xs text-gray-400">PDF, immagini, documenti</span>
+              <span className="text-xs text-gray-500">PDF, immagini, documenti</span>
             </div>
           </div>
 
           {patientDocs.length === 0 ? (
-            <p className="text-sm text-gray-400 py-8 text-center">Nessun documento caricato per questo paziente.</p>
+            <p className="text-sm text-gray-500 py-8 text-center">Nessun documento caricato per questo paziente.</p>
           ) : (
             <div className="space-y-3">
               {patientDocs.map((d) => (
@@ -295,7 +295,7 @@ export default function PatientDocumentsTab({ appointments }) {
                       <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
                         {DOCUMENT_TYPES.find((t) => t.value === d.document_type)?.label || d.document_type}
                       </span>
-                      {d.notes && <span className="text-xs text-gray-400">{d.notes}</span>}
+                      {d.notes && <span className="text-xs text-gray-500">{d.notes}</span>}
                       <span className="text-xs text-gray-300">{d.created_date?.slice(0, 10)}</span>
                     </div>
                   </div>
@@ -304,7 +304,7 @@ export default function PatientDocumentsTab({ appointments }) {
                       type="button"
                       onClick={() => openDocument(d)}
                       aria-label={`Apri ${d.file_name}`}
-                      className="p-1.5 text-gray-400 hover:text-blue-500 transition-colors rounded-lg hover:bg-blue-50"
+                      className="p-1.5 text-gray-500 hover:text-blue-500 transition-colors rounded-lg hover:bg-blue-50"
                     >
                       <Download className="w-4 h-4" />
                     </button>

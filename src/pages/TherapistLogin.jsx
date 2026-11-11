@@ -31,7 +31,7 @@ export function GoogleIcon() {
 }
 
 const inputCls =
-  'w-full bg-white/10 border border-white/15 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-500';
+  'w-full bg-white/10 border border-white/15 text-white placeholder-gray-400 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-500';
 
 export default function TherapistLogin() {
   const navigate = useNavigate();
@@ -75,7 +75,7 @@ export default function TherapistLogin() {
 
   return (
     <div className="min-h-screen bg-[#1a1816] flex items-center justify-center px-6 py-10">
-      <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
+      <motion.div initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="w-16 h-16 rounded-2xl bg-red-600 flex items-center justify-center mx-auto mb-4">
             <Lock className="w-8 h-8 text-white" />
@@ -125,7 +125,7 @@ export default function TherapistLogin() {
                 Accedi con Google
               </button>
 
-              <div className="flex items-center gap-3 text-gray-500 text-xs">
+              <div className="flex items-center gap-3 text-gray-400 text-xs">
                 <span className="flex-1 h-px bg-white/10" />
                 oppure con email e password
                 <span className="flex-1 h-px bg-white/10" />
@@ -167,7 +167,7 @@ export default function TherapistLogin() {
                     type="button"
                     onClick={() => setShowPassword((s) => !s)}
                     aria-label={showPassword ? 'Nascondi password' : 'Mostra password'}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white p-2.5 -mr-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-red-500 rounded-lg"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white p-3 -mr-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-red-500 rounded-lg"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -183,7 +183,7 @@ export default function TherapistLogin() {
               </form>
 
               {error && (
-                <p className="text-red-400 text-sm text-center" role="alert">
+                <p className="text-danger text-sm text-center" role="alert">
                   {error}
                 </p>
               )}
@@ -195,7 +195,7 @@ export default function TherapistLogin() {
                 </p>
               )}
 
-              <p className="text-gray-500 text-xs text-center">
+              <p className="text-gray-400 text-xs text-center">
                 Accesso consentito solo all&apos;account <span className="break-all">{THERAPIST_EMAIL}</span>
               </p>
             </div>
@@ -205,7 +205,7 @@ export default function TherapistLogin() {
             <div className="space-y-5">
               <div className="flex flex-col items-center text-center py-2">
                 <div className="w-14 h-14 rounded-full bg-red-500/15 flex items-center justify-center mb-4">
-                  <TriangleAlert className="w-7 h-7 text-red-400" />
+                  <TriangleAlert className="w-7 h-7 text-danger" />
                 </div>
                 <p className="text-white font-semibold">Account non autorizzato</p>
                 <p className="text-gray-400 text-sm mt-1">

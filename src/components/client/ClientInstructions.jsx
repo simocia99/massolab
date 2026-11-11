@@ -57,10 +57,10 @@ function Section({ icon: Icon, iconBox, title, subtitle, open, onToggle, childre
           </div>
           <div>
             <p className="font-bold text-gray-900 text-sm">{title}</p>
-            <p className="text-xs text-gray-400">{subtitle}</p>
+            <p className="text-xs text-gray-500">{subtitle}</p>
           </div>
         </div>
-        {open ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
+        {open ? <ChevronUp className="w-4 h-4 text-gray-500" /> : <ChevronDown className="w-4 h-4 text-gray-500" />}
       </button>
       {open && children}
     </div>
@@ -133,7 +133,7 @@ export default function ClientInstructions({ clientEmail }) {
 
       <div className="bg-gray-900 rounded-2xl p-5 text-white">
         <p className="font-bold text-base mb-1">Hai domande?</p>
-        <p className="text-sm text-gray-400 mb-4">Simone risponde su WhatsApp o per email.</p>
+        <p className="text-sm text-gray-300 mb-4">Simone risponde su WhatsApp o per email.</p>
         <div className="flex flex-col sm:flex-row gap-3">
           <a
             href={whatsappUrl('Ciao Simone, ho una domanda')}

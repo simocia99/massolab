@@ -40,7 +40,7 @@ export default function TreatmentDetailModal({ treatmentKey, onClose }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
+      transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.25 }}
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/50 backdrop-blur-md"
       onClick={onClose}
     >
@@ -53,7 +53,7 @@ export default function TreatmentDetailModal({ treatmentKey, onClose }) {
         exit={{ opacity: 0, scale: 0.97, y: 10 }}
         transition={{ type: 'spring', damping: 30, stiffness: 320 }}
         onClick={(e) => e.stopPropagation()}
-        className="relative bg-[#f5f5f7] rounded-[28px] w-full max-w-3xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col"
+        className="relative bg-[#F3F0EA] rounded-[28px] w-full max-w-3xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col"
       >
         <div className="relative flex-shrink-0 h-44 sm:h-52 overflow-hidden rounded-t-[28px]">
           <img src={treatment.hero_img} alt={treatment.titolo} decoding="async" className="absolute inset-0 w-full h-full object-cover" />
@@ -68,7 +68,7 @@ export default function TreatmentDetailModal({ treatmentKey, onClose }) {
             <X className="w-4 h-4" />
           </button>
           <div className="relative z-10 h-full flex flex-col justify-end p-6">
-            <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-red-300 mb-2">{treatment.tag}</span>
+            <span className="inline-block text-xs font-bold uppercase tracking-widest text-red-300 mb-2">{treatment.tag}</span>
             <h2
               id="treatment-modal-title"
               className="text-2xl sm:text-3xl font-black text-white leading-tight"
@@ -176,7 +176,7 @@ export default function TreatmentDetailModal({ treatmentKey, onClose }) {
 
             <div className="bg-gray-900 rounded-2xl p-6 text-center">
               <h3 className="text-lg font-extrabold text-white mb-1">Pronto a prenotare?</h3>
-              <p className="text-gray-400 text-xs mb-4">Scegli data e orario direttamente online.</p>
+              <p className="text-gray-300 text-xs mb-4">Scegli data e orario direttamente online.</p>
               <Link
                 to={bookUrl}
                 onClick={onClose}

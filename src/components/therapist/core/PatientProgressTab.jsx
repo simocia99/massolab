@@ -56,7 +56,7 @@ export default function PatientProgressTab({ appointments }) {
     <div className="space-y-6">
       <h2 className="text-xl font-bold text-gray-900">Andamento Trattamenti</h2>
       <div>
-        <label htmlFor="progress-patient" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">
+        <label htmlFor="progress-patient" className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
           Seleziona Paziente
         </label>
         <div className="relative w-full sm:max-w-xs">
@@ -73,7 +73,7 @@ export default function PatientProgressTab({ appointments }) {
               </option>
             ))}
           </select>
-          <ChevronDown className="absolute right-3 top-3 w-4 h-4 text-gray-400 pointer-events-none" />
+          <ChevronDown className="absolute right-3 top-3 w-4 h-4 text-gray-500 pointer-events-none" />
         </div>
       </div>
 
@@ -81,7 +81,7 @@ export default function PatientProgressTab({ appointments }) {
         (points.length === 0 ? (
           <div className="bg-white rounded-2xl border border-gray-100 p-10 text-center">
             <TrendingUp className="w-10 h-10 text-gray-200 mx-auto mb-3" />
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-500">
               Nessun dato di andamento. Aggiungi report con punteggio dalla sezione &quot;Report Clienti&quot;.
             </p>
           </div>
@@ -90,19 +90,19 @@ export default function PatientProgressTab({ appointments }) {
             <div className="grid grid-cols-3 gap-2 sm:gap-4">
               <div className="bg-white rounded-2xl border border-gray-100 p-3 sm:p-4 text-center">
                 <p className="text-2xl sm:text-3xl font-bold text-gray-900">{points.length}</p>
-                <p className="text-xs text-gray-400 mt-1">Sessioni registrate</p>
+                <p className="text-xs text-gray-500 mt-1">Sessioni registrate</p>
               </div>
               <div className="bg-white rounded-2xl border border-gray-100 p-3 sm:p-4 text-center">
                 <p className="text-2xl sm:text-3xl font-bold text-amber-500">{avg}</p>
-                <p className="text-xs text-gray-400 mt-1">Punteggio medio</p>
+                <p className="text-xs text-gray-500 mt-1">Punteggio medio</p>
               </div>
               <div className="bg-white rounded-2xl border border-gray-100 p-3 sm:p-4 text-center">
                 <p
-                  className={`text-2xl sm:text-3xl font-bold ${delta > 0 ? 'text-green-500' : delta < 0 ? 'text-red-500' : 'text-gray-400'}`}
+                  className={`text-2xl sm:text-3xl font-bold ${delta > 0 ? 'text-green-500' : delta < 0 ? 'text-red-500' : 'text-gray-500'}`}
                 >
                   {delta === null ? '—' : delta > 0 ? `+${delta.toFixed(1)}` : delta.toFixed(1)}
                 </p>
-                <p className="text-xs text-gray-400 mt-1">Variazione totale</p>
+                <p className="text-xs text-gray-500 mt-1">Variazione totale</p>
               </div>
             </div>
             <div className="bg-white rounded-2xl border border-gray-100 p-4 sm:p-6">
@@ -110,8 +110,8 @@ export default function PatientProgressTab({ appointments }) {
               <ResponsiveContainer width="100%" height={220}>
                 <LineChart data={points}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
-                  <XAxis dataKey="date" tick={{ fontSize: 11 }} />
-                  <YAxis domain={[0, 10]} tick={{ fontSize: 11 }} width={28} />
+                  <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                  <YAxis domain={[0, 10]} tick={{ fontSize: 12 }} width={28} />
                   <Tooltip formatter={(v) => [v + '/10', 'Punteggio']} labelFormatter={(l) => `Data: ${l}`} />
                   <Line type="monotone" dataKey="score" stroke="#dc2626" strokeWidth={2.5} dot={{ r: 4, fill: '#dc2626' }} />
                 </LineChart>
@@ -125,11 +125,11 @@ export default function PatientProgressTab({ appointments }) {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-gray-800">{p.title}</p>
-                    <p className="text-xs text-gray-400">{p.date}</p>
+                    <p className="text-xs text-gray-500">{p.date}</p>
                   </div>
                   <span className="text-lg font-bold text-red-600">
                     {p.score}
-                    <span className="text-sm text-gray-400">/10</span>
+                    <span className="text-sm text-gray-500">/10</span>
                   </span>
                 </div>
               ))}

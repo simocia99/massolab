@@ -11,7 +11,7 @@ import { GOOGLE_AUTH } from '@/api/config';
 import { ensureClientProfile, stashPendingProfile } from '@/components/client/clientProfile';
 
 const EMPTY = { email: '', password: '', first_name: '', last_name: '', phone: '' };
-const labelCls = 'block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1';
+const labelCls = 'block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1';
 const inputCls =
   'w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-red-400';
 
@@ -49,7 +49,7 @@ function PasswordInput({ id, value, onChange, autoComplete }) {
         type="button"
         onClick={() => setVisible((v) => !v)}
         aria-label={visible ? 'Nascondi password' : 'Mostra password'}
-        className="absolute right-1 top-0 h-full w-10 flex items-center justify-center text-gray-400 hover:text-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-red-500 rounded-xl"
+        className="absolute right-1 top-0 h-full w-11 flex items-center justify-center text-gray-500 hover:text-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-red-500 rounded-xl"
       >
         {visible ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
       </button>
@@ -98,7 +98,7 @@ function ResetPasswordForm({ onDone }) {
   if (isLoadingAuth) {
     return (
       <div className="flex justify-center py-8">
-        <LoaderCircle className="w-5 h-5 animate-spin text-gray-400" />
+        <LoaderCircle className="w-5 h-5 animate-spin text-gray-500" />
       </div>
     );
   }
@@ -114,7 +114,7 @@ function ResetPasswordForm({ onDone }) {
       <p className="text-sm text-gray-600">
         Imposta una nuova password per <strong>{user.email}</strong>.
       </p>
-      {error && <p className="text-red-600 text-sm bg-red-50 rounded-xl px-4 py-2">{error}</p>}
+      {error && <p className="text-danger text-sm bg-danger-soft rounded-xl px-4 py-2">{error}</p>}
       <div>
         <label htmlFor="new-password" className={labelCls}>
           Nuova password *
@@ -239,8 +239,8 @@ export default function ClientLogin() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4 pt-24">
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
+        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
         className="bg-white rounded-3xl shadow-xl p-8 w-full max-w-md"
       >
         <div className="text-center mb-8">
@@ -266,7 +266,7 @@ export default function ClientLogin() {
                     setError('');
                     setInfo('');
                   }}
-                  className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-colors ${mode === m ? 'bg-white shadow text-gray-900' : 'text-gray-500'}`}
+                  className={`flex-1 min-h-[44px] text-sm font-semibold rounded-lg transition-colors ${mode === m ? 'bg-white shadow text-gray-900' : 'text-gray-500'}`}
                 >
                   {m === 'login' ? 'Accedi' : 'Registrati'}
                 </button>
@@ -274,7 +274,7 @@ export default function ClientLogin() {
             </div>
 
             {error && (
-              <p role="alert" className="text-red-600 text-sm bg-red-50 rounded-xl px-4 py-2 mb-4">
+              <p role="alert" className="text-danger text-sm bg-danger-soft rounded-xl px-4 py-2 mb-4">
                 {error}
               </p>
             )}
@@ -295,7 +295,7 @@ export default function ClientLogin() {
               <GoogleIcon />
               {mode === 'login' ? 'Accedi con Google' : 'Registrati con Google'}
             </button>
-            <div className="flex items-center gap-3 my-4 text-xs text-gray-400">
+            <div className="flex items-center gap-3 my-4 text-xs text-gray-500">
               <span className="flex-1 h-px bg-gray-200" />
               oppure con email
               <span className="flex-1 h-px bg-gray-200" />
@@ -375,7 +375,7 @@ export default function ClientLogin() {
                     type="button"
                     onClick={handleForgot}
                     disabled={busy}
-                    className="mt-2 text-xs text-gray-400 hover:text-red-600 transition-colors"
+                    className="mt-1 min-h-[44px] text-xs text-gray-500 hover:text-red-600 transition-colors"
                   >
                     Password dimenticata?
                   </button>
@@ -386,7 +386,7 @@ export default function ClientLogin() {
           </>
         )}
 
-        <p className="text-center text-xs text-gray-400 mt-6">
+        <p className="text-center text-xs text-gray-500 mt-6">
           <Link to={createPageUrl('Home')} className="hover:text-gray-700">
             ← Torna alla Home
           </Link>

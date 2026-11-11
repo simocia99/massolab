@@ -30,9 +30,9 @@ export function FaqItem({ q, a }) {
       >
         <span className="font-semibold text-gray-900 text-sm">{q}</span>
         {open ? (
-          <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0" />
+          <ChevronUp className="w-4 h-4 text-gray-500 flex-shrink-0" />
         ) : (
-          <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />
+          <ChevronDown className="w-4 h-4 text-gray-500 flex-shrink-0" />
         )}
       </button>
       {open && (
@@ -60,7 +60,7 @@ export function TreatmentReviews({ treatmentType }) {
   const { reviews, isLoading } = useTreatmentReviews(treatmentType);
   if (isLoading || reviews.length === 0) return null;
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+    <motion.div initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }} whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }} viewport={{ once: true }}>
       <h2 className="text-xl font-bold text-gray-900 mb-5">Cosa dicono i clienti</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {reviews.map((r) => (
@@ -87,7 +87,7 @@ export function TreatmentReviewsCompact({ treatmentType }) {
           <div key={r.id} className="bg-gray-50 rounded-2xl p-4">
             <Stars stars={r.rating} />
             <p className="text-gray-700 text-xs mt-2 mb-3 leading-relaxed italic">"{r.text}"</p>
-            <p className="text-[11px] font-bold text-gray-500">{r.client_name}</p>
+            <p className="text-xs font-bold text-gray-500">{r.client_name}</p>
           </div>
         ))}
       </div>

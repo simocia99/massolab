@@ -22,7 +22,7 @@ export default function BlogSidebar({ posts = [], allTags = [], activeTag = null
         >
           Prenota Ora →
         </Link>
-        <p className="text-red-200 text-xs mt-3">Risposta entro 24 ore</p>
+        <p className="text-white/90 text-xs mt-3">Risposta entro 24 ore</p>
       </div>
 
       {allTags.length > 0 && (
@@ -33,7 +33,7 @@ export default function BlogSidebar({ posts = [], allTags = [], activeTag = null
           </h4>
           <div className="flex flex-wrap gap-2">
             {allTags.map((tag) => {
-              const className = `px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+              const className = `px-3 min-h-[44px] inline-flex items-center rounded-full text-sm font-medium transition-all ${
                 activeTag === tag ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-700'
               }`;
               // On the post page there is no filter: tags link back to the filtered blog list.
@@ -83,7 +83,7 @@ export default function BlogSidebar({ posts = [], allTags = [], activeTag = null
                   <p className="text-sm font-semibold text-gray-800 group-hover:text-red-600 transition-colors line-clamp-2">
                     {post.title}
                   </p>
-                  <p className="text-xs text-gray-400 mt-1 flex items-center gap-1">
+                  <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
                     {formatPostDate(post.created_date, { day: 'numeric', month: 'short' })}
                   </p>
@@ -96,7 +96,7 @@ export default function BlogSidebar({ posts = [], allTags = [], activeTag = null
 
       <div className="bg-gray-900 rounded-2xl p-6 text-white">
         <h4 className="font-bold mb-3">I Nostri Trattamenti</h4>
-        <ul className="text-gray-400 text-sm space-y-1.5">
+        <ul className="text-gray-300 text-sm space-y-1.5">
           {TREATMENTS.map((t) => (
             <li key={t} className="flex items-center gap-2">
               <span className="w-1 h-1 bg-red-500 rounded-full" />
@@ -106,7 +106,7 @@ export default function BlogSidebar({ posts = [], allTags = [], activeTag = null
         </ul>
         <Link
           to={createPageUrl('GuestBooking')}
-          className="mt-4 block text-center text-xs font-bold text-red-400 hover:text-red-300 transition-colors"
+          className="mt-2 block py-3 text-center text-xs font-bold text-red-400 hover:text-red-300 transition-colors"
         >
           Scopri tutti i trattamenti →
         </Link>

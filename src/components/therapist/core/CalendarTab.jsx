@@ -18,7 +18,7 @@ const DOT_COLORS = {
   pending: 'bg-yellow-400',
   confirmed: 'bg-green-500',
   completed: 'bg-blue-500',
-  cancelled: 'bg-red-400',
+  cancelled: 'bg-danger',
 };
 
 export default function CalendarTab({ appointments }) {
@@ -55,7 +55,7 @@ export default function CalendarTab({ appointments }) {
           </div>
           <div className="grid grid-cols-7 mb-2">
             {['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'].map((d) => (
-              <div key={d} className="text-center text-xs font-bold text-gray-400 py-2">
+              <div key={d} className="text-center text-xs font-bold text-gray-500 py-2">
                 {d}
               </div>
             ))}
@@ -93,9 +93,9 @@ export default function CalendarTab({ appointments }) {
             {selected ? format(selected, 'd MMMM yyyy', { locale: it }) : 'Seleziona un giorno'}
           </h3>
           {!selected ? (
-            <p className="text-gray-400 text-sm">Clicca su un giorno per vedere gli appuntamenti.</p>
+            <p className="text-gray-500 text-sm">Clicca su un giorno per vedere gli appuntamenti.</p>
           ) : selectedAppts.length === 0 ? (
-            <p className="text-gray-400 text-sm">Nessun appuntamento.</p>
+            <p className="text-gray-500 text-sm">Nessun appuntamento.</p>
           ) : (
             <div className="space-y-3">
               {selectedAppts.map((a) => (

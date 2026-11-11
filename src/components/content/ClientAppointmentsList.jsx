@@ -8,7 +8,7 @@ export const STATUS_BADGES = {
   pending: { label: 'In attesa', color: 'bg-yellow-100 text-yellow-700' },
   confirmed: { label: 'Confermato', color: 'bg-green-100 text-green-700' },
   completed: { label: 'Completato', color: 'bg-blue-100 text-blue-700' },
-  cancelled: { label: 'Annullato', color: 'bg-red-100 text-red-600' },
+  cancelled: { label: 'Annullato', color: 'bg-danger-soft text-danger' },
 };
 
 /** Hours from now until the appointment (null when there is no date). */
@@ -74,7 +74,7 @@ export default function ClientAppointmentsList({ appointments, onRefresh }) {
 
   if (!appointments.length) {
     return (
-      <div className="text-center py-16 text-gray-400">
+      <div className="text-center py-16 text-gray-500">
         <CalendarDays className="w-10 h-10 mx-auto mb-3 opacity-30" />
         <p>Nessun appuntamento trovato.</p>
       </div>
@@ -94,7 +94,7 @@ export default function ClientAppointmentsList({ appointments, onRefresh }) {
             <CircleAlert className="w-5 h-5 flex-shrink-0 mt-0.5" />
           )}
           <p className="text-sm">{notice.text}</p>
-          <button type="button" onClick={() => setNotice(null)} aria-label="Chiudi" className="ml-auto text-gray-400 hover:text-gray-600">
+          <button type="button" onClick={() => setNotice(null)} aria-label="Chiudi" className="ml-auto text-gray-500 hover:text-gray-600">
             <X className="w-4 h-4" />
           </button>
         </div>
@@ -134,7 +134,7 @@ export default function ClientAppointmentsList({ appointments, onRefresh }) {
                     </div>
                     <span className={`shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full ${badge.color}`}>{badge.label}</span>
                   </div>
-                  {appt.notes && <p className="text-xs text-gray-400 italic mb-3">"{appt.notes}"</p>}
+                  {appt.notes && <p className="text-xs text-gray-500 italic mb-3">"{appt.notes}"</p>}
                   <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-50">
                     <button
                       type="button"
@@ -177,7 +177,7 @@ export default function ClientAppointmentsList({ appointments, onRefresh }) {
                   <div className="flex items-center justify-between gap-3">
                     <div>
                       <p className="font-medium text-gray-800 text-sm">{appt.treatment_type}</p>
-                      <div className="flex gap-3 text-xs text-gray-400 mt-1">
+                      <div className="flex gap-3 text-xs text-gray-500 mt-1">
                         {appt.preferred_date && (
                           <span className="flex items-center gap-1">
                             <CalendarDays className="w-3 h-3" />

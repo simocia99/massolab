@@ -34,7 +34,7 @@ export const TREATMENT_CARDS = [
     description:
       'Tensione accumulata, postura scorretta, stanchezza profonda. Manovre lente e calibrate che sciolgono ciò che nessun farmaco può raggiungere.',
     icon: Sparkles,
-    accent: '#E50914',
+    accent: '#56695C',
     tag: 'Benessere',
     featured: true,
   },
@@ -44,7 +44,7 @@ export const TREATMENT_CARDS = [
     description:
       'Progettato per chi si allena seriamente. Riduce i DOMS, ottimizza i tempi di recupero e prepara il corpo alla sessione successiva.',
     icon: Dumbbell,
-    accent: '#FF9500',
+    accent: '#9A5F2A',
     tag: 'Performance',
     featured: true,
   },
@@ -53,7 +53,7 @@ export const TREATMENT_CARDS = [
     headline: 'Libera i blocchi.',
     description: 'Lavoro in profondità sulle fasce muscolari per eliminare aderenze e rigidità croniche.',
     icon: Move,
-    accent: '#BF5AF2',
+    accent: '#7A5C6E',
     tag: 'Dolori cronici',
   },
   {
@@ -61,7 +61,7 @@ export const TREATMENT_CARDS = [
     headline: 'Leggerezza totale.',
     description: 'Riduce gonfiori e senso di pesantezza stimolando il drenaggio dei liquidi in eccesso.',
     icon: Droplets,
-    accent: '#30D158',
+    accent: '#4F6B3A',
     tag: 'Circolazione',
   },
   {
@@ -69,7 +69,7 @@ export const TREATMENT_CARDS = [
     headline: 'In profondità.',
     description: 'Stimolazioni riflesse sul tessuto connettivo per dolori vertebrali e tensioni profonde.',
     icon: Layers,
-    accent: '#0A84FF',
+    accent: '#4A6470',
     tag: 'Postura',
   },
   {
@@ -77,7 +77,7 @@ export const TREATMENT_CARDS = [
     headline: 'Supporto attivo.',
     description: 'Nastri elastici funzionali che supportano senza limitare il movimento naturale.',
     icon: Shield,
-    accent: '#30D158',
+    accent: '#4F6B3A',
     tag: 'Prevenzione',
   },
   {
@@ -85,7 +85,7 @@ export const TREATMENT_CARDS = [
     headline: 'Pressione negativa.',
     description: 'Coppe a pressione negativa per sciogliere contratture profonde e migliorare la circolazione locale.',
     icon: CircleDot,
-    accent: '#E50914',
+    accent: '#56695C',
     tag: 'Contratture',
   },
   {
@@ -93,7 +93,7 @@ export const TREATMENT_CARDS = [
     headline: 'Stabilità sicura.',
     description: "Stabilizzazione articolare per prevenzione, supporto post-infortunio e rientro all'attività.",
     icon: Bandage,
-    accent: '#34C759',
+    accent: '#4F6B3A',
     tag: 'Infortuni',
   },
 ];

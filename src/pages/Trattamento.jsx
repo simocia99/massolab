@@ -34,7 +34,7 @@ export default function Trattamento() {
   }, [treatment.titolo]);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7]">
+    <div className="min-h-screen bg-[#F3F0EA]">
       <div className="relative bg-gray-900 text-white overflow-hidden" style={{ minHeight: 420 }}>
         <img
           src={treatment.hero_img}
@@ -93,7 +93,7 @@ export default function Trattamento() {
           </motion.div>
           <motion.div {...reveal} className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm">
             <h2 className="text-xl font-bold text-gray-900 mb-5">Benefici attesi</h2>
-            <p className="text-xs text-gray-400 mb-4 italic">
+            <p className="text-xs text-gray-500 mb-4 italic">
               Risultati realistici basati sull'esperienza clinica — i risultati individuali variano.
             </p>
             <ul className="space-y-2.5">
@@ -153,7 +153,7 @@ export default function Trattamento() {
 
         <motion.div {...reveal} className="bg-gray-900 rounded-2xl p-6 sm:p-8 text-white text-center">
           <h2 className="text-2xl font-extrabold mb-2">Pronto a prenotare?</h2>
-          <p className="text-gray-400 mb-6 text-sm">Scegli data e orario direttamente online. Nessuna attesa al telefono.</p>
+          <p className="text-gray-300 mb-6 text-sm">Scegli data e orario direttamente online. Nessuna attesa al telefono.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               to={bookUrl}

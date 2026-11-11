@@ -12,7 +12,7 @@ const STATUS = {
 function Section({ title, children, highlight }) {
   return (
     <div className={`rounded-2xl p-4 space-y-2 ${highlight ? 'bg-amber-50 border border-amber-200' : 'bg-gray-50'}`}>
-      <p className={`text-xs font-bold uppercase tracking-wider mb-2 ${highlight ? 'text-amber-700' : 'text-gray-400'}`}>
+      <p className={`text-xs font-bold uppercase tracking-wider mb-2 ${highlight ? 'text-amber-700' : 'text-gray-500'}`}>
         {title}
       </p>
       {children}
@@ -79,7 +79,7 @@ export default function IntakeFormsList() {
         <p className="text-gray-500">Schede compilate dai clienti prima della prima seduta</p>
       </div>
       {forms.length === 0 ? (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-16 text-gray-500">
           <FileText className="w-10 h-10 mx-auto mb-3 opacity-30" />
           <p>Nessun modulo ricevuto</p>
         </div>
@@ -105,7 +105,7 @@ export default function IntakeFormsList() {
                       <p className="font-semibold text-gray-900">
                         {f.first_name} {f.last_name}
                       </p>
-                      <p className="text-xs text-gray-400 truncate">
+                      <p className="text-xs text-gray-500 truncate">
                         {f.email} · {new Date(f.created_date).toLocaleDateString('it-IT')}
                       </p>
                     </div>
@@ -123,9 +123,9 @@ export default function IntakeFormsList() {
                       <span className="hidden sm:inline">{st.label}</span>
                     </span>
                     {open ? (
-                      <ChevronUp className="w-4 h-4 text-gray-400" />
+                      <ChevronUp className="w-4 h-4 text-gray-500" />
                     ) : (
-                      <ChevronDown className="w-4 h-4 text-gray-400" />
+                      <ChevronDown className="w-4 h-4 text-gray-500" />
                     )}
                   </div>
                 </button>

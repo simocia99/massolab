@@ -176,7 +176,7 @@ function ViewFilters({ activeView, onChange, counts }) {
             <Icon className={`w-3.5 h-3.5 ${active ? 'text-white' : color}`} />
             {label}
             {count > 0 && (
-              <span className={`ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold ${active ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-600'}`}>
+              <span className={`ml-1 px-1.5 py-0.5 rounded-full text-xs font-bold ${active ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-600'}`}>
                 {count}
               </span>
             )}
@@ -255,7 +255,7 @@ export default function ClientsTab({ appointments }) {
         >
           <div className="p-4 border-b border-gray-100">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
               <input
                 type="text"
                 placeholder="Cerca per nome, email, tel..."
@@ -267,7 +267,7 @@ export default function ClientsTab({ appointments }) {
             </div>
           </div>
           <div className="flex-1 divide-y divide-gray-50 overflow-y-auto lg:max-h-[calc(100vh-320px)]">
-            {visible.length === 0 && <p className="p-6 text-center text-gray-400 text-sm">Nessun cliente trovato.</p>}
+            {visible.length === 0 && <p className="p-6 text-center text-gray-500 text-sm">Nessun cliente trovato.</p>}
             {visible.map((c) => {
               const days = daysSinceLastSession(c);
               return (
@@ -286,10 +286,10 @@ export default function ClientsTab({ appointments }) {
                         {c.registered && <UserCheck className="w-3 h-3 text-green-500 flex-shrink-0" aria-label="Registrato" />}
                       </div>
                       <div className="flex items-center gap-2 mt-0.5">
-                        <p className="text-xs text-gray-400">{c.appointments.length} sedute</p>
+                        <p className="text-xs text-gray-500">{c.appointments.length} sedute</p>
                         {days !== null && (
                           <span
-                            className={`text-[10px] font-semibold ${days >= 90 ? 'text-red-500' : days >= 60 ? 'text-orange-500' : days >= 30 ? 'text-amber-500' : 'text-gray-400'}`}
+                            className={`text-xs font-semibold ${days >= 90 ? 'text-red-500' : days >= 60 ? 'text-orange-500' : days >= 30 ? 'text-amber-500' : 'text-gray-500'}`}
                           >
                             · {days}gg fa
                           </span>
@@ -297,7 +297,7 @@ export default function ClientsTab({ appointments }) {
                       </div>
                     </div>
                     <span
-                      className={`text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 ${JOURNEY_COLORS[c.journey_status] || 'bg-gray-100 text-gray-500'}`}
+                      className={`text-xs font-bold px-2 py-0.5 rounded-full flex-shrink-0 ${JOURNEY_COLORS[c.journey_status] || 'bg-gray-100 text-gray-500'}`}
                     >
                       {c.journey_status || 'attivo'}
                     </span>

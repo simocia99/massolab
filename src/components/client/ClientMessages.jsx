@@ -73,7 +73,7 @@ export default function ClientMessages({ clientEmail, clientName }) {
             <span className="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">{unread} nuovi</span>
           )}
         </h2>
-        <p className="text-sm text-gray-400">Comunicazione diretta con Simone Ciacchi</p>
+        <p className="text-sm text-gray-500">Comunicazione diretta con Simone Ciacchi</p>
       </div>
 
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col" style={{ height: '500px' }}>
@@ -94,10 +94,10 @@ export default function ClientMessages({ clientEmail, clientName }) {
                 className={`max-w-xs sm:max-w-sm rounded-2xl px-4 py-2.5 ${m.sender === 'client' ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-900'}`}
               >
                 {m.sender === 'therapist' && (
-                  <p className="text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-wider">Simone Ciacchi</p>
+                  <p className="text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Simone Ciacchi</p>
                 )}
                 <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">{m.content}</p>
-                <p className={`text-xs mt-1 ${m.sender === 'client' ? 'text-red-200' : 'text-gray-400'}`}>
+                <p className={`text-xs mt-1 ${m.sender === 'client' ? 'text-red-200' : 'text-gray-500'}`}>
                   {m.created_date ? format(new Date(m.created_date), 'dd/MM HH:mm') : ''}
                 </p>
               </div>

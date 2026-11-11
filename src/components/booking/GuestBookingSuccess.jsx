@@ -7,7 +7,7 @@ import { SummaryRow } from './GuestBookingParts';
 export default function GuestBookingSuccess({ appointment, treatment, intakeSkipped }) {
   const intakeUrl = `${createPageUrl('IntakeForm')}?id=${encodeURIComponent(appointment.id)}&token=${encodeURIComponent(appointment.access_token || '')}`;
   return (
-    <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center px-6 py-12">
+    <div className="min-h-screen bg-[#F3F0EA] flex items-center justify-center px-6 py-12">
       <motion.div
         initial={{ opacity: 0, scale: 0.92 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -19,7 +19,7 @@ export default function GuestBookingSuccess({ appointment, treatment, intakeSkip
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-1">Richiesta inviata!</h2>
           <p className="text-gray-500 text-sm">Simone ti contatterà a breve per confermare.</p>
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-gray-500 mt-1">
             Email inviata a <strong>{appointment.email}</strong>
           </p>
         </div>
@@ -27,11 +27,11 @@ export default function GuestBookingSuccess({ appointment, treatment, intakeSkip
         <div className="bg-gray-50 rounded-2xl p-4 mb-5 space-y-2">
           <SummaryRow icon={<Calendar className="w-4 h-4 text-red-500" />} label="Trattamento" value={treatment.name} />
           <SummaryRow
-            icon={<Clock className="w-4 h-4 text-gray-400" />}
+            icon={<Clock className="w-4 h-4 text-gray-500" />}
             label="Data & Ora"
             value={`${appointment.preferred_date} alle ${appointment.preferred_time}`}
           />
-          <SummaryRow icon={<Clock className="w-4 h-4 text-gray-400" />} label="Durata" value={`${treatment.duration} min`} />
+          <SummaryRow icon={<Clock className="w-4 h-4 text-gray-500" />} label="Durata" value={`${treatment.duration} min`} />
         </div>
 
         {intakeSkipped ? (

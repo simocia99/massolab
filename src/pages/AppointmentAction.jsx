@@ -13,7 +13,7 @@ const one = (res) => (Array.isArray(res) ? res[0] : res) || null;
 function Details({ appt, compact }) {
   const fullName = [appt?.first_name, appt?.last_name].filter(Boolean).join(' ');
   const row = compact ? 'flex items-center gap-2 text-sm text-gray-700' : 'flex items-center gap-3';
-  const icon = compact ? 'w-4 h-4 text-gray-400' : 'w-4 h-4 text-gray-400 flex-shrink-0';
+  const icon = compact ? 'w-4 h-4 text-gray-500' : 'w-4 h-4 text-gray-500 flex-shrink-0';
   return (
     <>
       <div className={row}>
@@ -110,7 +110,7 @@ export default function AppointmentAction() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center">
+      <div className="min-h-screen bg-[#F3F0EA] flex items-center justify-center">
         <LoaderCircle className="w-8 h-8 animate-spin text-red-600" aria-label="Caricamento" />
       </div>
     );
@@ -118,7 +118,7 @@ export default function AppointmentAction() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center px-6">
+      <div className="min-h-screen bg-[#F3F0EA] flex items-center justify-center px-6">
         <div className="text-center max-w-md">
           <CircleX className="w-16 h-16 text-red-400 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Errore</h2>
@@ -135,7 +135,7 @@ export default function AppointmentAction() {
   if (done || isFinal) {
     const confirmed = appt?.status !== 'cancelled' && !!appt?.client_confirmed;
     return (
-      <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center px-4 sm:px-6 py-10">
+      <div className="min-h-screen bg-[#F3F0EA] flex items-center justify-center px-4 sm:px-6 py-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -170,10 +170,10 @@ export default function AppointmentAction() {
 
   const spinner = <LoaderCircle className="w-5 h-5 animate-spin" />;
   return (
-    <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center px-4 sm:px-6 py-10">
+    <div className="min-h-screen bg-[#F3F0EA] flex items-center justify-center px-4 sm:px-6 py-10">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
         className="max-w-md w-full bg-white rounded-3xl shadow-sm border border-gray-100 p-6 sm:p-8"
       >
         <div className="text-center mb-6">
@@ -190,7 +190,7 @@ export default function AppointmentAction() {
           <Details appt={appt} />
         </div>
         {actionError && (
-          <p role="alert" className="text-sm text-red-600 text-center mb-4">
+          <p role="alert" className="text-sm text-danger text-center mb-4">
             {actionError}
           </p>
         )}

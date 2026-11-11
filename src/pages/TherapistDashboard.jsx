@@ -161,7 +161,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#f5f5f7]">
+    <div className="flex min-h-screen bg-[#F3F0EA]">
       <div className="hidden lg:block sticky top-0 h-screen flex-shrink-0">
         <Sidebar activeTab={activeTab} setActiveTab={selectTab} />
       </div>
@@ -173,7 +173,7 @@ function Dashboard() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.2 }}
               className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
               onClick={() => setMenuOpen(false)}
             />
@@ -194,13 +194,13 @@ function Dashboard() {
         <div className="lg:hidden bg-white/80 backdrop-blur-xl border-b border-black/[0.06] px-4 py-3 flex items-center gap-3 sticky top-0 z-40">
           <button
             onClick={() => setMenuOpen(true)}
-            className="p-2 -ml-1 hover:bg-[#f5f5f7] rounded-lg transition-colors"
+            className="p-3 -ml-2 hover:bg-[#F3F0EA] rounded-lg transition-colors"
             aria-label="Apri menu"
             aria-expanded={menuOpen}
           >
-            <Menu className="w-5 h-5 text-[#1D1D1F]" />
+            <Menu className="w-5 h-5 text-[#191A17]" />
           </button>
-          <h1 className="font-black text-[#1D1D1F] text-[15px]" style={{ letterSpacing: '-0.02em' }}>
+          <h1 className="font-black text-[#191A17] text-[15px]" style={{ letterSpacing: '-0.02em' }}>
             Area Terapista
           </h1>
         </div>

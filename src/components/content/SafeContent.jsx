@@ -14,7 +14,7 @@ const TAG_CLASSES = {
   h6: 'text-sm font-bold uppercase tracking-wide text-gray-700 mt-6 mb-2',
   p: 'text-gray-600 text-base md:text-lg leading-relaxed my-5',
   ul: 'list-disc pl-6 my-5 space-y-2 text-gray-600 text-base md:text-lg leading-relaxed marker:text-red-500',
-  ol: 'list-decimal pl-6 my-5 space-y-2 text-gray-600 text-base md:text-lg leading-relaxed marker:text-gray-400',
+  ol: 'list-decimal pl-6 my-5 space-y-2 text-gray-600 text-base md:text-lg leading-relaxed marker:text-gray-500',
   li: 'pl-1',
   a: 'text-red-600 no-underline hover:underline break-words',
   strong: 'font-semibold text-gray-900',
@@ -30,7 +30,7 @@ const TAG_CLASSES = {
   th: 'text-left font-semibold text-gray-900 border-b border-gray-200 py-2 pr-4',
   td: 'border-b border-gray-100 py-2 pr-4 text-gray-600 align-top',
   figure: 'my-6',
-  figcaption: 'text-sm text-gray-400 text-center mt-2',
+  figcaption: 'text-sm text-gray-500 text-center mt-2',
 };
 
 const ALLOWED = new Set([

@@ -1,88 +1,106 @@
-// Home "Chi sono" section (bundle `A4`).
+// Home "Chi sono" (Estetica v2): two photos with floating stat cards and a
+// centred text column, as in the reference layout. Stats are the real ones.
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Calendar } from 'lucide-react';
-import { BUSINESS } from '@/api/config';
+import { ChevronRight } from 'lucide-react';
 import { createPageUrl } from '@/lib/utils';
+import { reveal } from '@/components/home/shared';
+import SectionLabel from '@/components/home/SectionLabel';
 
-const EASE = [0.25, 0.46, 0.45, 0.94];
-const HEADING_STYLE = { letterSpacing: '-0.04em', fontFamily: 'Inter, -apple-system, sans-serif' };
-const STATS = [
-  { value: '8+', label: 'Specializzazioni' },
-  { value: '100%', label: 'A domicilio' },
-  { value: '6', label: 'Giorni su 7' },
-];
+const img = (name) => `${import.meta.env.BASE_URL}images/${name}`;
+
+function StatCard({ value, label, className = '' }) {
+  return (
+    <div
+      className={`absolute bg-white rounded-[20px] px-4 py-3 sm:px-5 sm:py-3.5 shadow-[0_10px_40px_-12px_rgba(25,26,23,0.22)] ${className}`}
+    >
+      <p className="text-2xl md:text-[1.7rem] font-medium text-ink leading-none" style={{ letterSpacing: '-0.03em' }}>
+        {value}
+      </p>
+      <p className="text-xs text-gray-500 mt-1.5">{label}</p>
+    </div>
+  );
+}
 
 export default function HomeAbout() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+  const leftY = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const rightY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
 
   return (
-    <section id="chi-sono" ref={ref} className="py-28 md:py-36 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: EASE }}
-            className="relative"
+    <section id="chi-sono" ref={ref} className="scroll-mt-24 py-24 md:py-32 bg-white overflow-hidden">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+        <SectionLabel>Chi sono</SectionLabel>
+
+        <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-4 sm:gap-x-6 gap-y-12 lg:gap-8 items-start">
+          <motion.h2
+            {...reveal()}
+            className="col-span-2 lg:col-span-5 text-ink font-medium leading-[1.05]"
+            style={{ fontSize: 'clamp(2rem, 4.2vw, 3.25rem)', letterSpacing: '-0.03em' }}
           >
-            <div className="absolute -inset-6 bg-gradient-to-tr from-[#E50914]/10 to-orange-400/5 rounded-[40px] blur-2xl" />
-            <div className="relative rounded-[36px] shadow-2xl w-full aspect-square overflow-hidden bg-white flex items-center justify-center">
-              <motion.img
-                style={{ y }}
-                src={BUSINESS.logo}
-                alt="MassoLab — Simone Ciacchi, Massoterapista"
-                loading="lazy"
-                decoding="async"
-                className="w-[82%] h-auto object-contain"
-              />
-            </div>
+            Non improvvisa.
+            <br />
+            <span className="text-gray-500">Studia, poi lavora su di te.</span>
+          </motion.h2>
+          <div className="hidden lg:block lg:col-span-7" />
+
+          {/* Left photo */}
+          <motion.div {...reveal(40, 1, 0.05)} className="col-span-1 lg:col-span-4 relative lg:mt-10 order-2 lg:order-none">
+            <motion.div style={{ y: leftY }} className="relative pt-10">
+              <div className="rounded-[24px] overflow-hidden aspect-[4/5] bg-sand">
+                <img
+                  src={img('49cd576e2.jpg')}
+                  alt="Trattamento manuale sulla gamba"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.04]"
+                />
+              </div>
+              <StatCard value="8+" label="Specializzazioni" className="top-0 left-6" />
+            </motion.div>
           </motion.div>
 
+          {/* Text */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.15, ease: EASE }}
+            {...reveal(32, 1, 0.12)}
+            className="col-span-2 lg:col-span-4 lg:self-center order-1 lg:order-none lg:px-4"
           >
-            <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#E50914] mb-5">Chi sono</p>
-            <h2 className="text-4xl md:text-5xl font-black text-[#1D1D1F] mb-3" style={HEADING_STYLE}>
-              Non improvvisa.
-            </h2>
-            <h2 className="text-4xl md:text-5xl font-light text-[#86868B] mb-8" style={HEADING_STYLE}>
-              Studia. Poi lavora su di te.
-            </h2>
-            <div className="space-y-5 mb-10">
-              <p className="text-[#1D1D1F] text-lg leading-relaxed font-light">
+            <p className="text-lg md:text-xl leading-snug" style={{ letterSpacing: '-0.01em' }}>
+              <span className="text-ink">
                 Sono Simone Ciacchi. Lavoro con chi ha dolori muscolari cronici, tensioni da stress o vuole recuperare il
-                benessere fisico. Non esiste un protocollo standard — ogni seduta è costruita su di te.
-              </p>
-              <p className="text-[#86868B] text-base leading-relaxed font-light">
-                Prima ascolto. Poi valuto. Poi agiamo. Il mio approccio combina tecniche classiche e metodologie recenti,
-                con un solo obiettivo: risultati concreti, non solo un'ora di relax.
-              </p>
-            </div>
-            <div className="grid grid-cols-3 gap-3 mb-10">
-              {STATS.map((s) => (
-                <div key={s.label} className="bg-[#f5f5f7] rounded-[20px] p-4 text-center">
-                  <p className="text-2xl font-black text-[#1D1D1F]" style={{ letterSpacing: '-0.03em' }}>
-                    {s.value}
-                  </p>
-                  <p className="text-xs text-[#86868B] font-medium mt-1">{s.label}</p>
-                </div>
-              ))}
-            </div>
+                benessere fisico.{' '}
+              </span>
+              <span className="text-gray-500">
+                Non esiste un protocollo standard: prima ascolto, poi valuto, poi agiamo. Tecniche classiche e metodologie
+                recenti, con un solo obiettivo — risultati concreti, non solo un&apos;ora di relax.
+              </span>
+            </p>
             <Link
               to={createPageUrl('GuestBooking')}
-              className="inline-flex items-center gap-2 bg-[#E50914] hover:bg-[#cc0812] text-white rounded-full px-8 py-4 font-bold transition-all duration-300 hover:scale-[1.03]"
+              className="group mt-8 inline-flex items-center gap-1.5 bg-lime text-ink rounded-full pl-6 pr-4 py-3 text-sm font-medium transition-all duration-300 hover:scale-[1.02] hover:bg-lime-400"
             >
-              <Calendar className="w-4 h-4" />
               Prenota una seduta
+              <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
             </Link>
+          </motion.div>
+
+          {/* Right photo */}
+          <motion.div {...reveal(40, 1, 0.2)} className="col-span-1 lg:col-span-4 relative mt-16 lg:-mt-24 order-3 lg:order-none">
+            <motion.div style={{ y: rightY }} className="relative">
+              <div className="rounded-[24px] overflow-hidden aspect-[4/5] bg-sand">
+                <img
+                  src={img('5e4fb85e2.jpg')}
+                  alt="Massaggio alla schiena in un ambiente luminoso"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.04]"
+                />
+              </div>
+              <StatCard value="100%" label="A domicilio" className="-top-6 -left-2 lg:-left-10 hidden sm:block" />
+              <StatCard value="6/7" label="Giorni a settimana" className="bottom-4 right-4" />
+            </motion.div>
           </motion.div>
         </div>
       </div>

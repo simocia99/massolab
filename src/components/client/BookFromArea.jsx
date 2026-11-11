@@ -82,7 +82,7 @@ export default function BookFromArea({ client, onBooked }) {
   return (
     <form onSubmit={submit} className="space-y-6">
       <div>
-        <p className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Tipo di Trattamento *</p>
+        <p className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Tipo di Trattamento *</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {AREA_TREATMENTS.map((t) => (
             <button
@@ -101,8 +101,8 @@ export default function BookFromArea({ client, onBooked }) {
       </div>
 
       {form.treatment_type && (
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-          <p className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 flex items-center gap-2">
+        <motion.div initial={{ opacity: 0, y: 8, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}>
+          <p className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 flex items-center gap-2">
             <CalendarDays className="w-4 h-4" /> Seleziona Data e Orario *
           </p>
           <div className="bg-white border border-gray-200 rounded-2xl p-4">
@@ -118,8 +118,8 @@ export default function BookFromArea({ client, onBooked }) {
       )}
 
       {form.preferred_date && form.preferred_time && (
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-          <label htmlFor="area-notes" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+        <motion.div initial={{ opacity: 0, y: 8, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}>
+          <label htmlFor="area-notes" className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
             Note (opzionale)
           </label>
           <textarea
@@ -136,7 +136,7 @@ export default function BookFromArea({ client, onBooked }) {
       <button
         type="submit"
         disabled={submitting || !form.treatment_type || !form.preferred_date || !form.preferred_time}
-        className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-200 disabled:text-gray-400 text-white font-bold rounded-xl py-3.5 text-sm transition-colors flex items-center justify-center gap-2"
+        className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-200 disabled:text-gray-500 text-white font-bold rounded-xl py-3.5 text-sm transition-colors flex items-center justify-center gap-2"
       >
         {submitting ? <LoaderCircle className="w-4 h-4 animate-spin" /> : null}
         Richiedi Appuntamento

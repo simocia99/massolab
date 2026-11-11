@@ -316,7 +316,7 @@ export default function AvailabilitySettings() {
           <div className="flex flex-wrap items-center gap-2 mb-5">
             <Calendar className="w-5 h-5 text-red-500" />
             <h3 className="font-bold text-gray-900">Orari per Giorno</h3>
-            <span className="text-xs text-gray-400 sm:ml-2">
+            <span className="text-xs text-gray-500 sm:ml-2">
               Configura fasce orarie differenti per ogni giorno della settimana
             </span>
           </div>
@@ -347,7 +347,7 @@ export default function AvailabilitySettings() {
                         }`}
                       />
                     </button>
-                    <span className={`w-24 text-sm font-bold ${sched.active ? 'text-gray-900' : 'text-gray-400'}`}>
+                    <span className={`w-24 text-sm font-bold ${sched.active ? 'text-gray-900' : 'text-gray-500'}`}>
                       {day.label}
                     </span>
                     {sched.active ? (
@@ -364,7 +364,7 @@ export default function AvailabilitySettings() {
                               onChange={(e) => changeSlot(day.value, i, 'start', e.target.value)}
                               className="text-sm font-semibold text-gray-800 bg-transparent focus:outline-none w-20"
                             />
-                            <span className="text-gray-400 text-xs">–</span>
+                            <span className="text-gray-500 text-xs">–</span>
                             <input
                               type="time"
                               value={slot.end}
@@ -375,7 +375,7 @@ export default function AvailabilitySettings() {
                             {sched.slots.length > 1 && (
                               <button
                                 onClick={() => removeSlot(day.value, i)}
-                                className="text-gray-400 hover:text-red-500 ml-1"
+                                className="text-gray-500 hover:text-red-500 ml-1"
                                 aria-label="Rimuovi fascia"
                               >
                                 <X className="w-3.5 h-3.5" />
@@ -393,7 +393,7 @@ export default function AvailabilitySettings() {
                         )}
                       </div>
                     ) : (
-                      <span className="text-xs text-gray-400 italic">Non disponibile</span>
+                      <span className="text-xs text-gray-500 italic">Non disponibile</span>
                     )}
                   </div>
                   {error && (
@@ -461,7 +461,7 @@ export default function AvailabilitySettings() {
           </div>
           <div className="grid grid-cols-7 gap-1">
             {['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'].map((d) => (
-              <div key={d} className="text-center text-xs font-bold text-gray-400 py-2">
+              <div key={d} className="text-center text-xs font-bold text-gray-500 py-2">
                 {d}
               </div>
             ))}
@@ -517,7 +517,7 @@ export default function AvailabilitySettings() {
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <MapPin className="w-5 h-5 text-red-500" />
             <h3 className="font-bold text-gray-900">Area di servizio e posizione</h3>
-            <span className="text-xs text-gray-400 sm:ml-2">
+            <span className="text-xs text-gray-500 sm:ml-2">
               Scrivi la località e premi Invio per aggiornare la mappa qui, poi conferma per sincronizzare con la home
             </span>
           </div>
@@ -552,11 +552,11 @@ export default function AvailabilitySettings() {
                     Cerca
                   </button>
                 </div>
-                <p className="text-xs text-gray-400 mt-1.5">
+                <p className="text-xs text-gray-500 mt-1.5">
                   Scrivi città o indirizzo e premi Invio: la mappa si aggiorna qui. Premi "Conferma modifiche" per
                   sincronizzare con la home.
                 </p>
-                {geoError && <p className="text-xs text-red-600 mt-1.5">{geoError}</p>}
+                {geoError && <p className="text-xs text-danger mt-1.5">{geoError}</p>}
               </div>
               <div>
                 <label className="text-xs font-semibold text-gray-700 block mb-1.5" htmlFor="service-radius">
@@ -572,7 +572,7 @@ export default function AvailabilitySettings() {
                   onChange={(e) => set('service_radius_km', parseInt(e.target.value))}
                   className="w-full accent-red-500"
                 />
-                <div className="flex justify-between text-xs text-gray-400 mt-1">
+                <div className="flex justify-between text-xs text-gray-500 mt-1">
                   <span>5 km</span>
                   <span>150 km</span>
                 </div>

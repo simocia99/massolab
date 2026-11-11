@@ -148,21 +148,21 @@ export default function ClientArea() {
       <div className="bg-white/80 backdrop-blur-xl border-b border-black/[0.06] sticky top-16 z-40">
         <div className="max-w-4xl mx-auto px-4 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-[#E50914]/10 flex items-center justify-center">
-              <User className="w-4 h-4 text-[#E50914]" />
+            <div className="w-9 h-9 rounded-full bg-[#56695C]/10 flex items-center justify-center">
+              <User className="w-4 h-4 text-[#56695C]" />
             </div>
             <div>
-              <p className="font-black text-[#1D1D1F] text-sm" style={{ letterSpacing: '-0.02em' }}>
+              <p className="font-black text-[#191A17] text-sm" style={{ letterSpacing: '-0.02em' }}>
                 {profile.first_name} {profile.last_name}
               </p>
-              <p className="text-xs text-[#86868B]">{email}</p>
+              <p className="text-xs text-[#6A685F]">{email}</p>
             </div>
           </div>
           <button
             type="button"
             onClick={handleLogout}
             aria-label="Esci"
-            className="flex items-center gap-1.5 text-sm font-semibold text-[#86868B] hover:text-[#E50914] transition-colors"
+            className="flex items-center gap-1.5 min-h-[44px] text-sm font-semibold text-[#6A685F] hover:text-[#56695C] transition-colors"
           >
             <LogOut className="w-4 h-4" />
             <span className="hidden sm:inline">Esci</span>
@@ -182,7 +182,7 @@ export default function ClientArea() {
                     setTab(id);
                     if (params.has('tab')) setParams({}, { replace: true });
                   }}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 text-[13px] font-semibold rounded-full whitespace-nowrap flex-shrink-0 transition-all duration-200 ${active ? 'bg-[#1D1D1F] text-white' : 'text-[#86868B] hover:text-[#1D1D1F] hover:bg-[#f5f5f7]'}`}
+                  className={`flex items-center gap-1.5 px-3.5 min-h-[44px] text-[13px] font-semibold rounded-full whitespace-nowrap flex-shrink-0 transition-all duration-200 ${active ? 'bg-[#191A17] text-white' : 'text-[#6A685F] hover:text-[#191A17] hover:bg-[#F3F0EA]'}`}
                 >
                   <Icon className="w-3.5 h-3.5 flex-shrink-0" />
                   {label}
@@ -197,11 +197,11 @@ export default function ClientArea() {
         <div className="mb-6">
           <NotificationsBanner />
         </div>
-        {error && <p className="text-red-600 text-sm bg-red-50 rounded-xl px-4 py-2 mb-4">{error}</p>}
+        {error && <p className="text-danger text-sm bg-danger-soft rounded-xl px-4 py-2 mb-4">{error}</p>}
         {loading ? (
           <Spinner />
         ) : (
-          <motion.div key={tab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
+          <motion.div key={tab} initial={{ opacity: 0, y: 12, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.2 }}>
             {tab === 'book' && (
               <div>
                 <h2 className="text-lg font-bold text-gray-900 mb-6">Prenota un Appuntamento</h2>

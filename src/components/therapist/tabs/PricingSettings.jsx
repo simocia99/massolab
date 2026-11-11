@@ -63,7 +63,7 @@ export function PriceItemEditor({ item, record, onSave }) {
   };
 
   const fieldCls = 'w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-red-400';
-  const labelCls = 'block text-xs font-semibold text-gray-400 mb-1.5 uppercase tracking-wider';
+  const labelCls = 'block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider';
 
   return (
     <div className="bg-white rounded-2xl border border-gray-100 p-4 sm:p-5 shadow-sm">
@@ -84,7 +84,7 @@ export function PriceItemEditor({ item, record, onSave }) {
           aria-label={visible ? 'Nascondi prezzo al pubblico' : 'Mostra prezzo al pubblico'}
           aria-pressed={visible}
           className={`p-2 rounded-xl transition-colors ${
-            visible ? 'text-green-600 bg-green-50 hover:bg-green-100' : 'text-gray-400 bg-gray-100 hover:bg-gray-200'
+            visible ? 'text-green-600 bg-green-50 hover:bg-green-100' : 'text-gray-500 bg-gray-100 hover:bg-gray-200'
           }`}
         >
           {visible ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
@@ -156,8 +156,8 @@ export function PriceItemEditor({ item, record, onSave }) {
           {record.price != null && record.price !== '' && (
             <span className="text-base font-bold text-gray-900">€{record.price}</span>
           )}
-          {!!record.duration_minutes && <span className="text-sm text-gray-400">· {record.duration_minutes} min</span>}
-          {record.price_note && <span className="text-xs text-gray-400 italic">{record.price_note}</span>}
+          {!!record.duration_minutes && <span className="text-sm text-gray-500">· {record.duration_minutes} min</span>}
+          {record.price_note && <span className="text-xs text-gray-500 italic">{record.price_note}</span>}
           {!record.visible && <span className="text-xs text-orange-500 font-semibold">nascosto al pubblico</span>}
         </div>
       )}
@@ -202,7 +202,7 @@ export default function PricingSettings() {
   if (loading) {
     return (
       <div className="flex justify-center py-20">
-        <LoaderCircle className="w-6 h-6 animate-spin text-gray-400" />
+        <LoaderCircle className="w-6 h-6 animate-spin text-gray-500" />
       </div>
     );
   }

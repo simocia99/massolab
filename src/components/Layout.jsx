@@ -11,7 +11,7 @@ const TAP_SPRING = { type: 'spring', stiffness: 500, damping: 30 };
 
 const menuItem = {
   hidden: { opacity: 0, y: -8 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.4, 0, 0.2, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.28, 0.11, 0.32, 1] } },
 };
 
 /** Mobile menu row (original `J9`). */
@@ -20,7 +20,7 @@ function MobileNavLink({ to, label }) {
     <motion.div variants={menuItem} whileTap={{ scale: 0.97 }} transition={TAP_SPRING}>
       <Link
         to={to}
-        className="flex items-center justify-between px-4 py-3.5 text-[#1D1D1F] font-semibold rounded-2xl hover:bg-[#f5f5f7] active:bg-[#e8e8ed] transition-colors text-[15px] touch-manipulation"
+        className="flex items-center justify-between px-4 py-3.5 text-[#191A17] font-semibold rounded-2xl hover:bg-[#F3F0EA] active:bg-[#e8e8ed] transition-colors text-[15px] touch-manipulation"
       >
         {label}
         <ChevronRight className="w-4 h-4 text-[#C7C7CC]" />
@@ -62,18 +62,23 @@ export default function Layout({ children, currentPageName }) {
   if (isTherapistPage) return <>{children}</>;
 
   const transparent = isHome && !scrolled;
-  const navBg = transparent ? 'bg-transparent' : 'bg-white/80 backdrop-blur-2xl border-b border-white/20 shadow-sm';
+  // Floating pill navbar (Estetica v2): glass over the hero, light once scrolled.
+  const navBg = transparent
+    ? 'bg-white/10 border-white/25 backdrop-blur-xl'
+    : 'bg-white/80 border-white/60 backdrop-blur-2xl shadow-[0_8px_30px_-10px_rgba(25,26,23,0.18)]';
   const linkColor = transparent ? 'text-white/90 hover:text-white' : 'text-gray-600 hover:text-gray-900';
   const brandColor = transparent ? 'text-white' : 'text-gray-900';
-  const logoStyle = transparent ? { filter: 'invert(1)', mixBlendMode: 'screen' } : { mixBlendMode: 'multiply' };
-  const navLink = `text-sm font-medium transition-colors ${linkColor}`;
+  const logoStyle = transparent ? { borderRadius: '9999px', boxShadow: '0 0 0 1px rgba(255,255,255,0.35)' } : { mixBlendMode: 'multiply' };
+  const navLink = `inline-flex items-center min-h-[44px] text-sm font-medium transition-colors ${linkColor}`;
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="flex flex-col min-h-screen bg-[#f5f5f7]">
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 h-12 flex items-center justify-between">
-            <Link to={createPageUrl('Home')} className="flex items-center gap-2.5 flex-shrink-0">
+      <div className="flex flex-col min-h-screen bg-[#F3F0EA]">
+        <nav className="fixed top-3 sm:top-5 left-3 right-3 sm:left-8 sm:right-8 z-50">
+          <div
+            className={`max-w-6xl mx-auto pl-4 pr-2 sm:pl-5 h-14 flex items-center justify-between rounded-full border transition-all duration-500 ${navBg}`}
+          >
+            <Link to={createPageUrl('Home')} className="flex items-center gap-2.5 flex-shrink-0 min-h-[44px]">
               <img
                 src={BUSINESS.logo}
                 alt={LOGO_ALT}
@@ -89,7 +94,7 @@ export default function Layout({ children, currentPageName }) {
                 >
                   Masso Lab
                 </span>
-                <span className="text-[9px] font-bold tracking-[0.22em] uppercase text-red-500 mt-0.5">Simone Ciacchi</span>
+                <span className={`hidden min-[420px]:block text-[10px] sm:text-xs font-medium tracking-[0.14em] uppercase mt-0.5 transition-colors ${transparent ? 'text-white/75' : 'text-gray-500'}`}>Simone Ciacchi</span>
               </span>
             </Link>
 
@@ -108,7 +113,7 @@ export default function Layout({ children, currentPageName }) {
               </Link>
               <Link
                 to={createPageUrl('GuestBooking')}
-                className="inline-flex items-center gap-1.5 bg-[#E50914] hover:bg-[#cc0812] text-white rounded-full px-5 py-2 text-sm font-semibold transition-all duration-200 hover:scale-[1.02] whitespace-nowrap"
+                className={`inline-flex items-center gap-1.5 rounded-full px-5 min-h-[44px] text-sm font-medium transition-all duration-300 hover:scale-[1.02] whitespace-nowrap ${transparent ? 'bg-white text-ink hover:bg-white/90' : 'bg-ink text-white hover:bg-gray-800'}`}
               >
                 <Calendar className="w-3.5 h-3.5" />
                 Prenota ora
@@ -119,10 +124,10 @@ export default function Layout({ children, currentPageName }) {
               <motion.div whileTap={{ scale: 0.94 }} transition={TAP_SPRING}>
                 <Link
                   to={createPageUrl('GuestBooking')}
-                  className="inline-flex items-center gap-1.5 bg-red-600 hover:bg-red-700 text-white rounded-full px-4 py-2 text-sm font-semibold transition-colors touch-manipulation"
+                  className={`inline-flex items-center gap-1.5 rounded-full px-4 min-h-[44px] text-sm font-medium transition-colors touch-manipulation ${transparent ? 'bg-white text-ink' : 'bg-ink text-white'}`}
                 >
                   <Calendar className="w-3.5 h-3.5" />
-                  Prenota
+                  <span className="max-[359px]:sr-only">Prenota</span>
                 </Link>
               </motion.div>
               <motion.button
@@ -130,7 +135,7 @@ export default function Layout({ children, currentPageName }) {
                 onClick={() => setMenuOpen((o) => !o)}
                 whileTap={{ scale: 0.9 }}
                 transition={TAP_SPRING}
-                className={`p-2 rounded-xl transition-colors touch-manipulation ${
+                className={`p-3 rounded-full transition-colors touch-manipulation ${
                   transparent ? 'text-white hover:bg-white/10' : 'text-gray-700 hover:bg-gray-100'
                 }`}
                 aria-label={menuOpen ? 'Chiudi menu' : 'Menu'}
@@ -150,8 +155,8 @@ export default function Layout({ children, currentPageName }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="md:hidden fixed inset-0 top-12 bg-black/30 backdrop-blur-[2px] z-40"
+                  transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.25 }}
+                  className="md:hidden fixed inset-0 bg-black/30 backdrop-blur-[2px] -z-10"
                   onClick={() => setMenuOpen(false)}
                 />
                 <motion.div
@@ -161,7 +166,7 @@ export default function Layout({ children, currentPageName }) {
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ type: 'spring', damping: 34, stiffness: 380, mass: 0.9 }}
-                  className="md:hidden absolute left-0 right-0 top-12 z-50 bg-white/90 backdrop-blur-2xl border-b border-black/[0.06] overflow-hidden"
+                  className="md:hidden absolute left-0 right-0 top-16 z-50 bg-white/90 backdrop-blur-2xl border border-white/60 rounded-[28px] shadow-[0_8px_30px_-10px_rgba(25,26,23,0.18)] overflow-hidden"
                 >
                   <motion.div
                     initial="hidden"
@@ -175,18 +180,18 @@ export default function Layout({ children, currentPageName }) {
                     <motion.div variants={menuItem} whileTap={{ scale: 0.97 }} transition={TAP_SPRING}>
                       <Link
                         to={createPageUrl('ClientLogin')}
-                        className="mt-1 flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-[#f5f5f7] hover:bg-black/[0.05] active:bg-black/[0.06] transition-colors touch-manipulation"
+                        className="mt-1 flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-[#F3F0EA] hover:bg-black/[0.05] active:bg-black/[0.06] transition-colors touch-manipulation"
                       >
-                        <span className="w-9 h-9 rounded-full bg-[#E50914]/10 flex items-center justify-center flex-shrink-0">
-                          <User className="w-4 h-4 text-[#E50914]" />
+                        <span className="w-9 h-9 rounded-full bg-[#56695C]/10 flex items-center justify-center flex-shrink-0">
+                          <User className="w-4 h-4 text-[#56695C]" />
                         </span>
                         <div className="flex-1">
-                          <p className="text-[#1D1D1F] text-[15px] font-bold" style={{ letterSpacing: '-0.02em' }}>
+                          <p className="text-[#191A17] text-[15px] font-bold" style={{ letterSpacing: '-0.02em' }}>
                             Area Clienti
                           </p>
-                          <p className="text-[#86868B] text-xs">Accedi al tuo percorso</p>
+                          <p className="text-[#6A685F] text-xs">Accedi al tuo percorso</p>
                         </div>
-                        <ChevronRight className="w-4 h-4 text-[#86868B]" />
+                        <ChevronRight className="w-4 h-4 text-[#6A685F]" />
                       </Link>
                     </motion.div>
                     <motion.div
@@ -197,7 +202,7 @@ export default function Layout({ children, currentPageName }) {
                     >
                       <Link
                         to={createPageUrl('GuestBooking')}
-                        className="w-full flex items-center justify-center gap-2 bg-[#E50914] hover:bg-[#cc0812] active:bg-[#cc0812] text-white rounded-2xl px-5 py-4 text-[15px] font-bold transition-colors touch-manipulation"
+                        className="w-full flex items-center justify-center gap-2 bg-[#56695C] hover:bg-[#46574B] active:bg-[#46574B] text-white rounded-2xl px-5 py-4 text-[15px] font-bold transition-colors touch-manipulation"
                       >
                         <Calendar className="w-4 h-4" />
                         Prenota Appuntamento
@@ -210,9 +215,9 @@ export default function Layout({ children, currentPageName }) {
           </AnimatePresence>
         </nav>
 
-        <main className={`flex-1 ${isHome ? '' : 'pt-16'}`}>{children}</main>
+        <main className={`flex-1 ${isHome ? '' : 'pt-24'}`}>{children}</main>
 
-        <footer className={`bg-gray-900 text-gray-400 py-10 px-4 sm:px-6 md:pb-10 ${isHome ? 'pb-24' : 'pb-10'}`}>
+        <footer className={`bg-ink text-gray-300 py-10 px-4 sm:px-6 md:pb-10 ${isHome ? 'pb-24' : 'pb-10'}`}>
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
               <div className="col-span-2 md:col-span-1">
@@ -224,20 +229,20 @@ export default function Layout({ children, currentPageName }) {
                   loading="lazy"
                   decoding="async"
                   className="h-20 w-20 mb-2"
-                  style={{ filter: 'invert(1)', mixBlendMode: 'screen' }}
+                  style={{ borderRadius: '9999px', boxShadow: '0 0 0 1px rgba(255,255,255,0.35)' }}
                 />
-                <p className="text-sm text-gray-500">Massoterapia Professionale</p>
+                <p className="text-sm text-gray-400">Massoterapia Professionale</p>
               </div>
               <div>
                 <p className="text-white text-xs font-bold uppercase tracking-wider mb-3">Navigazione</p>
                 <div className="space-y-2 text-sm">
-                  <Link to={createPageUrl('Home')} className="block hover:text-white transition-colors">
+                  <Link to={createPageUrl('Home')} className="block py-3 hover:text-white transition-colors">
                     Home
                   </Link>
-                  <Link to={createPageUrl('Percorsi')} className="block hover:text-white transition-colors">
+                  <Link to={createPageUrl('Percorsi')} className="block py-3 hover:text-white transition-colors">
                     Percorsi
                   </Link>
-                  <Link to={createPageUrl('Blog')} className="block hover:text-white transition-colors">
+                  <Link to={createPageUrl('Blog')} className="block py-3 hover:text-white transition-colors">
                     Blog
                   </Link>
                 </div>
@@ -245,13 +250,13 @@ export default function Layout({ children, currentPageName }) {
               <div>
                 <p className="text-white text-xs font-bold uppercase tracking-wider mb-3">Servizi</p>
                 <div className="space-y-2 text-sm">
-                  <Link to={createPageUrl('GuestBooking')} className="block hover:text-white transition-colors">
+                  <Link to={createPageUrl('GuestBooking')} className="block py-3 hover:text-white transition-colors">
                     Prenota
                   </Link>
-                  <Link to={createPageUrl('ClientLogin')} className="block hover:text-white transition-colors">
+                  <Link to={createPageUrl('ClientLogin')} className="block py-3 hover:text-white transition-colors">
                     Area Clienti
                   </Link>
-                  <Link to={createPageUrl('LeaveReview')} className="block hover:text-white transition-colors">
+                  <Link to={createPageUrl('LeaveReview')} className="block py-3 hover:text-white transition-colors">
                     Lascia recensione
                   </Link>
                 </div>
@@ -260,11 +265,11 @@ export default function Layout({ children, currentPageName }) {
                 <div className="bg-white p-2 rounded-xl">
                   <QRCodeSVG value={window.location.origin + import.meta.env.BASE_URL} size={70} />
                 </div>
-                <p className="text-xs text-gray-600 text-center">Scansiona per visitare</p>
+                <p className="text-xs text-gray-400 text-center">Scansiona per visitare</p>
               </div>
             </div>
-            <div className="border-t border-gray-800 pt-6 text-center">
-              <p className="text-xs text-gray-600">© {new Date().getFullYear()} MassoLab — Tutti i diritti riservati.</p>
+            <div className="border-t border-white/10 pt-6 text-center">
+              <p className="text-xs text-gray-400">© {new Date().getFullYear()} MassoLab — Tutti i diritti riservati.</p>
             </div>
           </div>
         </footer>

@@ -17,7 +17,7 @@ const APPT_STATUS = {
   pending: { label: 'In attesa', color: 'bg-yellow-100 text-yellow-700' },
   confirmed: { label: 'Confermato', color: 'bg-green-100 text-green-700' },
   completed: { label: 'Completato', color: 'bg-blue-100 text-blue-700' },
-  cancelled: { label: 'Annullato', color: 'bg-red-100 text-red-600' },
+  cancelled: { label: 'Annullato', color: 'bg-danger-soft text-danger' },
 };
 
 const apptTime = (a) => new Date(a.preferred_date || a.created_date);
@@ -131,11 +131,11 @@ export default function ClientDetail({ client, onUpdate }) {
             <h3 className="text-xl font-bold text-gray-900">{client.name}</h3>
             <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${journeyInfo?.color}`}>{journeyInfo?.label}</span>
           </div>
-          <p className="text-gray-400 text-sm break-all">
+          <p className="text-gray-500 text-sm break-all">
             {client.appointments?.length || 0} trattamento/i · {client.email}
           </p>
           {daysSince !== null && (
-            <p className={`text-xs mt-1 font-semibold ${daysSince > 60 ? 'text-red-500' : daysSince > 30 ? 'text-amber-500' : 'text-gray-400'}`}>
+            <p className={`text-xs mt-1 font-semibold ${daysSince > 60 ? 'text-red-500' : daysSince > 30 ? 'text-amber-500' : 'text-gray-500'}`}>
               {daysSince === 0 ? 'Seduta oggi' : `Ultima seduta ${daysSince} giorni fa`}
             </p>
           )}
@@ -144,7 +144,7 @@ export default function ClientDetail({ client, onUpdate }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
         <a href={`mailto:${client.email}`} className="flex items-center gap-2 p-3 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors">
-          <Mail className="w-4 h-4 text-gray-400" />
+          <Mail className="w-4 h-4 text-gray-500" />
           <span className="text-sm text-gray-700 truncate">{client.email}</span>
         </a>
         {client.phone && (
@@ -175,7 +175,7 @@ export default function ClientDetail({ client, onUpdate }) {
       )}
 
       <div>
-        <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Stato percorso</label>
+        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Stato percorso</label>
         <div className="flex flex-wrap gap-2">
           {JOURNEY_STATUSES.map((s) => (
             <button
@@ -191,7 +191,7 @@ export default function ClientDetail({ client, onUpdate }) {
       </div>
 
       <div>
-        <label htmlFor="client-goal" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+        <label htmlFor="client-goal" className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5 flex items-center gap-1">
           <Target className="w-3.5 h-3.5" /> Obiettivo del cliente
         </label>
         <input
@@ -204,7 +204,7 @@ export default function ClientDetail({ client, onUpdate }) {
       </div>
 
       <div>
-        <label htmlFor="client-notes" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5">
+        <label htmlFor="client-notes" className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">
           Note interne
         </label>
         <textarea
@@ -246,19 +246,19 @@ export default function ClientDetail({ client, onUpdate }) {
           onClick={() => setHistoryOpen((o) => !o)}
           aria-expanded={historyOpen}
         >
-          <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Storico appuntamenti ({history.length})</span>
-          {historyOpen ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
+          <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Storico appuntamenti ({history.length})</span>
+          {historyOpen ? <ChevronUp className="w-4 h-4 text-gray-500" /> : <ChevronDown className="w-4 h-4 text-gray-500" />}
         </button>
         {historyOpen && (
           <div className="space-y-2 max-h-56 overflow-y-auto">
-            {history.length === 0 && <p className="text-sm text-gray-400 py-2 text-center">Nessun appuntamento</p>}
+            {history.length === 0 && <p className="text-sm text-gray-500 py-2 text-center">Nessun appuntamento</p>}
             {history.map((a) => {
               const st = APPT_STATUS[a.status] || APPT_STATUS.pending;
               return (
                 <div key={a.id} className="flex items-center justify-between gap-2 p-3 bg-gray-50 rounded-xl">
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-gray-900">{a.treatment_type}</p>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-gray-500">
                       {a.preferred_date} {a.preferred_time}
                     </p>
                   </div>

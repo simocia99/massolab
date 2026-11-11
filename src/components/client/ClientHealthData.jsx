@@ -38,7 +38,7 @@ function MetricCard({ icon: Icon, label, value, unit, color }) {
       </div>
       <p className="text-xs text-gray-500 mb-1">{label}</p>
       <p className="text-2xl font-bold text-gray-900">
-        {value ?? '—'} <span className="text-sm font-normal text-gray-400">{unit}</span>
+        {value ?? '—'} <span className="text-sm font-normal text-gray-500">{unit}</span>
       </p>
     </div>
   );
@@ -154,8 +154,8 @@ export default function ClientHealthData({ clientEmail, clientName }) {
 
       {showForm && (
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: -10, filter: 'blur(8px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           className="bg-white border border-gray-200 rounded-2xl p-6 mb-6"
         >
           <h3 className="font-bold text-gray-900 mb-4">Nuovo Rilevamento</h3>
@@ -301,7 +301,7 @@ export default function ClientHealthData({ clientEmail, clientName }) {
 
       {latest && (
         <div className="mb-6">
-          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">
+          <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">
             Ultimo rilevamento — {formatDateIT(latest.date)}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
@@ -320,14 +320,14 @@ export default function ClientHealthData({ clientEmail, clientName }) {
           <div className="w-6 h-6 border-2 border-red-200 border-t-red-600 rounded-full animate-spin" />
         </div>
       ) : entries.length === 0 ? (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-16 text-gray-500">
           <Watch className="w-10 h-10 mx-auto mb-3 opacity-30" />
           <p className="font-medium">Nessun dato inserito</p>
           <p className="text-sm mt-1">Clicca "Aggiungi" per iniziare a tracciare i tuoi dati</p>
         </div>
       ) : (
         <div className="space-y-3">
-          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Storico</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Storico</p>
           {entries.map((e) => (
             <div key={e.id} className="bg-white rounded-2xl border border-gray-100 p-4 flex items-center justify-between gap-4">
               <div className="flex-1 min-w-0">
@@ -347,13 +347,13 @@ export default function ClientHealthData({ clientEmail, clientName }) {
                   {!!e.stress_level && <span>🧠 stress {e.stress_level}/10</span>}
                   {e.pain_level > 0 && <span>⚠️ dolore {e.pain_level}/10</span>}
                 </div>
-                {e.notes && <p className="text-xs text-gray-400 mt-1 italic">"{e.notes}"</p>}
+                {e.notes && <p className="text-xs text-gray-500 mt-1 italic">"{e.notes}"</p>}
               </div>
               <button
                 type="button"
                 onClick={() => remove(e.id)}
                 aria-label="Elimina rilevamento"
-                className="p-2 hover:bg-red-50 rounded-xl text-gray-400 hover:text-red-500 transition-colors flex-shrink-0"
+                className="p-2 hover:bg-red-50 rounded-xl text-gray-500 hover:text-red-500 transition-colors flex-shrink-0"
               >
                 <Trash2 className="w-4 h-4" />
               </button>

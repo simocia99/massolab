@@ -148,7 +148,7 @@ export default function GuidedBookingWizard({ onClose }) {
             </a>
           </div>
         )}
-        <button type="button" onClick={onClose} className="mt-5 text-sm text-gray-400 hover:text-gray-600">
+        <button type="button" onClick={onClose} className="mt-5 text-sm text-gray-500 hover:text-gray-600">
           Chiudi
         </button>
       </div>
@@ -168,7 +168,7 @@ export default function GuidedBookingWizard({ onClose }) {
               />
             ))}
           </div>
-          <p className="text-xs text-gray-400 font-medium">
+          <p className="text-xs text-gray-500 font-medium">
             Step {step} di {TOTAL_STEPS}
           </p>
         </div>
@@ -189,7 +189,7 @@ export default function GuidedBookingWizard({ onClose }) {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.2 }}
+            transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.2 }}
           >
             {step === 1 && <NeedStep value={need} onChange={setNeed} />}
             {step === 2 && <DetailsStep answers={answers} onChange={setAnswer} />}
@@ -201,7 +201,7 @@ export default function GuidedBookingWizard({ onClose }) {
 
       <div className="flex-shrink-0 pt-4 mt-2 border-t border-gray-100 px-5 pb-5 md:px-6 md:pb-6">
         {error && (
-          <p className="text-xs text-red-600 font-medium mb-2" role="alert">
+          <p className="text-xs text-danger font-medium mb-2" role="alert">
             {error}
           </p>
         )}
@@ -233,7 +233,7 @@ export default function GuidedBookingWizard({ onClose }) {
             type="button"
             onClick={skip}
             disabled={saving}
-            className="w-full mt-2 text-xs text-gray-400 hover:text-gray-600 py-1"
+            className="w-full mt-2 text-xs text-gray-500 hover:text-gray-600 py-1"
           >
             Salta — vai al risultato senza lasciare i dati
           </button>

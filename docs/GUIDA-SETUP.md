@@ -120,6 +120,8 @@ Servono perché i link "conferma email", "reimposta password" e il ritorno da Go
 riportino sul tuo sito. Quando colleghi il dominio Aruba aggiorna questi valori (punto E5).
 
 ### B6. (Consigliato) Email di sistema tramite Resend
+> Se usi Gmail, **salta questo punto**: lo script del punto C2-ter imposta già l'SMTP di Supabase Auth con Gmail.
+
 Supabase gratuito invia pochissime email di conferma all'ora. Dopo aver configurato Resend (punto C):
 **Authentication → Emails → SMTP Settings → Enable custom SMTP**:
 host `smtp.resend.com`, porta `465`, utente `resend`, password = la tua chiave API Resend,
@@ -142,7 +144,36 @@ riceverebbero le conferme. Appena hai il dominio Aruba:
    (vedi punto E2, "Aggiungi record"), poi premi **Verify** su Resend (può servire qualche ora).
 3. Il mittente sarà ad esempio `notifiche@tuodominio.it`.
 
-### C2-bis. Soluzione provvisoria: inviare le email con Gmail (senza dominio)
+### C2-ter. Email con Gmail in 2 passaggi (percorso consigliato, senza dominio)
+Questo è il modo più semplice: serve solo la password per le app di Gmail e **un comando**. Fa tutto da solo
+(segreti della funzione email + email di conferma registrazione per tutti i clienti).
+
+**Passaggio 1 – crea la password per le app Gmail**
+1. Con l'account `massolab.simoneciacchi@gmail.com` apri <https://myaccount.google.com/security> e attiva la **Verifica in due passaggi** (se non c'è già).
+2. Apri <https://myaccount.google.com/apppasswords>, nome `MassoLab sito`, premi **Crea**.
+3. Google mostra 16 lettere (anche con spazi): **tienile aperte**, ti servono al passaggio 2. Non scriverle in chat.
+
+**Passaggio 2 – lancia il comando** (dal Terminale):
+
+```bash
+cd ~/Desktop/"PROGETTO SITO WEB MASSOLAB" && bash scripts/configura-email.sh
+```
+
+- Quando te la chiede, **incolla la password** di 16 lettere e premi Invio: non si vede nulla mentre incolli, è normale.
+- Prima del salvataggio la CLI mostra l'elenco delle modifiche e chiede conferma: devono esserci **solo** righe `auth.email.smtp` (e `email_sent`). Se è così scrivi `Yes`; se vedi altro scrivi `n` e avvisa l'architetto.
+- Se dice che non sei collegato a Supabase, esegui `npx supabase login` (si apre il browser) e rilancia il comando.
+- Alla fine compare **Fatto ✓**. Si può rilanciare in qualsiasi momento (ad esempio per cambiare la password).
+- La password non viene salvata nel progetto né nella cronologia: finisce solo nei segreti di Supabase.
+
+Per revocarla: <https://myaccount.google.com/apppasswords> → cestino accanto a `MassoLab sito`.
+
+> **Importante:** non lanciare `npx supabase config push` a mano (il `config.toml` del progetto non contiene l'SMTP e il limite email: un push da lì li cancellerebbe). Per cambiare le impostazioni di accesso/email usa sempre `scripts/configura-email.sh`, altrimenti rischi di cancellare l'SMTP di Gmail.
+>
+> **Limite da conoscere:** Gmail permette circa 500 destinatari al giorno. Chiunque può registrarsi con l'email di un altro e così far partire una conferma dal Gmail MassoLab: troppe registrazioni false potrebbero far sospendere l'account (e fermare anche le notifiche). Il limite di 30 email l'ora e 1 minuto tra invii allo stesso indirizzo riducono il rischio; più avanti si può aggiungere un captcha.
+
+Le istruzioni qui sotto (C2-bis) fanno la stessa cosa **a mano**, solo per la funzione email: usale solo se lo script non funziona.
+
+### C2-bis. Soluzione provvisoria: inviare le email con Gmail (senza dominio) – a mano
 Finché non hai il dominio puoi usare l'account Gmail del terapista. Se in seguito imposti `RESEND_API_KEY` **e** `MAIL_FROM`, il sito passa da solo a Resend (nessuna modifica al codice).
 
 1. Apri <https://myaccount.google.com/security> con l'account Gmail del terapista e attiva la **Verifica in due passaggi**.

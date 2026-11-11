@@ -5,7 +5,7 @@ import { createPageUrl } from '@/lib/utils';
 /** 404 page, rendered without the Layout (original `rne`). */
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center px-6">
+    <div className="min-h-screen bg-[#F3F0EA] flex items-center justify-center px-6">
       <div className="text-center">
         <h1 className="text-8xl font-bold text-gray-200 mb-4">404</h1>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Pagina non trovata</h2>

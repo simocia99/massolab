@@ -19,7 +19,7 @@ function Metric({ label, value, unit }) {
   if (value == null) return null;
   return (
     <span className="inline-flex items-center gap-1 bg-gray-50 border border-gray-100 rounded-lg px-2.5 py-1 text-xs text-gray-700">
-      <strong>{value}</strong> {unit} <span className="text-gray-400">{label}</span>
+      <strong>{value}</strong> {unit} <span className="text-gray-500">{label}</span>
     </span>
   );
 }
@@ -97,7 +97,7 @@ export default function HealthDataOverview() {
       </div>
 
       {groups.length === 0 ? (
-        <div className="text-center py-20 text-gray-400">
+        <div className="text-center py-20 text-gray-500">
           <Watch className="w-12 h-12 mx-auto mb-3 opacity-20" />
           <p className="font-medium">Nessun dato disponibile</p>
           <p className="text-sm mt-1">I clienti non hanno ancora inserito dati salute</p>
@@ -131,7 +131,7 @@ export default function HealthDataOverview() {
                     </div>
                     <div className="min-w-0">
                       <p className="font-semibold text-gray-900 truncate">{displayName}</p>
-                      <p className="text-xs text-gray-400">
+                      <p className="text-xs text-gray-500">
                         {g.records.length} rilevamenti · Ultimo: {fmt(latest.date, 'd MMM yyyy')}
                       </p>
                     </div>
@@ -143,7 +143,7 @@ export default function HealthDataOverview() {
                       <Metric label="stress" value={latest.stress_level} unit="/10" />
                       {latest.pain_level > 0 && <Metric label="dolore" value={latest.pain_level} unit="/10" />}
                     </div>
-                    {open ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
+                    {open ? <ChevronUp className="w-4 h-4 text-gray-500" /> : <ChevronDown className="w-4 h-4 text-gray-500" />}
                   </div>
                 </button>
                 {open && (
@@ -157,8 +157,8 @@ export default function HealthDataOverview() {
                           <ResponsiveContainer width="100%" height={150}>
                             <LineChart data={chartData}>
                               <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
-                              <XAxis dataKey="date" tick={{ fontSize: 11 }} />
-                              <YAxis tick={{ fontSize: 11 }} width={40} />
+                              <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                              <YAxis tick={{ fontSize: 12 }} width={40} />
                               <Tooltip />
                               <Line type="monotone" dataKey="passi" stroke="#3b82f6" strokeWidth={2} dot={false} />
                             </LineChart>
@@ -169,8 +169,8 @@ export default function HealthDataOverview() {
                           <ResponsiveContainer width="100%" height={150}>
                             <LineChart data={chartData}>
                               <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
-                              <XAxis dataKey="date" tick={{ fontSize: 11 }} />
-                              <YAxis domain={[0, 10]} tick={{ fontSize: 11 }} width={30} />
+                              <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                              <YAxis domain={[0, 10]} tick={{ fontSize: 12 }} width={30} />
                               <Tooltip />
                               <Line
                                 type="monotone"
@@ -217,7 +217,7 @@ export default function HealthDataOverview() {
                                 <span className="text-red-500 font-medium">⚠️ dolore {r.pain_level}/10</span>
                               )}
                             </div>
-                            {r.notes && <p className="text-xs text-gray-400 mt-1 italic">"{r.notes}"</p>}
+                            {r.notes && <p className="text-xs text-gray-500 mt-1 italic">"{r.notes}"</p>}
                           </div>
                           <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full whitespace-nowrap">
                             {r.source || 'manuale'}

@@ -124,7 +124,7 @@ export default function IntakeForm() {
 
   if (sent) {
     return (
-      <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center px-4 sm:px-6 py-16">
+      <div className="min-h-screen bg-[#F3F0EA] flex items-center justify-center px-4 sm:px-6 py-16">
         <motion.div
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -160,13 +160,13 @@ export default function IntakeForm() {
   }
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-[#f5f5f7] px-4 py-10 md:py-16">
+    <div className="min-h-screen overflow-x-clip bg-[#F3F0EA] px-4 py-10 md:py-16">
       {hp.field}
       <div className="max-w-xl mx-auto">
         <div className="mb-8">
           <Link
             to={createPageUrl('Home')}
-            className="inline-flex items-center text-gray-400 hover:text-gray-700 text-sm mb-5 transition-colors"
+            className="inline-flex items-center text-gray-500 hover:text-gray-700 text-sm mb-5 transition-colors"
           >
             <ChevronLeft className="w-4 h-4 mr-1" /> Indietro
           </Link>
@@ -189,7 +189,7 @@ export default function IntakeForm() {
                 >
                   <span
                     className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                      active ? 'bg-gray-900 text-white' : past ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-400'
+                      active ? 'bg-gray-900 text-white' : past ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-500'
                     }`}
                   >
                     {past ? '✓' : n}
@@ -252,7 +252,7 @@ export default function IntakeForm() {
                     onChange={(e) => set('pain_intensity', Number(e.target.value))}
                     className="w-full accent-red-600"
                   />
-                  <div className="flex justify-between text-xs text-gray-400 mt-1">
+                  <div className="flex justify-between text-xs text-gray-500 mt-1">
                     <span>1 — Lieve</span>
                     <span>10 — Molto intenso</span>
                   </div>
@@ -293,7 +293,7 @@ export default function IntakeForm() {
                 <div>
                   <label htmlFor="contraindications" className="block text-sm font-semibold text-gray-700 mb-1">
                     Situazioni da segnalare
-                    <span className="text-xs font-normal text-gray-400 ml-2">(es. gravidanza, operazioni recenti, patologie...)</span>
+                    <span className="text-xs font-normal text-gray-500 ml-2">(es. gravidanza, operazioni recenti, patologie...)</span>
                   </label>
                   <textarea
                     id="contraindications"
@@ -306,8 +306,8 @@ export default function IntakeForm() {
                   <AnimatePresence>
                     {showWarning && (
                       <motion.div
-                        initial={{ opacity: 0, y: -6 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, y: -6, filter: 'blur(8px)' }}
+                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                         exit={{ opacity: 0 }}
                         role="alert"
                         className="mt-3 bg-amber-50 border border-amber-200 rounded-2xl p-4 flex gap-3"
@@ -343,7 +343,7 @@ export default function IntakeForm() {
                   text="Dichiaro di aver preso visione delle informazioni sul trattamento. Sono consapevole che la massoterapia è una disciplina di benessere e non sostituisce la diagnosi o la cura medica. In caso di dubbi sulla mia condizione di salute, mi sono rivolto o mi rivolgerò al mio medico."
                 />
                 {error && (
-                  <p role="alert" className="text-sm text-red-600">
+                  <p role="alert" className="text-sm text-danger">
                     {error}
                   </p>
                 )}

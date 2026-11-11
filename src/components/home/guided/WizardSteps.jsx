@@ -132,7 +132,7 @@ export function SuggestionStep({ suggestion }) {
 
   if (caution) {
     return (
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center">
+      <motion.div initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} className="text-center">
         <div className="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-5">
           <TriangleAlert className="w-8 h-8 text-amber-500" />
         </div>
@@ -149,7 +149,7 @@ export function SuggestionStep({ suggestion }) {
   }
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+    <motion.div initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}>
       <h2 className="text-2xl font-bold text-gray-900 mb-2">Ecco il trattamento consigliato per te</h2>
       <p className="text-gray-500 text-sm mb-6">Basato sulle tue risposte — puoi sempre cambiare idea prima della seduta.</p>
       <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-5 mb-4">
@@ -171,15 +171,15 @@ export function SuggestionStep({ suggestion }) {
       {alternative && (
         <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4">
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Alternativa valida</span>
+            <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Alternativa valida</span>
           </div>
           <div className="flex items-center justify-between">
             <h4 className="font-semibold text-gray-700">{alternative}</h4>
-            <ArrowRight className="w-4 h-4 text-gray-400" />
+            <ArrowRight className="w-4 h-4 text-gray-500" />
           </div>
         </div>
       )}
-      <p className="text-xs text-gray-400 mt-4 leading-relaxed">
+      <p className="text-xs text-gray-500 mt-4 leading-relaxed">
         ⚠️ Questo è uno strumento di orientamento, non una diagnosi. Per qualsiasi dubbio medico rivolgiti al tuo medico.
       </p>
     </motion.div>

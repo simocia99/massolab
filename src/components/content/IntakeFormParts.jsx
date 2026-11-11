@@ -47,7 +47,7 @@ export function StepCard({ title, subtitle, children }) {
     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-5 sm:p-6 space-y-5">
       <div>
         <h2 className="text-lg font-bold text-gray-900">{title}</h2>
-        <p className="text-sm text-gray-400 mt-0.5">{subtitle}</p>
+        <p className="text-sm text-gray-500 mt-0.5">{subtitle}</p>
       </div>
       {children}
     </div>
