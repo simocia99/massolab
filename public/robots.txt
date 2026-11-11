@@ -1,0 +1,5 @@
+# Il sito non deve comparire nei motori di ricerca.
+# Il crawling resta permesso apposta: solo cosi Google legge il meta "noindex"
+# presente in ogni pagina e la esclude dai risultati.
+User-agent: *
+Allow: /

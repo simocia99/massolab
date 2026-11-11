@@ -1,0 +1,9 @@
+node_modules
+dist
+.env
+.env.local
+.DS_Store
+
+# Note interne degli agenti e configurazione locale di Claude: non pubbliche
+docs/agent-notes/
+.claude/

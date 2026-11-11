@@ -1,0 +1,64 @@
+# Pubblica il sito su GitHub Pages a ogni push sul branch main.
+# Configurazione (una volta sola): Settings -> Pages -> Source: "GitHub Actions"
+# Variabili: Settings -> Secrets and variables -> Actions -> tab "Variables"
+#   VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY, VITE_THERAPIST_EMAIL
+# (senza le variabili Supabase il sito funziona in modalità DEMO)
+name: Deploy su GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Percorso base (dominio personalizzato o /nome-repo/)
+        run: |
+          if [ -f public/CNAME ]; then
+            echo "BASE_PATH=/" >> "$GITHUB_ENV"
+          else
+            echo "BASE_PATH=/${GITHUB_REPOSITORY#*/}/" >> "$GITHUB_ENV"
+          fi
+
+      - name: Build
+        run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
+          VITE_THERAPIST_EMAIL: ${{ vars.VITE_THERAPIST_EMAIL }}
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
