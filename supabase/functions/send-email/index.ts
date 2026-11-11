@@ -24,7 +24,8 @@
 //       contact_request        terapista
 //       client_message         terapista (solo cliente loggato con email confermata)
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.4';
-import { SMTPClient } from 'https://deno.land/x/denomailer@1.6.0/mod.ts';
+// nodemailer (npm, versione fissata): sostituisce denomailer, non mantenuto e instabile su Deno 2.
+import nodemailer from 'npm:nodemailer@6.9.16';
 
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY') ?? '';
 const MAIL_FROM = Deno.env.get('MAIL_FROM') ?? 'onboarding@resend.dev';
@@ -157,23 +158,33 @@ async function sendMail(m: Mail) {
 
   if (USE_GMAIL) {
     // From = sempre l'account Gmail configurato, mai un indirizzo deciso dal client.
-    const client = new SMTPClient({
-      connection: { hostname: 'smtp.gmail.com', port: 465, tls: true, auth: { username: GMAIL_USER, password: GMAIL_APP_PASSWORD } },
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: { user: GMAIL_USER, pass: GMAIL_APP_PASSWORD },
+      connectionTimeout: 10_000,
+      greetingTimeout: 10_000,
+      socketTimeout: 15_000,
     });
     try {
-      await client.send({
-        from: `MassoLab - Simone Ciacchi <${GMAIL_USER}>`,
+      await transporter.sendMail({
+        from: { name: 'MassoLab - Simone Ciacchi', address: GMAIL_USER },
         to,
         subject,
-        content: text,
+        text,
         html,
         ...(replyTo ? { replyTo } : {}),
       });
     } catch (e) {
-      console.error('SMTP error', (e as Error)?.name ?? 'unknown');
+      // Solo codice e risposta del server SMTP (es. "535 ... Username and Password not accepted"),
+      // mai le credenziali: serve a capire se Gmail rifiuta l'accesso o la connessione.
+      const err = e as { name?: string; code?: string; responseCode?: number; response?: string; message?: string };
+      const detail = String(err?.response ?? err?.message ?? '').split(GMAIL_APP_PASSWORD).join('***').slice(0, 300);
+      console.error('SMTP error', err?.name ?? 'unknown', err?.code ?? '', err?.responseCode ?? '', detail);
       throw new Error('send failed');
     } finally {
-      try { await client.close(); } catch { /* ignora */ }
+      try { transporter.close(); } catch { /* ignora */ }
     }
     return 'gmail';
   }
