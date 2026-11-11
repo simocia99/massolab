@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+/* Safety net against sideways scroll; "clip" (unlike "hidden") keeps position: sticky working.
+   Older Safari ignores it, and every section clips its own content anyway. */
+body { overflow-x: clip; }
 body { font-family: 'Instrument Sans', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
 
 /* ---- Ported from the original Base44 bundle (index.css) ---- */

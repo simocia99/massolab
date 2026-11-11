@@ -17,7 +17,9 @@ import StickyCta from '@/components/home/StickyCta';
 export default function Home() {
   return (
     <MotionConfig reducedMotion="user">
-      <div className="bg-white overflow-x-hidden pb-16 md:pb-0">
+      {/* No overflow on this wrapper: it would break the sticky "Come funziona".
+          Each section clips its own decorations instead. */}
+      <div className="bg-white pb-16 md:pb-0">
         <HeroSection />
         <AboutSection />
         <TreatmentsSection />

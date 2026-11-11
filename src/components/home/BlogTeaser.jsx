@@ -24,7 +24,7 @@ export default function BlogTeaser() {
   if (!loading && posts.length === 0) return null;
 
   return (
-    <section className="py-24 bg-white">
+    <section className="overflow-hidden py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-end justify-between mb-12">
           <div>

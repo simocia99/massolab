@@ -76,7 +76,7 @@ export default function TreatmentsSection() {
   const open = (title) => setOpenKey(TREATMENT_KEY_BY_TITLE[title]);
 
   return (
-    <section id="trattamenti" className="py-28 md:py-36 bg-sand">
+    <section id="trattamenti" className="overflow-hidden py-28 md:py-36 bg-sand">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div {...reveal()} className="mb-16">
           <SectionLabel>Trattamenti</SectionLabel>

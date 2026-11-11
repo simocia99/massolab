@@ -41,7 +41,7 @@ export default function ReviewsSection() {
     : null;
 
   return (
-    <section className="py-28 md:py-36 bg-sand">
+    <section className="overflow-hidden py-28 md:py-36 bg-sand">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div {...reveal(20, 0.6, 0, null)} className="text-center mb-16">
           <SectionLabel>Recensioni</SectionLabel>

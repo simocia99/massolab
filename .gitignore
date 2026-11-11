@@ -7,3 +7,4 @@ dist
 # Note interne degli agenti e configurazione locale di Claude: non pubbliche
 docs/agent-notes/
 .claude/
+anteprime-come-funziona/

@@ -8,7 +8,7 @@ import { reveal } from './shared';
 /** Final call-to-action (Estetica v2): deep sage frame, lime button. */
 export default function FinalCta() {
   return (
-    <section className="bg-white px-2 sm:px-4 py-2 sm:py-4">
+    <section className="overflow-hidden bg-white px-2 sm:px-4 py-2 sm:py-4">
       <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] bg-sage-600 py-24 md:py-32">
         <div
           aria-hidden="true"

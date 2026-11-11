@@ -27,7 +27,7 @@ export default function HomeHero() {
   const wordOpacity = useTransform(scrollYProgress, [0, 0.6], [1, reduce ? 1 : 0]);
 
   return (
-    <section ref={ref} className="relative bg-white px-2 sm:px-4 pt-2 sm:pt-4">
+    <section ref={ref} className="overflow-hidden relative bg-white px-2 sm:px-4 pt-2 sm:pt-4">
       <motion.div
         style={{ scale: frameScale }}
         className="relative h-[calc(100svh-1rem)] sm:h-[calc(100svh-2rem)] min-h-[620px] max-h-[980px] rounded-[24px] sm:rounded-[32px] overflow-hidden bg-[#A9B8B0] origin-top will-change-transform"

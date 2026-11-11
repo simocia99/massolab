@@ -39,7 +39,7 @@ const REASONS = [
 /** "Perché Massolab" (original `c3`). */
 export default function WhyMassolab() {
   return (
-    <section className="py-28 md:py-36 bg-white">
+    <section className="overflow-hidden py-28 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div {...reveal()} className="mb-16">
           <SectionLabel>Perché Massolab</SectionLabel>

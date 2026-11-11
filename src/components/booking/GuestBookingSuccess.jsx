@@ -20,7 +20,7 @@ export default function GuestBookingSuccess({ appointment, treatment, intakeSkip
           <h2 className="text-2xl font-bold text-gray-900 mb-1">Richiesta inviata!</h2>
           <p className="text-gray-500 text-sm">Simone ti contatterà a breve per confermare.</p>
           <p className="text-xs text-gray-500 mt-1">
-            Email inviata a <strong>{appointment.email}</strong>
+            Riceverai il riepilogo via email a <strong>{appointment.email}</strong>
           </p>
         </div>
 

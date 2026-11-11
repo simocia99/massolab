@@ -37,7 +37,7 @@ export default function FaqSection() {
   const [open, setOpen] = useState(null);
 
   return (
-    <section id="faq" className="py-28 md:py-36 bg-white">
+    <section id="faq" className="overflow-hidden py-28 md:py-36 bg-white">
       <div className="max-w-3xl mx-auto px-6">
         <motion.div {...reveal(20, 0.6, 0, null)} className="text-center mb-14">
           <SectionLabel>Domande frequenti</SectionLabel>

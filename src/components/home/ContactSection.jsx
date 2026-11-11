@@ -64,7 +64,7 @@ export default function ContactSection() {
   const wa = whatsappUrl();
 
   return (
-    <section id="contatti" className="py-28 md:py-36 bg-[#F3F0EA]">
+    <section id="contatti" className="overflow-hidden py-28 md:py-36 bg-[#F3F0EA]">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
