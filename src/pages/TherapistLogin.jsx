@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff, LoaderCircle, Lock, LogOut, ShieldCheck, TriangleAlert } from 'lucide-react';
 import { db } from '@/api/client';
-import { DEMO_THERAPIST_PASSWORD, THERAPIST_EMAIL } from '@/api/config';
+import { DEMO_THERAPIST_PASSWORD, GOOGLE_AUTH, THERAPIST_EMAIL } from '@/api/config';
 import { useAuth } from '@/lib/AuthContext';
 import { absolutePageUrl, createPageUrl } from '@/lib/utils';
 
@@ -110,6 +110,8 @@ export default function TherapistLogin() {
 
           {state === 'unauth' && (
             <div className="space-y-5">
+              {GOOGLE_AUTH ? (
+                <>
               <p className="text-gray-300 text-sm text-center">
                 Accedi con il tuo account Google autorizzato per entrare nell&apos;area riservata.
               </p>
@@ -128,6 +130,10 @@ export default function TherapistLogin() {
                 oppure con email e password
                 <span className="flex-1 h-px bg-white/10" />
               </div>
+                </>
+              ) : (
+                <p className="text-gray-300 text-sm text-center">Accedi con email e password per entrare nell&apos;area riservata.</p>
+              )}
 
               <form onSubmit={signInWithPassword} className="space-y-3">
                 <label className="sr-only" htmlFor="therapist-email">

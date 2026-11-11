@@ -5,6 +5,9 @@
 export const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || '';
 export const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 export const IS_DEMO = !SUPABASE_URL || !SUPABASE_ANON_KEY;
+// Google sign-in buttons appear only once the provider is set up in Supabase
+// (GitHub variable VITE_GOOGLE_AUTH=1).
+export const GOOGLE_AUTH = !IS_DEMO && import.meta.env.VITE_GOOGLE_AUTH === '1';
 
 export const THERAPIST_EMAIL = (
   import.meta.env.VITE_THERAPIST_EMAIL || 'massolab.simoneciacchi@gmail.com'

@@ -7,6 +7,7 @@ import { db } from '@/api/client';
 import { useAuth } from '@/lib/AuthContext';
 import { createPageUrl } from '@/lib/utils';
 import { GoogleIcon } from '@/pages/TherapistLogin';
+import { GOOGLE_AUTH } from '@/api/config';
 import { ensureClientProfile, stashPendingProfile } from '@/components/client/clientProfile';
 
 const EMPTY = { email: '', password: '', first_name: '', last_name: '', phone: '' };
@@ -283,6 +284,8 @@ export default function ClientLogin() {
               </p>
             )}
 
+            {GOOGLE_AUTH && (
+              <>
             <button
               type="button"
               id="client-google-btn"
@@ -297,6 +300,8 @@ export default function ClientLogin() {
               oppure con email
               <span className="flex-1 h-px bg-gray-200" />
             </div>
+              </>
+            )}
 
             <form onSubmit={mode === 'login' ? handleLogin : handleRegister} className="space-y-4">
               {mode === 'register' && (
