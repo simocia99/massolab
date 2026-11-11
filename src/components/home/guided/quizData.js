@@ -34,49 +34,49 @@ const RULES = {
     treatment: 'Massaggio Miofasciale',
     alternative: 'Massaggio Connettivale',
     reason:
-      'Le tensioni cervicali croniche originano spesso dalle fasce muscolari. Il miofasciale lavora in profondità per sciogliere i blocchi alla base del problema.',
+      'Per collo e spalle rigidi il miofasciale lavora con pressioni lente e mirate. Se il dolore scende al braccio o senti formicolii, senti prima il medico.',
     duration: '50–60 min',
-    price: 'da €55',
+    price: 'Prezzo in prenotazione',
   },
   schiena: {
     treatment: 'Massaggio Connettivale',
     alternative: 'Massaggio Miofasciale',
     reason:
-      'I dolori lombari sono spesso legati a tensioni nel tessuto connettivo e a posture scorrette. Il connettivale agisce in modo specifico su queste strutture.',
+      'Il connettivale lavora sulle tensioni profonde della schiena, con trazioni leggere su pelle e tessuto sottocutaneo.',
     duration: '50–60 min',
-    price: 'da €55',
+    price: 'Prezzo in prenotazione',
   },
   contratture: {
     treatment: 'Massaggio Miofasciale',
     alternative: 'Coppettazione',
     reason:
-      'Le contratture muscolari rispondono bene a un lavoro profondo e mirato sulle fasce. La coppettazione può affiancare il trattamento per sciogliere le zone più resistenti.',
+      'Per le contratture serve un lavoro lento e mirato sulle fasce. La coppettazione può affiancare il trattamento sulle zone più rigide.',
     duration: '50–60 min',
-    price: 'da €55',
+    price: 'Prezzo in prenotazione',
   },
   sportivo: {
     treatment: 'Massaggio Sportivo',
     alternative: 'Kinesiotaping',
     reason:
-      'Il massaggio sportivo è progettato per accelerare il recupero muscolare, ridurre i DOMS e preparare il corpo alle sessioni successive.',
+      'Il massaggio sportivo può ridurre l\'indolenzimento dei giorni dopo l\'allenamento e aiutarti a ritrovare scioltezza.',
     duration: '50–60 min',
-    price: 'da €60',
+    price: 'Prezzo in prenotazione',
   },
   stress: {
     treatment: 'Massaggio Tradizionale/Rilassante',
     alternative: 'Massaggio Miofasciale',
     reason:
-      'Il massaggio rilassante abbassa il tono muscolare e il livello di cortisolo, aiutando corpo e mente a recuperare. Se le tensioni sono profonde, il miofasciale può essere più efficace.',
+      'Il massaggio rilassante abbassa il ritmo e scioglie la tensione: un\'ora per staccare davvero. Se le tensioni sono profonde, possiamo valutare il miofasciale.',
     duration: '60 min',
-    price: 'da €50',
+    price: 'Prezzo in prenotazione',
   },
   gambe: {
     treatment: 'Linfodrenaggio',
     alternative: 'Massaggio Tradizionale/Rilassante',
     reason:
-      'Il linfodrenaggio stimola il ritorno venoso e linfatico, riducendo gonfiori e senso di pesantezza in modo diretto e misurabile.',
+      'Il linfodrenaggio favorisce il drenaggio dei liquidi e dà una sensazione di gambe più leggere.',
     duration: '50–60 min',
-    price: 'da €55',
+    price: 'Prezzo in prenotazione',
   },
   nonso: {
     treatment: 'Massaggio Tradizionale/Rilassante',
@@ -84,7 +84,7 @@ const RULES = {
     reason:
       'Se non sai da dove partire, una prima seduta rilassante permette di capire dove il tuo corpo porta più tensione. Da lì decidiamo insieme il percorso più adatto.',
     duration: '60 min',
-    price: 'da €50',
+    price: 'Prezzo in prenotazione',
   },
 };
 

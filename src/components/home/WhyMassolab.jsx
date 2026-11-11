@@ -16,7 +16,7 @@ const REASONS = [
   {
     icon: HandHeart,
     headline: 'Diretto.',
-    title: 'La verità sul tuo problema.',
+    title: 'Nessuna promessa a vuoto.',
     description: 'Ti dico quante sedute ha senso fare. E quando è meglio rivolgerti altrove.',
     accent: '#9A5F2A',
   },
@@ -29,9 +29,9 @@ const REASONS = [
   },
   {
     icon: ShieldCheck,
-    headline: 'Certificato.',
-    title: 'Formazione professionale.',
-    description: "Aggiornato e specializzato. Lavoro solo nell'ambito delle mie competenze.",
+    headline: 'Qualificato.',
+    title: 'Massoterapista MCB.',
+    description: "Ho un titolo da massoterapista e lavoro solo nell'ambito delle mie competenze.",
     accent: '#4A6470',
   },
 ];
@@ -44,9 +44,9 @@ export default function WhyMassolab() {
         <motion.div {...reveal()} className="mb-16">
           <SectionLabel>Perché Massolab</SectionLabel>
           <h2 className="text-4xl md:text-[3.25rem] font-medium leading-[1.05] text-[#191A17] mb-4" style={{ letterSpacing: '-0.04em', ...HEADING_FONT }}>
-            Progettato per
+            Pensato
             <br />
-            <span className="text-[#6A685F] font-light">darti risultati.</span>
+            <span className="text-[#6A685F] font-light">intorno a te.</span>
           </h2>
         </motion.div>
 

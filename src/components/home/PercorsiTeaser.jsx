@@ -16,7 +16,7 @@ const PATHS = [
     name: 'Percorso Mantenimento',
     icon: Droplets,
     gradient: 'from-blue-500 to-cyan-400',
-    tagline: 'Continuità e benessere duraturo nel tempo',
+    tagline: 'Continuità, seduta dopo seduta',
     featured: true,
   },
 ];
@@ -25,7 +25,7 @@ const BENEFITS = [
   'Sedute scalate automaticamente dal pacchetto',
   'Suggerimenti personalizzati per la prossima seduta',
   "Tracciamento del percorso dall'area clienti",
-  'Nessuna scadenza rigida — i tuoi ritmi, le tue regole',
+  'Sedute da pianificare secondo i tuoi ritmi',
 ];
 
 /** "Percorsi di trattamento" teaser (original `A3`). */
@@ -45,13 +45,13 @@ export default function PercorsiTeaser() {
               Percorsi di trattamento
             </span>
             <h2 className="text-4xl md:text-[3.25rem] font-medium leading-[1.05] text-gray-900 mb-6 tracking-tight leading-tight">
-              I risultati durano
+              La costanza
               <br />
-              con la continuità
+              fa la differenza
             </h2>
             <p className="text-lg text-gray-500 leading-relaxed mb-8">
-              Una singola seduta fa bene. Un percorso cambia davvero qualcosa. Ogni pacchetto è progettato per
-              accompagnarti con gradualità verso il tuo obiettivo — che sia recupero, performance o puro benessere.
+              Una seduta ti fa staccare. Con più sedute posso seguirti nel tempo e adattare il lavoro a come
+              rispondi, seduta dopo seduta.
             </p>
             <div className="space-y-3 mb-10">
               {BENEFITS.map((b) => (
@@ -86,7 +86,7 @@ export default function PercorsiTeaser() {
                 >
                   {p.featured && (
                     <span className="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-                      Più scelto
+                      Il più completo
                     </span>
                   )}
                   <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${p.gradient} flex items-center justify-center`}>

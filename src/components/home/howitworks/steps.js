@@ -20,14 +20,14 @@ export const STEPS = [
     number: '03',
     tab: 'Ascolto',
     title: 'La valutazione parte da qui.',
-    description: 'Prima seduta: breve anamnesi. Dove senti il problema, da quando, cosa lo peggiora.',
+    description: 'Prima seduta: un breve colloquio. Dove senti il problema, da quando, cosa lo peggiora.',
     image: 'passo-3-ascolto.jpg',
   },
   {
     number: '04',
     tab: 'Agiamo',
-    title: 'Un piano chiaro dalla prima seduta.',
-    description: 'Si inizia. A fine seduta sai già frequenza, trattamento e obiettivo.',
+    title: 'Alla fine sai come proseguire.',
+    description: 'Si inizia. A fine seduta ti dico cosa ho notato e se, e ogni quanto, ha senso rivederci.',
     image: 'passo-4-agiamo.jpg',
   },
 ];

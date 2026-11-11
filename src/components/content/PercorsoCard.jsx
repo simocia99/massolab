@@ -23,7 +23,7 @@ export const PACKAGES = [
     gradient: 'from-red-500 to-orange-400',
     description:
       'Ideale per iniziare o per chi vuole concedersi un momento di cura con continuità. Tre sedute progettate per sciogliere tensioni accumulate e ritrovare equilibrio psicofisico.',
-    benefits: ['Riduzione delle tensioni muscolari', 'Miglioramento del sonno e del benessere', 'Ripristino del tono muscolare'],
+    benefits: ['Tensioni muscolari più sciolte', 'Un momento fisso per staccare', "Continuità tra una seduta e l'altra"],
     recommended_frequency: 'Una volta a settimana',
     ideal_for: 'Chi vuole iniziare un percorso o prendersi cura di sé con regolarità',
     badge: null,
@@ -37,16 +37,15 @@ export const PACKAGES = [
     icon: Droplets,
     gradient: 'from-blue-500 to-cyan-400',
     description:
-      "Il programma completo per chi vuole fare del benessere una costante. Otto sedute da pianificare con libertà nell'arco di due o tre mesi, per mantenere i risultati nel tempo.",
+      "Il programma completo per chi vuole fare del benessere una costante. Otto sedute da pianificare insieme, con la frequenza più adatta a te.",
     benefits: [
-      'Benefici duraturi e progressivi',
+      'Un lavoro che prosegue nel tempo',
       'Adattamento del trattamento nel tempo',
-      'Prevenzione delle tensioni ricorrenti',
-      'Priorità di prenotazione garantita',
+      'Sedute regolari, con la frequenza più adatta a te',
     ],
     recommended_frequency: 'Una volta ogni 1-2 settimane',
     ideal_for: 'Chi ha già sperimentato i benefici del massaggio e vuole mantenerli nel tempo',
-    badge: 'Miglior valore',
+    badge: 'Il più completo',
   },
 ];
 

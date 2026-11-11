@@ -53,7 +53,7 @@ export default function Percorsi() {
               <br className="hidden md:block" /> attorno a te
             </h1>
             <p className="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-              I risultati duraturi si ottengono con continuità. Ogni percorso è pensato per creare un cambiamento reale,
+              La continuità aiuta: ogni percorso è pensato per seguirti nel tempo,
               seduta dopo seduta.
             </p>
           </motion.div>
@@ -98,8 +98,8 @@ export default function Percorsi() {
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-gray-500 text-sm leading-relaxed">
             <strong className="text-gray-700">Nessun acquisto online.</strong> I percorsi si prenotano e si accordano
-            direttamente con Simone. Il pagamento avviene in studio o tramite accordo diretto. I pacchetti non hanno
-            scadenza fissa — si utilizzano nei tempi che meglio si adattano al tuo ritmo.
+            direttamente con Simone. Il pagamento si concorda di persona. Tempi e frequenza
+            delle sedute si decidono insieme.
           </p>
         </div>
       </section>

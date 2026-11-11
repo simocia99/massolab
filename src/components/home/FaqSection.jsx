@@ -12,7 +12,7 @@ const FAQS = [
   },
   {
     q: 'Quante sedute servono per vedere risultati?',
-    a: 'Dipende dal problema. Per tensioni muscolari ligate allo stress, spesso bastano 2-3 sedute. Per dolori cronici o posturali il percorso è più lungo. Te lo dico chiaramente dopo la prima valutazione.',
+    a: 'Dipende dal problema. Per tensioni muscolari legate allo stress a volte bastano poche sedute; per fastidi cronici o posturali serve più tempo. Te lo dico chiaramente dopo la prima valutazione.',
   },
   {
     q: 'Il massaggio fa male?',
@@ -23,8 +23,8 @@ const FAQS = [
     a: 'In alcune fasi acute è meglio aspettare. Se hai dubbi, scrivimi su WhatsApp prima di prenotare e ti dico onestamente se è il momento giusto o se è meglio aspettare.',
   },
   {
-    q: 'Dove si trova lo studio?',
-    a: 'Al momento non ho uno studio fisso. I trattamenti sono a domicilio: vengo direttamente da te, dove ti trovi più comodo. Portafoglio risparmiato, zero spostamenti.',
+    q: 'Dove si fa il trattamento?',
+    a: 'A casa tua, o dove ti è più comodo, entro 20 km da Lacchiarella. Non ho uno studio: lavoro solo a domicilio e porto io lettino, oli e teli.',
   },
   {
     q: 'Posso cancellare o spostare un appuntamento?',

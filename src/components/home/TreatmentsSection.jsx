@@ -89,7 +89,7 @@ export default function TreatmentsSection() {
             <span className="text-[#6A685F] font-light">ha una storia.</span>
           </h2>
           <p className="text-lg text-[#6A685F] max-w-xl font-light leading-relaxed">
-            Otto specializzazioni. Un unico obiettivo: farti stare meglio, seduta per seduta.
+            Otto trattamenti, una regola: adattarli a te.
           </p>
         </motion.div>
 

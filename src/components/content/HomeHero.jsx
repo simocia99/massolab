@@ -99,8 +99,8 @@ export default function HomeHero() {
             </div>
             <motion.div {...fade(0.8, reduce)} className="md:justify-self-end md:text-right max-w-sm">
               <p className="text-white/90 text-[15px] leading-relaxed mb-6">
-                Massoterapia professionale a casa tua, entro {BUSINESS.radiusKm} km da {BUSINESS.city}. Prima ascolto, poi
-                valuto, poi lavoriamo: ogni seduta è costruita su di te.
+                Massoterapia professionale a casa tua, entro {BUSINESS.radiusKm} km da {BUSINESS.city}. Ti ascolto, poi
+                lavoriamo: ogni seduta si adatta a te.
               </p>
               <div className="flex flex-wrap items-center gap-3 md:justify-end">
                 <Link
@@ -128,8 +128,8 @@ export default function HomeHero() {
           {...fade(1, reduce)}
           className="absolute inset-x-0 bottom-0 border-t border-white/30 px-5 sm:px-10 lg:px-14 h-12 flex items-center justify-between text-xs font-medium uppercase tracking-[0.08em] text-white/90"
         >
-          <span>A domicilio · entro {BUSINESS.radiusKm} km</span>
-          <span>6 giorni su 7</span>
+          <span className="whitespace-nowrap"><span className="hidden sm:inline">A domicilio · entro </span><span className="sm:hidden">Domicilio · </span>{BUSINESS.radiusKm} km</span>
+          <span className="whitespace-nowrap">Massoterapista MCB</span>
         </motion.div>
       </motion.div>
     </section>

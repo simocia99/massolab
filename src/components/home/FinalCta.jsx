@@ -21,10 +21,10 @@ export default function FinalCta() {
             className="text-white font-medium leading-[1.02] mb-6"
             style={{ fontSize: 'clamp(2.6rem, 6vw, 4.75rem)', letterSpacing: '-0.035em' }}
           >
-            Prenota in 2 minuti.
+            Scegli il giorno.<br />Al resto penso io.
           </h2>
           <p className="text-lg text-white/85 mb-10 max-w-lg mx-auto leading-relaxed">
-            Scegli il trattamento, la data, l&apos;orario. Confermo io, arrivo io, penso io al resto.
+            Trattamento, data e orario: bastano due minuti. Ti confermo io e arrivo con lettino, oli e teli.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link

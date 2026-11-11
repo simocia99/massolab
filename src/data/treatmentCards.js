@@ -32,7 +32,7 @@ export const TREATMENT_CARDS = [
     title: 'Massaggio Rilassante',
     headline: 'Svuota la mente.',
     description:
-      'Tensione accumulata, postura scorretta, stanchezza profonda. Manovre lente e calibrate che sciolgono ciò che nessun farmaco può raggiungere.',
+      "Tensione accumulata, postura scorretta, stanchezza profonda. Manovre lente e calibrate per sciogliere la tensione e prenderti un'ora per te.",
     icon: Sparkles,
     accent: '#56695C',
     tag: 'Benessere',
@@ -42,7 +42,7 @@ export const TREATMENT_CARDS = [
     title: 'Massaggio Sportivo',
     headline: 'Recupera più veloce.',
     description:
-      'Progettato per chi si allena seriamente. Riduce i DOMS, ottimizza i tempi di recupero e prepara il corpo alla sessione successiva.',
+      "Pensato per chi si allena con costanza. Può ridurre l'indolenzimento dei giorni dopo (DOMS) e aiutarti a ritrovare scioltezza.",
     icon: Dumbbell,
     accent: '#9A5F2A',
     tag: 'Performance',
@@ -51,7 +51,7 @@ export const TREATMENT_CARDS = [
   {
     title: 'Massaggio Miofasciale',
     headline: 'Libera i blocchi.',
-    description: 'Lavoro in profondità sulle fasce muscolari per eliminare aderenze e rigidità croniche.',
+    description: 'Lavoro in profondità sulle fasce muscolari, per la rigidità che torna sempre nello stesso punto.',
     icon: Move,
     accent: '#7A5C6E',
     tag: 'Dolori cronici',
@@ -59,7 +59,7 @@ export const TREATMENT_CARDS = [
   {
     title: 'Linfodrenaggio',
     headline: 'Leggerezza totale.',
-    description: 'Riduce gonfiori e senso di pesantezza stimolando il drenaggio dei liquidi in eccesso.',
+    description: 'Manovre delicate e ritmiche che favoriscono il drenaggio dei liquidi, per gambe gonfie e pesanti.',
     icon: Droplets,
     accent: '#4F6B3A',
     tag: 'Circolazione',
@@ -67,7 +67,7 @@ export const TREATMENT_CARDS = [
   {
     title: 'Massaggio Connettivale',
     headline: 'In profondità.',
-    description: 'Stimolazioni riflesse sul tessuto connettivo per dolori vertebrali e tensioni profonde.',
+    description: 'Stimolazioni riflesse sul tessuto connettivo, per le tensioni profonde di schiena e collo.',
     icon: Layers,
     accent: '#4A6470',
     tag: 'Postura',
@@ -83,7 +83,7 @@ export const TREATMENT_CARDS = [
   {
     title: 'Coppettazione',
     headline: 'Pressione negativa.',
-    description: 'Coppe a pressione negativa per sciogliere contratture profonde e migliorare la circolazione locale.',
+    description: 'Coppe a pressione negativa sulle zone più contratte. Possono lasciare segni rossi per qualche giorno.',
     icon: CircleDot,
     accent: '#56695C',
     tag: 'Contratture',
@@ -91,7 +91,7 @@ export const TREATMENT_CARDS = [
   {
     title: 'Bendaggio Funzionale',
     headline: 'Stabilità sicura.',
-    description: "Stabilizzazione articolare per prevenzione, supporto post-infortunio e rientro all'attività.",
+    description: "Sostegno articolare per tornare all'attività con più sicurezza. Dopo un infortunio, prima il medico.",
     icon: Bandage,
     accent: '#4F6B3A',
     tag: 'Infortuni',

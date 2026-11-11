@@ -142,7 +142,7 @@ export function SuggestionStep({ suggestion }) {
           chiacchierata prima di prenotare — per capire meglio la situazione e consigliarti nel modo più utile.
         </p>
         <p className="text-gray-500 text-sm bg-amber-50 border border-amber-200 rounded-xl p-4">
-          Non è un rifiuto — è la scelta più corretta per te. Scrivimi su WhatsApp e rispondo entro poche ore.
+          Non è un rifiuto — è la scelta più corretta per te. Scrivimi su WhatsApp e ti rispondo appena possibile.
         </p>
       </motion.div>
     );

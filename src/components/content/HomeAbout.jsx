@@ -40,9 +40,9 @@ export default function HomeAbout() {
             className="col-span-2 lg:col-span-5 text-ink font-medium leading-[1.05]"
             style={{ fontSize: 'clamp(2rem, 4.2vw, 3.25rem)', letterSpacing: '-0.03em' }}
           >
-            Non improvvisa.
+            Prima ascolto.
             <br />
-            <span className="text-gray-500">Studia, poi lavora su di te.</span>
+            <span className="text-gray-500">Poi lavoro su di te.</span>
           </motion.h2>
           <div className="hidden lg:block lg:col-span-7" />
 
@@ -58,7 +58,7 @@ export default function HomeAbout() {
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.04]"
                 />
               </div>
-              <StatCard value="8+" label="Specializzazioni" className="top-0 left-6" />
+              <StatCard value="8" label="Trattamenti" className="top-0 left-6" />
             </motion.div>
           </motion.div>
 
@@ -69,12 +69,12 @@ export default function HomeAbout() {
           >
             <p className="text-lg md:text-xl leading-snug" style={{ letterSpacing: '-0.01em' }}>
               <span className="text-ink">
-                Sono Simone Ciacchi. Lavoro con chi ha dolori muscolari cronici, tensioni da stress o vuole recuperare il
-                benessere fisico.{' '}
+                Sono Simone Ciacchi, massoterapista MCB. Vengo a casa tua con lettino, oli e teli. Lavoro con chi ha
+                tensioni e rigidità da lavoro, da sport o da stress.{' '}
               </span>
               <span className="text-gray-500">
-                Non esiste un protocollo standard: prima ascolto, poi valuto, poi agiamo. Tecniche classiche e metodologie
-                recenti, con un solo obiettivo — risultati concreti, non solo un&apos;ora di relax.
+                Non uso un protocollo fisso: scelgo con te tecnica e pressione. E se capisco che serve un medico o un
+                fisioterapista, te lo dico.
               </span>
             </p>
             <Link
@@ -98,8 +98,8 @@ export default function HomeAbout() {
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.04]"
                 />
               </div>
-              <StatCard value="100%" label="A domicilio" className="-top-6 -left-2 lg:-left-10 hidden sm:block" />
-              <StatCard value="6/7" label="Giorni a settimana" className="bottom-4 right-4" />
+              <StatCard value="20 km" label="Di raggio" className="-top-6 -left-2 lg:-left-10 hidden sm:block" />
+              <StatCard value="Inclusi" label="Lettino, oli e teli" className="bottom-4 right-4" />
             </motion.div>
           </motion.div>
         </div>

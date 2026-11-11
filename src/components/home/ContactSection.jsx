@@ -10,7 +10,7 @@ import ServiceAreaMap from './ServiceAreaMap';
 import SectionLabel from './SectionLabel';
 
 const DEFAULT_LOCATION = { lat: 45.3252, lng: 9.1401, label: 'Lacchiarella (MI)' };
-const DEFAULT_RADIUS_KM = 15;
+const DEFAULT_RADIUS_KM = 20;
 const DAY_FULL = { 1: 'Lunedì', 2: 'Martedì', 3: 'Mercoledì', 4: 'Giovedì', 5: 'Venerdì', 6: 'Sabato', 7: 'Domenica' };
 
 /** TherapistSettings.day_schedules ({1..7: {active, slots:[{start,end}]}}) -> rows. */
@@ -216,7 +216,7 @@ export default function ContactSection() {
               </h3>
               <p className="text-[#6A685F] font-light leading-relaxed max-w-md">
                 L'area di intervento copre un raggio di <span className="font-bold text-[#191A17]">{radiusKm} km</span> da{' '}
-                {location.label}, direttamente a domicilio o in studio.
+                {location.label}, direttamente a domicilio.
               </p>
             </div>
             <label className="inline-flex items-center gap-3 cursor-pointer select-none self-start md:self-end">

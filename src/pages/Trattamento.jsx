@@ -94,7 +94,7 @@ export default function Trattamento() {
           <motion.div {...reveal} className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm">
             <h2 className="text-xl font-bold text-gray-900 mb-5">Benefici attesi</h2>
             <p className="text-xs text-gray-500 mb-4 italic">
-              Risultati realistici basati sull'esperienza clinica — i risultati individuali variano.
+              Cosa puoi aspettarti: ogni persona risponde in modo diverso.
             </p>
             <ul className="space-y-2.5">
               {treatment.benefici.map((item) => (
