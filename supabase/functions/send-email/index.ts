@@ -2,6 +2,7 @@
 //
 // Variabili (Supabase -> Edge Functions -> Secrets):
 //   RESEND_API_KEY   chiave API di Resend
+//   GMAIL_USER / GMAIL_APP_PASSWORD  alternativa provvisoria a Resend (SMTP Gmail, password per le app)
 //   MAIL_FROM        mittente verificato su Resend, es. "notifiche@massolab.it"
 //   THERAPIST_EMAIL  email del terapista (anche più indirizzi separati da virgola)
 //   SITE_URL         indirizzo del sito CON il percorso base, senza "/" finale,
@@ -23,6 +24,7 @@
 //       contact_request        terapista
 //       client_message         terapista (solo cliente loggato con email confermata)
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.4';
+import { SMTPClient } from 'https://deno.land/x/denomailer@1.6.0/mod.ts';
 
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY') ?? '';
 const MAIL_FROM = Deno.env.get('MAIL_FROM') ?? 'onboarding@resend.dev';
@@ -30,6 +32,11 @@ const THERAPISTS = (Deno.env.get('THERAPIST_EMAIL') ?? 'massolab.simoneciacchi@g
   .split(',')
   .map((s) => s.trim().toLowerCase())
   .filter(Boolean);
+// Gmail (provvisorio, finche' non c'e' un dominio verificato su Resend): password per le app a 16 caratteri.
+const GMAIL_USER = (Deno.env.get('GMAIL_USER') ?? '').trim().replace(/[\r\n]/g, '');
+const GMAIL_APP_PASSWORD = (Deno.env.get('GMAIL_APP_PASSWORD') ?? '').replace(/\s+/g, '');
+const USE_RESEND = !!(RESEND_API_KEY && Deno.env.get('MAIL_FROM'));
+const USE_GMAIL = !USE_RESEND && !!(GMAIL_USER && GMAIL_APP_PASSWORD);
 const SITE_URL = (Deno.env.get('SITE_URL') ?? '').trim().replace(/\/+$/, '');
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SUPABASE_ANON_KEY = Deno.env.get('SUPABASE_ANON_KEY')!;
@@ -125,24 +132,66 @@ async function apptByToken(id: unknown, token: unknown): Promise<Appt | null> {
 
 type Mail = { to: string; subject: string; html: string; fromName: string };
 
+const noCrLf = (v: string) => v.replace(/[\r\n]+/g, ' ');
+
+function htmlToText(html: string): string {
+  return html
+    .replace(/<(style|script)[\s\S]*?<\/\1>/gi, '')
+    .replace(/<a\s[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, '$2 ($1)')
+    .replace(/<\/(p|div|h[1-6]|tr|li)>|<br\s*\/?>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    // &amp; per ultimo: evita la doppia decodifica ("&amp;lt;" deve restare "&lt;")
+    .replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 async function sendMail(m: Mail) {
   const toTherapist = THERAPISTS.includes(m.to);
   const isHtml = /<\/?[a-z][\s\S]*>/i.test(m.html);
   const html = isHtml ? m.html : `<div style="font-family:sans-serif;white-space:pre-wrap">${escapeHtml(m.html)}</div>`;
+  const text = isHtml ? htmlToText(m.html) : m.html;
+  const subject = noCrLf(clip(m.subject, MAX_SUBJECT_CHARS));
+  const to = noCrLf(m.to);
+  const replyTo = !toTherapist && THERAPISTS[0] ? noCrLf(THERAPISTS[0]) : undefined;
+
+  if (USE_GMAIL) {
+    // From = sempre l'account Gmail configurato, mai un indirizzo deciso dal client.
+    const client = new SMTPClient({
+      connection: { hostname: 'smtp.gmail.com', port: 465, tls: true, auth: { username: GMAIL_USER, password: GMAIL_APP_PASSWORD } },
+    });
+    try {
+      await client.send({
+        from: `MassoLab - Simone Ciacchi <${GMAIL_USER}>`,
+        to,
+        subject,
+        content: text,
+        html,
+        ...(replyTo ? { replyTo } : {}),
+      });
+    } catch (e) {
+      console.error('SMTP error', (e as Error)?.name ?? 'unknown');
+      throw new Error('send failed');
+    } finally {
+      try { await client.close(); } catch { /* ignora */ }
+    }
+    return 'gmail';
+  }
+
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      from: `${m.fromName} <${MAIL_FROM}>`,
-      to: [m.to],
-      subject: clip(m.subject, MAX_SUBJECT_CHARS),
+      from: `${noCrLf(m.fromName)} <${Deno.env.get('MAIL_FROM') ?? MAIL_FROM}>`,
+      to: [to],
+      subject,
       html,
-      ...(isHtml ? {} : { text: m.html }),
-      ...(!toTherapist && THERAPISTS[0] ? { reply_to: THERAPISTS[0] } : {}),
+      text,
+      ...(replyTo ? { reply_to: replyTo } : {}),
     }),
   });
   if (!res.ok) {
-    console.error('Resend error', res.status, await res.text());
+    console.error('Resend error', res.status);
     throw new Error('send failed');
   }
   return (await res.json())?.id ?? null;
@@ -439,7 +488,7 @@ Deno.serve(async (req) => {
 async function handle(req: Request): Promise<Response> {
   if (req.method === 'OPTIONS') return new Response('ok');
   if (req.method !== 'POST') return json(405, { error: 'Metodo non consentito' });
-  if (!RESEND_API_KEY) return json(500, { error: 'RESEND_API_KEY non configurata' });
+  if (!USE_RESEND && !USE_GMAIL) return json(500, { error: 'Invio email non configurato' });
 
   let payload: Record<string, unknown>;
   try {

@@ -142,6 +142,19 @@ riceverebbero le conferme. Appena hai il dominio Aruba:
    (vedi punto E2, "Aggiungi record"), poi premi **Verify** su Resend (può servire qualche ora).
 3. Il mittente sarà ad esempio `notifiche@tuodominio.it`.
 
+### C2-bis. Soluzione provvisoria: inviare le email con Gmail (senza dominio)
+Finché non hai il dominio puoi usare l'account Gmail del terapista. Se in seguito imposti `RESEND_API_KEY` **e** `MAIL_FROM`, il sito passa da solo a Resend (nessuna modifica al codice).
+
+1. Apri <https://myaccount.google.com/security> con l'account Gmail del terapista e attiva la **Verifica in due passaggi**.
+2. Apri <https://myaccount.google.com/apppasswords>, scrivi come nome `MassoLab sito` e premi **Crea**.
+3. Google mostra una password di **16 lettere**: copiala (si vede una volta sola). Non scriverla in chat né nel codice.
+4. Supabase → **Edge Functions → Secrets** (o **Project Settings → Edge Functions**) → **Add new secret** e crea due segreti:
+   - `GMAIL_USER` = l'indirizzo Gmail (es. `massolab.simoneciacchi@gmail.com`)
+   - `GMAIL_APP_PASSWORD` = la password di 16 lettere
+5. **Per revocarla** (se la perdi o non serve più): <https://myaccount.google.com/apppasswords> → cestino accanto a `MassoLab sito`, poi elimina il segreto su Supabase.
+
+Limiti: Gmail permette circa 500 email al giorno (più che sufficienti) e il mittente sarà il Gmail, quindi qualche email può finire in **Spam**: i clienti possono segnarla come "Non è spam".
+
 ### C3. Pubblica la funzione "send-email" su Supabase
 Serve Node.js (già installato se hai lavorato al sito). Nel Terminale:
 

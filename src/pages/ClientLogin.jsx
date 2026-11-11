@@ -6,6 +6,7 @@ import { Eye, EyeOff, LoaderCircle } from 'lucide-react';
 import { db } from '@/api/client';
 import { useAuth } from '@/lib/AuthContext';
 import { createPageUrl } from '@/lib/utils';
+import { GoogleIcon } from '@/pages/TherapistLogin';
 import { ensureClientProfile, stashPendingProfile } from '@/components/client/clientProfile';
 
 const EMPTY = { email: '', password: '', first_name: '', last_name: '', phone: '' };
@@ -145,6 +146,16 @@ export default function ClientLogin() {
   const busyRef = useRef(false);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
 
+  const signInWithGoogle = async () => {
+    setError('');
+    try {
+      // Torna su questa pagina (con ?next=...): l'effetto qui sotto porta poi alla destinazione.
+      await db.auth.loginWithProvider('google', window.location.href);
+    } catch (e) {
+      setError(e.message || 'Accesso con Google non riuscito.');
+    }
+  };
+
   // Already logged in -> go straight to the destination.
   useEffect(() => {
     if (!isReset && !isLoadingAuth && user && !busyRef.current) navigate(next, { replace: true });
@@ -271,6 +282,21 @@ export default function ClientLogin() {
                 {info}
               </p>
             )}
+
+            <button
+              type="button"
+              id="client-google-btn"
+              onClick={signInWithGoogle}
+              className="w-full flex items-center justify-center gap-3 border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-red-500"
+            >
+              <GoogleIcon />
+              {mode === 'login' ? 'Accedi con Google' : 'Registrati con Google'}
+            </button>
+            <div className="flex items-center gap-3 my-4 text-xs text-gray-400">
+              <span className="flex-1 h-px bg-gray-200" />
+              oppure con email
+              <span className="flex-1 h-px bg-gray-200" />
+            </div>
 
             <form onSubmit={mode === 'login' ? handleLogin : handleRegister} className="space-y-4">
               {mode === 'register' && (
