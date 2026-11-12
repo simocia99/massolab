@@ -136,7 +136,7 @@ export default function Layout({ children, currentPageName }) {
                 >
                   Masso Lab
                 </span>
-                <span className={`hidden min-[420px]:block text-[10px] sm:text-xs font-medium tracking-[0.14em] uppercase mt-0.5 transition-colors ${transparent ? 'text-white/75' : 'text-gray-500'}`}>Simone Ciacchi</span>
+                <span className={`hidden min-[420px]:block text-[13px] font-[400] mt-0.5 transition-colors ${transparent ? 'text-white/80' : 'text-gray-600'}`} style={{ letterSpacing: '-0.01em' }}>Simone Ciacchi</span>
               </span>
             </Link>
 
