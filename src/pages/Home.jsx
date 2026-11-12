@@ -2,7 +2,6 @@ import { MotionConfig } from 'framer-motion';
 // Hero (O4) and "Chi sono" (A4) live in the content area's bundle range.
 import { O4 as HeroSection, A4 as AboutSection } from '@/xref/content';
 import TreatmentsSection from '@/components/home/TreatmentsSection';
-import PercorsiTeaser from '@/components/home/PercorsiTeaser';
 import GuidedBookingSection from '@/components/home/guided/GuidedBookingSection';
 import HowItWorks from '@/components/home/HowItWorks';
 import WhyMassolab from '@/components/home/WhyMassolab';
@@ -23,7 +22,6 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <TreatmentsSection />
-        <PercorsiTeaser />
         <GuidedBookingSection />
         <HowItWorks />
         <WhyMassolab />
