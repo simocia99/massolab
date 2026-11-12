@@ -16,6 +16,38 @@ const GLASS_LIGHT =
   'bg-[rgba(250,248,245,0.78)] border-black/[0.07] backdrop-blur-[20px] backdrop-saturate-[1.8] shadow-[0_1px_0_rgba(25,26,23,0.04),0_8px_30px_-14px_rgba(25,26,23,0.25)]';
 const TAP_SPRING = { type: 'spring', stiffness: 500, damping: 30 };
 
+// ── Luce della barra ("filo di luce", scelta dell'utente) ─────────────────────
+// Luce naturale (bianco caldo, come luce del giorno) che esce dal bordo inferiore.
+// È un livello con la STESSA forma della barra (rounded-[inherit]): il filo è il suo
+// bordo inferiore, quindi da pillola segue le curve degli angoli e sfuma verso i lati;
+// da barra agganciata è dritto a tutta larghezza. Il riflesso sotto è un'ombra chiara
+// che ha la forma della barra e ne segue larghezza e curve durante l'animazione.
+// Prestazioni: niente filter/backdrop-filter né livelli grandi; l'ombra si ridisegna solo
+// durante i 500ms del cambio di stato, non mentre si scorre.
+const LUCE = {
+  // sopra la foto scura: filo più luminoso e riflesso caldo visibile
+  dark: {
+    borderBottomColor: 'rgba(255, 247, 232, 0.6)',
+    boxShadow: '0 16px 34px -18px rgba(255, 240, 214, 0.55), 0 34px 70px -36px rgba(255, 236, 205, 0.4)',
+  },
+  // su sfondo chiaro: stesso bianco caldo, appena dorato perché si veda sul crema
+  light: {
+    borderBottomColor: 'rgba(255, 252, 244, 1)',
+    boxShadow: '0 14px 32px -18px rgba(214, 176, 120, 0.32), 0 30px 64px -34px rgba(240, 214, 170, 0.45)',
+  },
+};
+
+/** Luce che esce dal bordo inferiore della barra (stessa forma della barra). */
+function NavLight({ dark }) {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 rounded-[inherit] border-b transition-[box-shadow,border-color] duration-500 ease-apple"
+      style={dark ? LUCE.dark : LUCE.light}
+    />
+  );
+}
+
 const menuItem = {
   hidden: { opacity: 0, y: -8 },
   show: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.28, 0.11, 0.32, 1] } },
@@ -85,7 +117,8 @@ export default function Layout({ children, currentPageName }) {
     <MotionConfig reducedMotion="user">
       <div className="flex flex-col min-h-screen bg-[#F3F0EA]">
         <nav className={`fixed z-50 transition-[top,left,right] duration-500 ease-apple ${navPos}`}>
-          <div className={`transition-[max-width,border-radius,background-color,border-color,box-shadow] duration-500 ease-apple ${barCls}`}>
+          <div className={`relative transition-[max-width,border-radius,background-color,border-color,box-shadow] duration-500 ease-apple ${barCls}`}>
+          <NavLight dark={transparent} />
           <div className="max-w-6xl mx-auto pl-4 pr-2 sm:pl-5 h-14 flex items-center justify-between">
             <Link to={createPageUrl('Home')} className="flex items-center gap-2.5 flex-shrink-0 min-h-[44px]">
               <img
