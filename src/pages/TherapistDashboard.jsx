@@ -1,14 +1,16 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu } from 'lucide-react';
+import { MoreHorizontal } from 'lucide-react';
 import { toast } from 'sonner';
 import { db } from '@/api/client';
 import TherapistGuard from '@/components/therapist/core/TherapistGuard';
-import Sidebar from '@/components/therapist/core/Sidebar';
+import Sidebar, { BOTTOM_TABS, tabLabel } from '@/components/therapist/core/Sidebar';
 import OverviewTab from '@/components/therapist/core/OverviewTab';
 import BookingsTab from '@/components/therapist/core/BookingsTab';
 import CalendarTab from '@/components/therapist/core/CalendarTab';
 import { Spinner } from '@/components/therapist/core/shared';
+import MorningReport from '@/components/therapist/core/MorningReport';
+import { enableStudioPwa } from '@/lib/pwa';
 
 // Less-used / heavy tabs are code-split so the dashboard opens fast on a phone.
 const ClientsTab = lazy(() => import('@/components/therapist/core/ClientsTab'));
@@ -108,7 +110,7 @@ function Dashboard() {
               setLoading(true);
               loadAppointments();
             }}
-            className="bg-red-600 hover:bg-red-700 text-white rounded-xl px-5 py-2.5 text-sm font-semibold"
+            className="bg-[#56695C] hover:bg-[#46574B] text-white rounded-full px-5 min-h-[44px] text-sm font-semibold transition-colors duration-300 ease-apple"
           >
             Riprova
           </button>
@@ -117,7 +119,12 @@ function Dashboard() {
     const props = { appointments };
     switch (activeTab) {
       case 'dashboard':
-        return <OverviewTab {...props} />;
+        return (
+          <div className="space-y-8">
+            <MorningReport appointments={appointments} onNavigate={selectTab} />
+            <OverviewTab {...props} />
+          </div>
+        );
       case 'bookings':
         return <BookingsTab {...props} onRefresh={loadAppointments} />;
       case 'calendar':
@@ -160,59 +167,112 @@ function Dashboard() {
     }
   };
 
+  const inOther = !BOTTOM_TABS.some((t) => t.tab === activeTab);
+
   return (
-    <div className="flex min-h-screen bg-[#F3F0EA]">
+    <div className="flex min-h-screen supports-[min-height:100dvh]:min-h-[100dvh] bg-[#F3F0EA] [-webkit-tap-highlight-color:transparent]">
       <div className="hidden lg:block sticky top-0 h-screen flex-shrink-0">
         <Sidebar activeTab={activeTab} setActiveTab={selectTab} />
       </div>
 
+      {/* "Altro": foglio dal basso con il menu completo (solo telefono/tablet) */}
       <AnimatePresence>
         {menuOpen && (
-          <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu area terapista">
+          <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu completo">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.2 }}
-              className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
+              transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.25 }}
+              className="absolute inset-0 bg-[#191A17]/40"
               onClick={() => setMenuOpen(false)}
             />
             <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="absolute inset-y-0 left-0 w-[280px] max-w-[85vw] shadow-2xl"
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.4 }}
+              className="absolute inset-x-0 bottom-0 h-[85vh] supports-[height:100dvh]:h-[85dvh] flex flex-col bg-white rounded-t-[28px] shadow-[0_-10px_40px_-12px_rgba(25,26,23,0.25)] overflow-hidden"
             >
-              <Sidebar activeTab={activeTab} setActiveTab={selectTab} />
+              <button
+                onClick={() => setMenuOpen(false)}
+                aria-label="Chiudi menu"
+                className="flex-shrink-0 w-full h-7 flex items-center justify-center"
+              >
+                <span className="block h-1 w-10 rounded-full bg-[#D3CEC4]" />
+              </button>
+              <div className="flex-1 min-h-0">
+                <Sidebar variant="sheet" activeTab={activeTab} setActiveTab={selectTab} />
+              </div>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
 
-      <div className="flex-1 flex flex-col min-w-0">
-        <div className="lg:hidden bg-white/80 backdrop-blur-xl border-b border-black/[0.06] px-4 py-3 flex items-center gap-3 sticky top-0 z-40">
-          <button
-            onClick={() => setMenuOpen(true)}
-            className="p-3 -ml-2 hover:bg-[#F3F0EA] rounded-lg transition-colors"
-            aria-label="Apri menu"
-            aria-expanded={menuOpen}
-          >
-            <Menu className="w-5 h-5 text-[#191A17]" />
-          </button>
-          <h1 className="font-black text-[#191A17] text-[15px]" style={{ letterSpacing: '-0.02em' }}>
-            Area Terapista
-          </h1>
-        </div>
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
+      <div className="flex-1 flex flex-col min-w-0 pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] lg:pl-0 lg:pr-0">
+        {/* Barra in alto (telefono): rispetta notch / Dynamic Island */}
+        <header
+          className="lg:hidden bg-white border-b border-black/[0.06] px-4 flex flex-col justify-center sticky top-0 z-40"
+          style={{ paddingTop: 'env(safe-area-inset-top)' }}
+        >
+          <div className="min-h-[52px] flex flex-col justify-center py-1.5">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#6A685F] leading-none">Masso Lab Studio</p>
+            <h1 className="mt-1 text-[19px] font-semibold text-[#191A17] leading-none" style={{ letterSpacing: '-0.03em' }}>
+              {tabLabel(activeTab)}
+            </h1>
+          </div>
+        </header>
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-8 max-w-7xl w-full mx-auto">
           <Suspense fallback={<Spinner />}>{renderTab()}</Suspense>
         </main>
       </div>
+
+      {/* Barra di navigazione in basso (telefono): comoda col pollice, sopra la barra Home */}
+      <nav
+        className="lg:hidden fixed inset-x-0 bottom-0 z-40 bg-white border-t border-black/[0.06] shadow-[0_-8px_30px_-12px_rgba(25,26,23,0.18)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+        aria-label="Navigazione principale"
+      >
+        <ul className="flex items-stretch px-1">
+          {BOTTOM_TABS.map(({ label, icon: Icon, tab }) => {
+            const active = activeTab === tab;
+            return (
+              <li key={tab} className="flex-1 min-w-0">
+                <button
+                  onClick={() => selectTab(tab)}
+                  aria-current={active ? 'page' : undefined}
+                  className="w-full min-h-[56px] pt-1.5 pb-1 flex flex-col items-center justify-center gap-0.5"
+                >
+                  <span className={`h-7 w-14 rounded-full flex items-center justify-center transition-colors duration-300 ease-apple ${active ? 'bg-[#CFE99A]' : ''}`}>
+                    <Icon className={`w-[22px] h-[22px] transition-colors duration-300 ease-apple ${active ? 'text-[#191A17]' : 'text-[#6A685F]'}`} aria-hidden="true" />
+                  </span>
+                  <span className={`text-xs leading-none tracking-[-0.01em] ${active ? 'font-bold text-[#191A17]' : 'font-semibold text-[#6A685F]'}`}>{label}</span>
+                </button>
+              </li>
+            );
+          })}
+          <li className="flex-1 min-w-0">
+            <button
+              onClick={() => setMenuOpen(true)}
+              aria-haspopup="dialog"
+              aria-expanded={menuOpen}
+              className="w-full min-h-[56px] pt-1.5 pb-1 flex flex-col items-center justify-center gap-0.5"
+            >
+              <span className={`h-7 w-14 rounded-full flex items-center justify-center transition-colors duration-300 ease-apple ${inOther || menuOpen ? 'bg-[#CFE99A]' : ''}`}>
+                <MoreHorizontal className={`w-[22px] h-[22px] ${inOther || menuOpen ? 'text-[#191A17]' : 'text-[#6A685F]'}`} aria-hidden="true" />
+              </span>
+              <span className={`text-xs leading-none tracking-[-0.01em] ${inOther ? 'font-bold text-[#191A17]' : 'font-semibold text-[#6A685F]'}`}>Altro</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }
 
 export default function TherapistDashboard() {
+  // App installabile "MassoLab Studio": manifest + service worker solo su queste pagine.
+  useEffect(() => enableStudioPwa(), []);
   return (
     <TherapistGuard>
       <Dashboard />

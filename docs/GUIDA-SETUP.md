@@ -220,6 +220,46 @@ La funzione controlla chi può scrivere a chi: il terapista a chiunque; un clien
 al terapista o a sé stesso; un visitatore solo al terapista oppure all'indirizzo con cui ha appena
 prenotato. Così nessuno può usare il sito per mandare spam.
 
+### C4. App "MassoLab Studio" e notifiche del mattino (un solo comando)
+L'Area Terapista si installa come app su iPhone e Mac e ogni mattina alle **7:30** (ora italiana,
+anche con l'ora legale) manda una notifica con il riepilogo della giornata.
+
+**1. Configura il server (una volta).** Nel Terminale:
+
+```bash
+cd ~/Desktop/"PROGETTO SITO WEB MASSOLAB" && bash scripts/configura-notifiche.sh
+```
+
+Lo script crea le chiavi delle notifiche sul tuo Mac, le salva su Supabase (la chiave privata e il
+segreto del job **non** vengono mai mostrati né salvati nel progetto), applica la migration 0002,
+pubblica la funzione `daily-report` e mette su GitHub la chiave **pubblica** `VITE_VAPID_PUBLIC_KEY`.
+Durante l'esecuzione la CLI di Supabase chiede alcune conferme: per la migration deve comparire solo
+`0002_app_push_report.sql`; rispondi **Y/Yes**. Se compare altro rispondi **n** e avvisa l'architetto.
+Se la CLI o `gh` non sono collegati, lo script ti dice quale comando lanciare (`npx supabase login`
+oppure `gh auth login`). Rilanciarlo è sicuro: mantiene le chiavi e rinnova solo il segreto del job
+(per rigenerare anche le chiavi: `--nuove-chiavi`, poi su ogni dispositivo va ripremuto "Attiva notifiche").
+
+**2. Pubblica di nuovo il sito** (Actions → Deploy → Run workflow, o lo fa l'architetto) così l'app legge la chiave.
+
+**3. Installa l'app.**
+- **iPhone (iOS 16.4 o successivo)**: apri in Safari `https://simocia99.github.io/massolab/TherapistDashboard`
+  → pulsante **Condividi** → **Aggiungi alla schermata Home**. Apri **MassoLab** dalla Home e accedi
+  (una volta sola: l'app ricorda l'accesso).
+- **Mac**: Safari → **File → Aggiungi al Dock** (oppure Chrome → icona "Installa" nella barra degli indirizzi).
+
+**4. Attiva le notifiche** su ogni dispositivo: nella dashboard, riquadro "Resoconto di oggi" →
+**Attiva notifiche del mattino** → consenti. Poi premi **Prova**: arriva subito una notifica di prova.
+
+Note:
+- Su iPhone le notifiche funzionano **solo** dall'app aggiunta alla schermata Home, non da Safari.
+- La notifica contiene solo numeri (es. "Oggi 3 appuntamenti · 2 richieste da confermare"): nomi e
+  dettagli si vedono solo aprendo l'app, dopo l'accesso.
+- Se la notifica non arriva: controlla in Impostazioni → Notifiche → MassoLab che siano consentite,
+  e che "Full immersione/Concentrazione" non le blocchi. Lo storico degli invii è in Supabase →
+  tabella `automation_log` (righe con `automation_key = daily_report`).
+- Non pubblicare la funzione a mano senza `--no-verify-jwt` (è già indicato in `supabase/config.toml`):
+  altrimenti il job del mattino verrebbe rifiutato.
+
 ---
 
 ## D. Collegare il sito a Supabase (variabili del repository)

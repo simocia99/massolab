@@ -2,6 +2,7 @@
 # Configurazione (una volta sola): Settings -> Pages -> Source: "GitHub Actions"
 # Variabili: Settings -> Secrets and variables -> Actions -> tab "Variables"
 #   VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY, VITE_THERAPIST_EMAIL
+#   VITE_VAPID_PUBLIC_KEY (chiave PUBBLICA delle notifiche, la imposta scripts/configura-notifiche.sh)
 # (senza le variabili Supabase il sito funziona in modalità DEMO)
 name: Deploy su GitHub Pages
 
@@ -47,6 +48,7 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
           VITE_THERAPIST_EMAIL: ${{ vars.VITE_THERAPIST_EMAIL }}
           VITE_GOOGLE_AUTH: ${{ vars.VITE_GOOGLE_AUTH }}
+          VITE_VAPID_PUBLIC_KEY: ${{ vars.VITE_VAPID_PUBLIC_KEY }}
 
       - uses: actions/configure-pages@v5
 

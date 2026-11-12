@@ -6,6 +6,7 @@ import { db } from '@/api/client';
 import { DEMO_THERAPIST_PASSWORD, GOOGLE_AUTH, THERAPIST_EMAIL } from '@/api/config';
 import { useAuth } from '@/lib/AuthContext';
 import { absolutePageUrl, createPageUrl } from '@/lib/utils';
+import { enableStudioPwa } from '@/lib/pwa';
 
 export function GoogleIcon() {
   return (
@@ -41,6 +42,9 @@ export default function TherapistLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+
+  // App installabile "MassoLab Studio": manifest + service worker solo sulle pagine del terapista.
+  useEffect(() => enableStudioPwa(), []);
 
   const state = isLoadingAuth ? 'checking' : !isAuthenticated ? 'unauth' : isTherapist ? 'authed' : 'denied';
 

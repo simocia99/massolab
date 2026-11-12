@@ -147,9 +147,6 @@ export default function Layout({ children, currentPageName }) {
               <Link to={createPageUrl('ClientLogin')} className={navLink}>
                 Area Clienti
               </Link>
-              <Link to={createPageUrl('TherapistLogin')} className={navLink}>
-                Area Terapista
-              </Link>
               <Link
                 to={createPageUrl('GuestBooking')}
                 className={`inline-flex items-center gap-1.5 rounded-full px-5 min-h-[44px] text-sm font-medium transition-all duration-300 hover:scale-[1.02] whitespace-nowrap ${transparent ? 'bg-white text-ink hover:bg-white/90' : 'bg-ink text-white hover:bg-gray-800'}`}
@@ -215,7 +212,6 @@ export default function Layout({ children, currentPageName }) {
                     className="px-4 pt-4 pb-6 space-y-1"
                   >
                     <MobileNavLink to={createPageUrl('Blog')} label="Blog" />
-                    <MobileNavLink to={createPageUrl('TherapistLogin')} label="Area Terapista" />
                     <motion.div variants={menuItem} whileTap={{ scale: 0.97 }} transition={TAP_SPRING}>
                       <Link
                         to={createPageUrl('ClientLogin')}
