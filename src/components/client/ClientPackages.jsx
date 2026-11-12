@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar, CircleAlert, CircleCheckBig, Clock, Package, Sparkles } from 'lucide-react';
+import { ArrowRight, Calendar, CircleAlert, CircleCheckBig, Clock, Package } from 'lucide-react';
 import { db } from '@/api/client';
 import { createPageUrl } from '@/lib/utils';
 
@@ -196,12 +196,6 @@ export default function ClientPackages({ clientEmail }) {
           <h2 className="text-xl font-bold text-gray-900">I tuoi percorsi</h2>
           <p className="text-sm text-gray-500 mt-0.5">Tieni traccia delle sedute e pianifica le prossime</p>
         </div>
-        <Link
-          to={createPageUrl('Percorsi')}
-          className="flex items-center gap-1.5 text-sm text-red-600 font-semibold hover:gap-2.5 transition-all"
-        >
-          Scopri i percorsi <ArrowRight className="w-4 h-4" />
-        </Link>
       </div>
 
       {error && <p className="text-sm text-danger bg-danger-soft rounded-xl px-4 py-2">{error}</p>}
@@ -213,15 +207,8 @@ export default function ClientPackages({ clientEmail }) {
           </div>
           <h3 className="font-bold text-gray-800 mb-2">Nessun percorso attivo</h3>
           <p className="text-sm text-gray-500 mb-6 max-w-xs mx-auto">
-            Non hai ancora un pacchetto di sedute. Scopri i percorsi disponibili e parlane con Simone.
+            Non hai ancora un pacchetto di sedute. Se ti interessa, chiedi a Simone.
           </p>
-          <Link
-            to={createPageUrl('Percorsi')}
-            className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl px-5 py-2.5 text-sm transition-colors"
-          >
-            <Sparkles className="w-4 h-4" />
-            Scopri i percorsi
-          </Link>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

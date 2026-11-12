@@ -141,9 +141,6 @@ export default function Layout({ children, currentPageName }) {
             </Link>
 
             <div className="hidden md:flex items-center gap-5 lg:gap-7">
-              <Link to={createPageUrl('Percorsi')} className={navLink}>
-                Percorsi
-              </Link>
               <Link to={createPageUrl('Blog')} className={navLink}>
                 Blog
               </Link>
@@ -217,7 +214,6 @@ export default function Layout({ children, currentPageName }) {
                     variants={{ hidden: {}, show: { transition: { staggerChildren: 0.045, delayChildren: 0.06 } } }}
                     className="px-4 pt-4 pb-6 space-y-1"
                   >
-                    <MobileNavLink to={createPageUrl('Percorsi')} label="Percorsi" />
                     <MobileNavLink to={createPageUrl('Blog')} label="Blog" />
                     <MobileNavLink to={createPageUrl('TherapistLogin')} label="Area Terapista" />
                     <motion.div variants={menuItem} whileTap={{ scale: 0.97 }} transition={TAP_SPRING}>
@@ -291,9 +287,6 @@ export default function Layout({ children, currentPageName }) {
                 <div className="space-y-2 text-sm">
                   <Link to={createPageUrl('Home')} className="block py-3 hover:text-white transition-colors">
                     Home
-                  </Link>
-                  <Link to={createPageUrl('Percorsi')} className="block py-3 hover:text-white transition-colors">
-                    Percorsi
                   </Link>
                   <Link to={createPageUrl('Blog')} className="block py-3 hover:text-white transition-colors">
                     Blog
