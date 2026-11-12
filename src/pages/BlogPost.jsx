@@ -113,8 +113,8 @@ export default function BlogPost() {
         <div className="flex flex-col lg:flex-row gap-10">
           <motion.article
             key={post.id}
-            initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
             className="flex-1 min-w-0 bg-white rounded-2xl border border-gray-100 p-5 sm:p-8 md:p-12"
           >
             <SafeContent content={post.content} className="max-w-none break-words [&>*:first-child]:mt-0" />

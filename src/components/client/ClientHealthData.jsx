@@ -154,8 +154,8 @@ export default function ClientHealthData({ clientEmail, clientName }) {
 
       {showForm && (
         <motion.div
-          initial={{ opacity: 0, y: -10, filter: 'blur(8px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
           className="bg-white border border-gray-200 rounded-2xl p-6 mb-6"
         >
           <h3 className="font-bold text-gray-900 mb-4">Nuovo Rilevamento</h3>

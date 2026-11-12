@@ -132,7 +132,7 @@ export function SuggestionStep({ suggestion }) {
 
   if (caution) {
     return (
-      <motion.div initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} className="text-center">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center">
         <div className="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-5">
           <TriangleAlert className="w-8 h-8 text-amber-500" />
         </div>
@@ -149,7 +149,7 @@ export function SuggestionStep({ suggestion }) {
   }
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}>
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
       <h2 className="text-2xl font-bold text-gray-900 mb-2">Ecco il trattamento consigliato per te</h2>
       <p className="text-gray-500 text-sm mb-6">Basato sulle tue risposte — puoi sempre cambiare idea prima della seduta.</p>
       <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-5 mb-4">

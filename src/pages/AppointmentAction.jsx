@@ -172,8 +172,8 @@ export default function AppointmentAction() {
   return (
     <div className="min-h-screen bg-[#F3F0EA] flex items-center justify-center px-4 sm:px-6 py-10">
       <motion.div
-        initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         className="max-w-md w-full bg-white rounded-3xl shadow-sm border border-gray-100 p-6 sm:p-8"
       >
         <div className="text-center mb-6">

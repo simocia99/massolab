@@ -34,8 +34,8 @@ export default function PercorsiTeaser() {
     <section className="overflow-hidden py-24 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.6 }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
@@ -76,8 +76,8 @@ export default function PercorsiTeaser() {
               return (
                 <motion.div
                   key={p.name}
-                  initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-                  whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
                   className={`relative rounded-2xl p-4 sm:p-5 flex flex-col gap-2 sm:gap-3 overflow-hidden ${

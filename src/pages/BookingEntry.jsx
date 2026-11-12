@@ -14,8 +14,8 @@ export default function BookingEntry() {
     <div className="min-h-screen bg-gradient-to-b from-[#F3F0EA] to-white flex items-center justify-center px-4 sm:px-6 py-20">
       <div className="max-w-4xl w-full">
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.6 }}
           className="text-center mb-12"
         >
@@ -24,7 +24,7 @@ export default function BookingEntry() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.5, delay: 0.1 }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.5, delay: 0.1 }}>
             <Link to={createPageUrl('GuestBooking')} className="block h-full">
               <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 h-full flex flex-col group">
                 <div className="w-14 h-14 rounded-2xl bg-gray-100 flex items-center justify-center mb-6">
@@ -41,7 +41,7 @@ export default function BookingEntry() {
             </Link>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.5, delay: 0.2 }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.5, delay: 0.2 }}>
             <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border-2 border-red-100 h-full flex flex-col group">
               <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mb-6">
                 <UserPlus className="w-7 h-7 text-red-500" />

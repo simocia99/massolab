@@ -101,7 +101,7 @@ export default function BookFromArea({ client, onBooked }) {
       </div>
 
       {form.treatment_type && (
-        <motion.div initial={{ opacity: 0, y: 8, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}>
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
           <p className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 flex items-center gap-2">
             <CalendarDays className="w-4 h-4" /> Seleziona Data e Orario *
           </p>
@@ -118,7 +118,7 @@ export default function BookFromArea({ client, onBooked }) {
       )}
 
       {form.preferred_date && form.preferred_time && (
-        <motion.div initial={{ opacity: 0, y: 8, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}>
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
           <label htmlFor="area-notes" className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
             Note (opzionale)
           </label>

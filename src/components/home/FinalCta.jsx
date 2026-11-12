@@ -12,8 +12,8 @@ export default function FinalCta() {
       <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] bg-sage-600 py-24 md:py-32">
         <div
           aria-hidden="true"
-          className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[900px] max-w-[140%] h-[420px] rounded-full blur-[110px] opacity-40"
-          style={{ background: '#C98B4E' }}
+          className="absolute -bottom-56 left-1/2 -translate-x-1/2 w-[1400px] max-w-[220%] h-[640px] rounded-full opacity-50 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse at center, #C98B4E 0%, rgba(201,139,78,0.35) 35%, transparent 70%)' }}
         />
         <motion.div {...reveal(40)} className="relative max-w-3xl mx-auto px-6 text-center">
           <p className="text-xs font-medium uppercase tracking-[0.08em] text-white/90 mb-6">Inizia ora</p>

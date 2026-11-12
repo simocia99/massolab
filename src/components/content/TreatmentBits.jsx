@@ -60,7 +60,7 @@ export function TreatmentReviews({ treatmentType }) {
   const { reviews, isLoading } = useTreatmentReviews(treatmentType);
   if (isLoading || reviews.length === 0) return null;
   return (
-    <motion.div initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }} whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }} viewport={{ once: true }}>
+    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
       <h2 className="text-xl font-bold text-gray-900 mb-5">Cosa dicono i clienti</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {reviews.map((r) => (

@@ -7,6 +7,13 @@ import { BUSINESS } from '@/api/config';
 import { createPageUrl } from '@/lib/utils';
 
 const LOGO_ALT = 'MassoLab — Simone Ciacchi';
+const EASE = [0.28, 0.11, 0.32, 1];
+
+// Apple-style glass: translucent tint + blur + extra saturation, so text stays readable
+// on any photo (dark glass) or page background (light glass).
+const GLASS_DARK = 'bg-[rgba(25,26,23,0.32)] border-white/15 backdrop-blur-[20px] backdrop-saturate-[1.8]';
+const GLASS_LIGHT =
+  'bg-[rgba(250,248,245,0.78)] border-black/[0.07] backdrop-blur-[20px] backdrop-saturate-[1.8] shadow-[0_1px_0_rgba(25,26,23,0.04),0_8px_30px_-14px_rgba(25,26,23,0.25)]';
 const TAP_SPRING = { type: 'spring', stiffness: 500, damping: 30 };
 
 const menuItem = {
@@ -61,12 +68,15 @@ export default function Layout({ children, currentPageName }) {
   // The therapist area has its own full-screen chrome.
   if (isTherapistPage) return <>{children}</>;
 
+  // "transparent" = the bar sits over the dark hero photo, so it uses dark glass + white text.
   const transparent = isHome && !scrolled;
-  // Floating pill navbar (Estetica v2): glass over the hero, light once scrolled.
-  const navBg = transparent
-    ? 'bg-white/10 border-white/25 backdrop-blur-xl'
-    : 'bg-white/80 border-white/60 backdrop-blur-2xl shadow-[0_8px_30px_-10px_rgba(25,26,23,0.18)]';
-  const linkColor = transparent ? 'text-white/90 hover:text-white' : 'text-gray-600 hover:text-gray-900';
+  // Pill that docks (user's choice "B"): a floating glass pill at the top of the page,
+  // it widens into a full-width light-glass bar pinned to the top as soon as you scroll.
+  const navPos = scrolled ? 'top-0 left-0 right-0' : 'top-3 left-3 right-3 sm:top-5 sm:left-8 sm:right-8';
+  const barCls = scrolled
+    ? `max-w-full mx-auto rounded-none border-b ${GLASS_LIGHT}`
+    : `max-w-6xl mx-auto rounded-[28px] border ${transparent ? GLASS_DARK : GLASS_LIGHT}`;
+  const linkColor = transparent ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-ink';
   const brandColor = transparent ? 'text-white' : 'text-gray-900';
   const logoStyle = transparent ? { borderRadius: '9999px', boxShadow: '0 0 0 1px rgba(255,255,255,0.35)' } : { mixBlendMode: 'multiply' };
   const navLink = `inline-flex items-center min-h-[44px] text-sm font-medium transition-colors ${linkColor}`;
@@ -74,10 +84,9 @@ export default function Layout({ children, currentPageName }) {
   return (
     <MotionConfig reducedMotion="user">
       <div className="flex flex-col min-h-screen bg-[#F3F0EA]">
-        <nav className="fixed top-3 sm:top-5 left-3 right-3 sm:left-8 sm:right-8 z-50">
-          <div
-            className={`max-w-6xl mx-auto pl-4 pr-2 sm:pl-5 h-14 flex items-center justify-between rounded-full border transition-all duration-500 ${navBg}`}
-          >
+        <nav className={`fixed z-50 transition-[top,left,right] duration-500 ease-apple ${navPos}`}>
+          <div className={`transition-[max-width,border-radius,background-color,border-color,box-shadow] duration-500 ease-apple ${barCls}`}>
+          <div className="max-w-6xl mx-auto pl-4 pr-2 sm:pl-5 h-14 flex items-center justify-between">
             <Link to={createPageUrl('Home')} className="flex items-center gap-2.5 flex-shrink-0 min-h-[44px]">
               <img
                 src={BUSINESS.logo}
@@ -145,6 +154,7 @@ export default function Layout({ children, currentPageName }) {
                 {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </motion.button>
             </div>
+          </div>
           </div>
 
           <AnimatePresence>
@@ -215,7 +225,17 @@ export default function Layout({ children, currentPageName }) {
           </AnimatePresence>
         </nav>
 
-        <main className={`flex-1 ${isHome ? '' : 'pt-24'}`}>{children}</main>
+        <main className={`flex-1 min-h-screen ${isHome ? '' : 'pt-24'}`}>
+          {/* Page change: only the content fades in, the navbar stays still. */}
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: EASE }}
+          >
+            {children}
+          </motion.div>
+        </main>
 
         <footer className={`bg-ink text-gray-300 py-10 px-4 sm:px-6 md:pb-10 ${isHome ? 'pb-24' : 'pb-10'}`}>
           <div className="max-w-7xl mx-auto">

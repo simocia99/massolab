@@ -24,7 +24,7 @@ function Photo({ step, active }) {
       loading="lazy"
       className="absolute inset-0 w-full h-full object-cover"
       initial={false}
-      animate={active ? { opacity: 1, scale: 1, filter: 'blur(0px)' } : { opacity: 0, scale: 1.08, filter: 'blur(8px)' }}
+      animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.08 }}
       transition={T_PHOTO}
     />
   );
@@ -33,9 +33,9 @@ function Photo({ step, active }) {
 function Copy({ step, state }) {
   // state: -1 = already passed, 0 = current, 1 = coming next
   const variants = {
-    passed: { opacity: 0, y: -16, filter: 'blur(6px)', transition: { ...T_TEXT, duration: 0.3 } },
-    current: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { ...T_TEXT, delay: 0.15 } },
-    next: { opacity: 0, y: 24, filter: 'blur(6px)', transition: { ...T_TEXT, duration: 0.3 } },
+    passed: { opacity: 0, y: -16, transition: { ...T_TEXT, duration: 0.3 } },
+    current: { opacity: 1, y: 0, transition: { ...T_TEXT, delay: 0.15 } },
+    next: { opacity: 0, y: 24, transition: { ...T_TEXT, duration: 0.3 } },
   };
   return (
     <motion.li

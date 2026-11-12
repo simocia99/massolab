@@ -153,8 +153,8 @@ export default function PostSessionFeedback() {
           <ChevronLeft className="w-4 h-4 mr-1" /> Home
         </Link>
         <motion.div
-          initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
           className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 space-y-6"
         >
           <div>
@@ -192,8 +192,8 @@ export default function PostSessionFeedback() {
           <AnimatePresence>
             {diff !== 0 && (
               <motion.div
-                initial={{ opacity: 0, y: -4, filter: 'blur(8px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 className={`rounded-2xl p-3 text-sm font-semibold text-center ${
                   diff > 0 ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'

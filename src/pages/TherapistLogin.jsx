@@ -75,7 +75,7 @@ export default function TherapistLogin() {
 
   return (
     <div className="min-h-screen bg-[#1a1816] flex items-center justify-center px-6 py-10">
-      <motion.div initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} className="w-full max-w-md">
+      <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="w-16 h-16 rounded-2xl bg-red-600 flex items-center justify-center mx-auto mb-4">
             <Lock className="w-8 h-8 text-white" />

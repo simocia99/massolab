@@ -56,15 +56,15 @@ export default function WhyMassolab() {
             return (
               <motion.div
                 key={r.title}
-                initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
-                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
                 className="group bg-sand rounded-[24px] p-8 md:p-10 hover:shadow-[0_10px_40px_-12px_rgba(25,26,23,0.18)] transition-all duration-500 relative overflow-hidden"
               >
                 <div
-                  className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-4 blur-3xl"
-                  style={{ background: r.accent, transform: 'translate(40%, -40%)' }}
+                  className="absolute top-0 right-0 w-80 h-80 rounded-full opacity-70 pointer-events-none"
+                  style={{ background: `radial-gradient(circle, ${r.accent} 0%, transparent 65%)`, transform: 'translate(40%, -40%)' }}
                 />
                 <div className="flex items-center gap-4 mb-7">
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: `${r.accent}15` }}>

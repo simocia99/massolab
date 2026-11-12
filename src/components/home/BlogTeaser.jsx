@@ -54,8 +54,8 @@ export default function BlogTeaser() {
             {posts.map((post, i) => (
               <motion.div
                 key={post.id}
-                initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >

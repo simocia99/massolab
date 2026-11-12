@@ -201,7 +201,7 @@ export default function ClientArea() {
         {loading ? (
           <Spinner />
         ) : (
-          <motion.div key={tab} initial={{ opacity: 0, y: 12, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.2 }}>
+          <motion.div key={tab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.2 }}>
             {tab === 'book' && (
               <div>
                 <h2 className="text-lg font-bold text-gray-900 mb-6">Prenota un Appuntamento</h2>

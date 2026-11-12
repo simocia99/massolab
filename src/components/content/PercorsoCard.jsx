@@ -54,8 +54,8 @@ export default function PercorsoCard({ pkg, index, pricingRecord: price }) {
   const showPrice = price?.visible && price.price != null && price.price !== '' && Number(price.price) !== 0;
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.5, delay: index * 0.1 }}
       className="relative bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group"

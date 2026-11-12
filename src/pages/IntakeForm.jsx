@@ -306,8 +306,8 @@ export default function IntakeForm() {
                   <AnimatePresence>
                     {showWarning && (
                       <motion.div
-                        initial={{ opacity: 0, y: -6, filter: 'blur(8px)' }}
-                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
                         role="alert"
                         className="mt-3 bg-amber-50 border border-amber-200 rounded-2xl p-4 flex gap-3"

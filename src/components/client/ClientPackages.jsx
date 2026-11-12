@@ -109,8 +109,8 @@ function PackageCard({ pkg, index }) {
   const finished = pkg.status === 'completed' || remaining === 0;
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
       className={`bg-white rounded-3xl border shadow-sm overflow-hidden ${finished ? 'border-gray-200 opacity-75' : 'border-gray-100'}`}
     >

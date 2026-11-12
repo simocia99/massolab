@@ -8,7 +8,44 @@ const DEFAULT_LNG = 9.1401;
  * Google Maps embed with a draggable overlay and a red circle showing the
  * service radius (original `h3`). The iframe is twice the box size so it can
  * be panned with the pointer without exposing empty edges.
+ *
+ * Performance: the Google Maps embed downloads ~40 files and runs heavy scripts,
+ * which froze the page for a moment while scrolling past it. The iframe is now
+ * created only once the map is on screen AND scrolling has stopped for a moment.
  */
+function useLoadWhenSettled(ref) {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || ready) return undefined;
+    let visible = false;
+    let timer = null;
+    const arm = () => {
+      clearTimeout(timer);
+      if (!visible) return;
+      timer = setTimeout(() => {
+        const go = () => setReady(true);
+        if ('requestIdleCallback' in window) window.requestIdleCallback(go, { timeout: 800 });
+        else go();
+      }, 600);
+    };
+    const io = new IntersectionObserver(
+      ([e]) => {
+        visible = e.isIntersecting;
+        arm();
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    window.addEventListener('scroll', arm, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      io.disconnect();
+      window.removeEventListener('scroll', arm);
+    };
+  }, [ref, ready]);
+  return ready;
+}
 export default function ServiceAreaMap({
   lat,
   lng,
@@ -59,11 +96,13 @@ export default function ServiceAreaMap({
     setDragging(false);
   };
 
+  const boxRef = useRef(null);
+  const mapReady = useLoadWhenSettled(boxRef);
   const src = `https://maps.google.com/maps?q=${centerLat},${centerLng}&z=${zoom}&hl=it&output=embed`;
   const ctrl = 'bg-white/90 backdrop-blur-md hover:bg-white text-[#191A17] w-11 h-11 flex items-center justify-center transition-colors';
 
   return (
-    <div className={`relative w-full rounded-2xl overflow-hidden border border-gray-100 ${className}`}>
+    <div ref={boxRef} className={`relative w-full rounded-2xl overflow-hidden border border-gray-100 bg-sand ${className}`}>
       <div
         className="absolute"
         style={{
@@ -74,14 +113,16 @@ export default function ServiceAreaMap({
           transform: `translate(${pan.x}px, ${pan.y}px)`,
         }}
       >
-        <iframe
-          title="Mappa MassoLab"
-          src={src}
-          className="absolute inset-0 w-full h-full"
-          style={{ border: 0 }}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
+        {mapReady && (
+          <iframe
+            title="Mappa MassoLab"
+            src={src}
+            className="absolute inset-0 w-full h-full"
+            style={{ border: 0 }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        )}
         {showCircle && (
           <div
             className="absolute left-1/2 top-1/2 pointer-events-none"

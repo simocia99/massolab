@@ -30,12 +30,21 @@ const Spinner = () => (
 const page = (name) => {
   const Page = PAGES[name];
   return (
-    <Layout currentPageName={name}>
+    <>
       <PageTitle name={name} />
       <Page />
-    </Layout>
+    </>
   );
 };
+
+// One Layout for the whole app: the navbar is never re-created when the page
+// changes (no flicker, scroll state kept); only the content below it is swapped.
+function Shell({ children }) {
+  const { pathname } = useLocation();
+  const key = pathname.replace(/^\/+|\/+$/g, '');
+  const name = key === '' ? MAIN_PAGE : PAGES[key] ? key : 'NotFound';
+  return <Layout currentPageName={name}>{children}</Layout>;
+}
 
 export default function App() {
   return (
@@ -43,6 +52,7 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
           <ScrollToTop />
+          <Shell>
           <Suspense fallback={<Spinner />}>
             <Routes>
               <Route path="/" element={page(MAIN_PAGE)} />
@@ -52,6 +62,7 @@ export default function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
+          </Shell>
           <DemoBanner />
         </BrowserRouter>
         <Toaster position="top-center" richColors />

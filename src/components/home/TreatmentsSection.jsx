@@ -15,8 +15,8 @@ function SmallCard({ item, index, onOpen }) {
   const Icon = item.icon;
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: EASE }}
       whileTap={{ scale: 0.97 }}
@@ -102,8 +102,8 @@ export default function TreatmentsSection() {
               return (
                 <motion.div
                   key={t.title}
-                  initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
-                  whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
                   whileTap={{ scale: 0.98 }}
@@ -115,8 +115,8 @@ export default function TreatmentsSection() {
                   style={{ minHeight: 280 }}
                 >
                   <div
-                    className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-5 blur-3xl"
-                    style={{ background: t.accent, transform: 'translate(30%, -30%)' }}
+                    className="absolute top-0 right-0 w-72 h-72 rounded-full opacity-10 pointer-events-none"
+                    style={{ background: `radial-gradient(circle, ${t.accent} 0%, transparent 65%)`, transform: 'translate(30%, -30%)' }}
                   />
                   <div className="flex items-center gap-3 mb-6">
                     <div

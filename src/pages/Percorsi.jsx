@@ -44,7 +44,7 @@ export default function Percorsi() {
     <div className="min-h-screen bg-[#F3F0EA]">
       <section className="bg-white py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.6 }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.6 }}>
             <span className="inline-block bg-red-50 text-red-600 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
               Percorsi di trattamento
             </span>
@@ -66,8 +66,8 @@ export default function Percorsi() {
             {STEPS.map((s) => (
               <motion.div
                 key={s.step}
-                initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
               >

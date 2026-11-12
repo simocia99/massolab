@@ -67,8 +67,8 @@ export default function ContactSection() {
     <section id="contatti" className="overflow-hidden py-28 md:py-36 bg-[#F3F0EA]">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.6 }}
           className="mb-14"
@@ -197,8 +197,8 @@ export default function ContactSection() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ ease: [0.28, 0.11, 0.32, 1], duration: 0.6 }}
           className="bg-white rounded-[28px] p-6 sm:p-8 shadow-sm mt-8"
