@@ -189,8 +189,12 @@ sb db push --remote="$PROJECT_REF" || fail "Migration non applicata. Rilancia lo
 
 # ---- 2) Segreto del cron nel Vault ----------------------------------------------------
 step "2/5 Salvo il segreto del job nel Vault di Supabase"
-say "(Se la CLI chiede conferma, scrivi: Yes e premi Invio)"
-sb db query --remote="$PROJECT_REF" --file "$SQL_FILE" >/dev/null \
+# La conferma la chiede lo script: quella della CLI stamperebbe a schermo il testo SQL,
+# segreto compreso. Dopo il "s" dell'utente la CLI gira con --yes e senza output.
+printf 'Salvo (o sostituisco) il segreto del job nel Vault di Supabase? [s/N] '
+read -r RISPOSTA
+case "$RISPOSTA" in s|S|si|SI|sì|Si|y|Y|yes|Yes) ;; *) fail "Annullato: nessuna modifica al Vault." ;; esac
+sb db query --remote="$PROJECT_REF" --file "$SQL_FILE" --yes >/dev/null 2>&1 \
   || fail "Segreto non salvato nel Vault. Rilancia lo script."
 say "OK: segreto salvato nel Vault (nome: $VAULT_NAME)."
 
