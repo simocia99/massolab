@@ -95,11 +95,11 @@ export default function Sidebar({ activeTab, setActiveTab, variant = 'desktop' }
             alt=""
             width={40}
             height={40}
-            className="h-10 w-10 flex-shrink-0 rounded-full ring-1 ring-black/10"
+            className="h-10 w-10 flex-shrink-0 rounded-full"
           />
           <div className="leading-none min-w-0">
-            <h2 className="text-[#191A17] font-bold text-base" style={{ letterSpacing: '-0.02em' }}>
-              Masso Lab
+            <h2 className="text-[#191A17] text-[19px] leading-none" style={{ fontWeight: 600, letterSpacing: '-0.05em' }}>
+              massolab<span className="text-ocra">.</span>
             </h2>
             <p className="text-[#6A685F] text-[13px] font-[400] mt-1" style={{ letterSpacing: '-0.01em' }}>
               Studio · Simone Ciacchi

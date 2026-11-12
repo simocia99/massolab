@@ -3,10 +3,10 @@ import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
 import { Calendar, ChevronRight, Menu, User, X } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
-import { BUSINESS } from '@/api/config';
+import Wordmark from '@/components/brand/Wordmark';
 import { createPageUrl } from '@/lib/utils';
 
-const LOGO_ALT = 'MassoLab — Simone Ciacchi';
+const LOGO_ALT = 'massolab. Simone Ciacchi — vai alla home';
 const EASE = [0.28, 0.11, 0.32, 1];
 
 // Apple-style glass: translucent tint + blur + extra saturation, so text stays readable
@@ -109,8 +109,6 @@ export default function Layout({ children, currentPageName }) {
     ? `max-w-full mx-auto rounded-none border-b ${GLASS_LIGHT}`
     : `max-w-6xl mx-auto rounded-[28px] border ${transparent ? GLASS_DARK : GLASS_LIGHT}`;
   const linkColor = transparent ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-ink';
-  const brandColor = transparent ? 'text-white' : 'text-gray-900';
-  const logoStyle = transparent ? { borderRadius: '9999px', boxShadow: '0 0 0 1px rgba(255,255,255,0.35)' } : { mixBlendMode: 'multiply' };
   const navLink = `inline-flex items-center min-h-[44px] text-sm font-medium transition-colors ${linkColor}`;
 
   return (
@@ -120,24 +118,8 @@ export default function Layout({ children, currentPageName }) {
           <div className={`relative transition-[max-width,border-radius,background-color,border-color,box-shadow] duration-500 ease-apple ${barCls}`}>
           <NavLight dark={transparent} />
           <div className="max-w-6xl mx-auto pl-4 pr-2 sm:pl-5 h-14 flex items-center justify-between">
-            <Link to={createPageUrl('Home')} className="flex items-center gap-2.5 flex-shrink-0 min-h-[44px]">
-              <img
-                src={BUSINESS.logo}
-                alt={LOGO_ALT}
-                width={36}
-                height={36}
-                className="h-8 w-8 md:h-9 md:w-9 transition-all duration-300"
-                style={logoStyle}
-              />
-              <span className="flex flex-col leading-none">
-                <span
-                  className={`text-base font-bold tracking-tight transition-colors ${brandColor}`}
-                  style={{ letterSpacing: '-0.02em' }}
-                >
-                  Masso Lab
-                </span>
-                <span className={`hidden min-[420px]:block text-[13px] font-[400] mt-0.5 transition-colors ${transparent ? 'text-white/80' : 'text-gray-600'}`} style={{ letterSpacing: '-0.01em' }}>Simone Ciacchi</span>
-              </span>
+            <Link to={createPageUrl('Home')} aria-label={LOGO_ALT} className="flex items-center flex-shrink-0 min-h-[44px]">
+              <Wordmark tone={transparent ? 'light' : 'dark'} size="sm" />
             </Link>
 
             <div className="hidden md:flex items-center gap-5 lg:gap-7">
@@ -266,16 +248,7 @@ export default function Layout({ children, currentPageName }) {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
               <div className="col-span-2 md:col-span-1">
-                <img
-                  src={BUSINESS.logo}
-                  alt={LOGO_ALT}
-                  width={80}
-                  height={80}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-20 w-20 mb-2"
-                  style={{ borderRadius: '9999px', boxShadow: '0 0 0 1px rgba(255,255,255,0.35)' }}
-                />
+                <Wordmark tone="light" size="lg" className="mb-4" />
                 <p className="text-sm text-gray-400">Massoterapia Professionale</p>
               </div>
               <div>
